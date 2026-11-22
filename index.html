@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perfect Body</title>
+<meta name="theme-color" content="#0B1117">
+<meta name="description" content="แอปส่วนตัว: ลดไขมัน รักษากล้ามเนื้อ">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Perfect Body">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{var th=localStorage.getItem("leanup.theme");document.documentElement.setAttribute("data-theme",th==="light"?"light":"dark");}catch(e){document.documentElement.setAttribute("data-theme","dark");}</script>
+<style>
+:root{
+  --bg:#F0F2F4; --surface:#FFFFFF; --raise:#F6F8FA; --ink:#0F1A24; --muted:#56636F; --line:#D8DEE4; --line-soft:#E7EBEF;
+  --accent:#1B4FD8; --accent-ink:#FFFFFF; --accent-bg:#E3EBFD;
+  --good:#1C7C66; --good-bg:#E1F1EC; --warn:#A86E06; --warn-bg:#FAEED6; --bad:#C0342A; --bad-bg:#FBE4E1; --rest:#6F7C89; --rest-bg:#EAEEF1;
+  --heat-lo:#FFA51F; --heat-hi:#FF2E12; --rose:#E84F86; --violet:#8B5CF6;
+  --s-bg:#0B1117; --s-surface:#131C25; --s-raise:#1A2531; --s-ink:#E9EEF3; --s-muted:#8F9DAB; --s-line:#243140;
+  --hm0:#E7EBEF; --hm1:#C6E6DC; --hm2:#86CDB6; --hm3:#3FA585; --hm4:#1C7C66;
+  --shadow:0 1px 2px rgba(15,26,36,.05),0 6px 20px -12px rgba(15,26,36,.18);
+  --font-display:"Kanit","IBM Plex Sans Thai",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans Thai","Noto Sans Thai",system-ui,sans-serif;
+  --nav-h:64px; color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#080C11; --surface:#111921; --raise:#162029; --ink:#E6ECF1; --muted:#8E9CAA; --line:#222E3A; --line-soft:#1A242E;
+  --accent:#7DA4FF; --accent-ink:#06101F; --accent-bg:#172748;
+  --good:#4FC2A4; --good-bg:#122B25; --warn:#E5AE45; --warn-bg:#2E240E; --bad:#F07466; --bad-bg:#351A17; --rest:#8E9BA8; --rest-bg:#1B252F;
+  --hm0:#1A242E; --hm1:#14382F; --hm2:#1D5C4B; --hm3:#2F8F73; --hm4:#4FC2A4;
+  --shadow:0 1px 2px rgba(0,0,0,.4); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 12px)}
+h1,h2,h3{font-family:var(--font-display);margin:0;line-height:1.2;text-wrap:balance}
+h2{font-size:22px;font-weight:600}
+h3{font-size:16px;font-weight:600}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.num{font-variant-numeric:tabular-nums}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.top-in{max-width:760px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:.4px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.brand i{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,#FF7BA9,#8B5CF6);display:block}
+.top .sub{font-size:13px;color:var(--muted);margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;color:var(--muted)}
+.icon-btn svg{width:18px;height:18px}
+
+/* layout */
+main{max-width:760px;margin:0 auto;padding:16px 16px 24px}
+.view{display:none;flex-direction:column;gap:14px}
+.view.on{display:flex}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
+.card.tight{gap:8px}
+.card-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.card-h .right{margin-left:auto}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stack{display:flex;flex-direction:column;gap:8px}
+.sec-title{font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--muted);letter-spacing:.3px;margin:6px 2px -4px;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--pbg,var(--accent-bg));color:var(--pc,var(--accent));white-space:nowrap}
+.pill.good{--pbg:var(--good-bg);--pc:var(--good)} .pill.warn{--pbg:var(--warn-bg);--pc:var(--warn)} .pill.bad{--pbg:var(--bad-bg);--pc:var(--bad)} .pill.rest{--pbg:var(--rest-bg);--pc:var(--rest)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:600;cursor:pointer;padding:10px 16px;border-radius:12px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);text-decoration:none;white-space:nowrap}
+.btn.ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
+.btn.sm{padding:6px 12px;font-size:13px;border-radius:10px}
+.btn.danger{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.btn.block{width:100%}
+.btn:disabled{opacity:.5;cursor:default}
+.input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--raise);color:var(--ink)}
+.input.sm{padding:6px 8px;border-radius:9px;width:72px;text-align:center}
+textarea.input{min-height:72px;resize:vertical}
+label.fld{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.bar{height:8px;background:var(--line-soft);border-radius:4px;overflow:hidden}
+.bar>span{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .3s}
+.bar.good>span{background:var(--good)}
+.divider{height:1px;background:var(--line-soft);margin:2px 0}
+.empty{color:var(--muted);font-size:14px;text-align:center;padding:10px}
+
+/* banners */
+.banner{border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:14px;border:1px solid}
+.banner b{font-family:var(--font-display);font-weight:600}
+.banner.bad{background:var(--bad-bg);border-color:color-mix(in srgb,var(--bad) 45%,transparent);color:var(--ink)}
+.banner.warn{background:var(--warn-bg);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.banner.good{background:var(--good-bg);border-color:color-mix(in srgb,var(--good) 45%,transparent)}
+.banner .ico{font-size:20px;line-height:1.2}
+
+/* hero / today */
+.why{border-left:3px solid var(--heat-lo);padding:2px 0 2px 12px;font-size:15px}
+.why small{display:block;color:var(--muted);font-size:12px}
+.rings{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;align-items:center}
+.ring{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.ring svg{width:92px;height:92px}
+.ring .rv{font-family:var(--font-display);font-size:15px;font-weight:600}
+.ring .rl{font-size:12px;color:var(--muted)}
+.grade{font-family:var(--font-display);font-size:42px;font-weight:700;line-height:1}
+.g-A{color:var(--good)} .g-B{color:var(--accent)} .g-C{color:var(--warn)} .g-D,.g-F{color:var(--bad)}
+.toggle{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.toggle input{display:none}
+.toggle .sw{width:44px;height:26px;border-radius:13px;background:var(--line);position:relative;flex:none;transition:background .2s}
+.toggle .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle input:checked+.sw{background:var(--warn)}
+.toggle input:checked+.sw::after{transform:translateX(18px)}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--raise);cursor:pointer;user-select:none}
+.check .box{width:24px;height:24px;border-radius:7px;border:2px solid var(--line);flex:none;display:grid;place-items:center;margin-top:1px;transition:all .15s}
+.check.on .box{background:var(--good);border-color:var(--good)}
+.check.on .box::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check .body{flex:1;min-width:0}
+.check .t{font-weight:600;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.check .t time{font-family:var(--font-display);font-size:13px;color:var(--muted);font-weight:500}
+.check .d{font-size:13px;color:var(--muted)}
+.check .meta{font-size:12px;color:var(--muted);white-space:nowrap;text-align:right}
+.check .meta b{display:block;font-family:var(--font-display);font-size:14px;color:var(--ink)}
+.check.on{border-color:color-mix(in srgb,var(--good) 50%,var(--line))}
+.linkbtn{background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-size:12px;font-weight:600}
+.habit{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line-soft)}
+.habit:last-child{border-bottom:0}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--raise);cursor:pointer;font-size:18px;line-height:1}
+.stepper b{min-width:44px;text-align:center;font-family:var(--font-display)}
+.cups{display:flex;gap:3px}
+.cups i{width:10px;height:16px;border-radius:2px 2px 4px 4px;background:var(--line-soft);border:1px solid var(--line)}
+.cups i.f{background:var(--accent);border-color:var(--accent)}
+
+/* training */
+.daystrip{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dchip{border:1px solid var(--line);border-radius:12px;padding:6px 2px;text-align:center;font-size:11px;background:var(--surface);cursor:pointer;color:var(--muted);display:flex;flex-direction:column;gap:2px;align-items:center}
+.dchip b{font-family:var(--font-display);font-size:14px;color:var(--ink)}
+.dchip.today{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.dchip.sel{background:var(--accent-bg)}
+.dchip .dot{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.dchip .dot.train{background:var(--accent)} .dchip .dot.done{background:var(--good)}
+.ex{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--raise)}
+.ex.done{border-color:color-mix(in srgb,var(--good) 55%,var(--line))}
+.ex-h{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.ex-h h3{font-size:15px}
+.exlink{cursor:pointer;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;background:none;border:0;padding:0;font:inherit;text-align:left}
+.exlink b{font-family:var(--font-display);font-size:10px;font-weight:600;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:0 4px;margin-left:6px;vertical-align:2px;display:inline-block;text-decoration:none}
+.target{font-size:13px;color:var(--muted)}
+.hint-p{font-size:12.5px;padding:6px 10px;border-radius:10px;background:var(--accent-bg);color:var(--ink)}
+.hint-p.up{background:var(--good-bg)}
+.sets{display:flex;flex-direction:column;gap:6px}
+.set{display:grid;grid-template-columns:28px 1fr 1fr 44px;gap:8px;align-items:center}
+.set .n{font-family:var(--font-display);color:var(--muted);text-align:center;font-size:13px}
+.set .unit{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.set .unit input{flex:1;min-width:0;width:100%}
+.set .tick{width:40px;height:36px;border-radius:10px;border:2px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center}
+.set .tick.on{background:var(--good);border-color:var(--good)}
+.set .tick.on::after{content:"";width:6px;height:12px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-2px)}
+
+/* timer */
+.timer{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 10px);z-index:40;background:var(--s-bg);color:#fff;border:1px solid var(--s-line);border-radius:999px;padding:6px 6px 6px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.timer[hidden]{display:none}
+.timer .tt{font-family:var(--font-display);font-size:22px;font-weight:700;min-width:58px;color:var(--heat-lo)}
+.timer button{border:1px solid var(--s-line);background:var(--s-surface);color:#fff;border-radius:999px;padding:6px 11px;font-size:13px;cursor:pointer}
+
+/* nav */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:35;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabs-in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);height:var(--nav-h)}
+.tabs button{background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);font-size:11px;font-weight:500}
+.tabs button svg{width:22px;height:22px}
+.tabs button[aria-current="page"]{color:var(--accent)}
+
+/* charts / heatmap */
+.chart svg{width:100%;height:auto;display:block}
+.heat{overflow-x:auto;padding-bottom:4px}
+.heat-grid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,14px);gap:3px;width:max-content}
+.heat-grid i{width:14px;height:14px;border-radius:3px;background:var(--hm0);display:block;cursor:pointer}
+.heat-grid i.l1{background:var(--hm1)} .heat-grid i.l2{background:var(--hm2)} .heat-grid i.l3{background:var(--hm3)} .heat-grid i.l4{background:var(--hm4)}
+.heat-grid i.pre{visibility:hidden}
+.heat-grid i.fut{background:transparent;border:1px dashed var(--line);cursor:default}
+.heat-grid i.td{outline:2px solid var(--accent);outline-offset:1px}
+.heat-legend{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--muted)}
+.heat-legend i{width:12px;height:12px;border-radius:3px;display:block}
+.weekgrades{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.weekgrades div{border:1px solid var(--line);border-radius:10px;padding:6px 2px;font-size:11px;color:var(--muted)}
+.weekgrades b{display:block;font-family:var(--font-display);font-size:18px}
+.mile{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mile div{border:1px dashed var(--line);border-radius:14px;padding:10px;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.mile div.on{border-style:solid;border-color:var(--good);background:var(--good-bg);color:var(--ink)}
+.mile .mi{font-size:22px;filter:grayscale(1);opacity:.5}
+.mile .on .mi{filter:none;opacity:1}
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.photos figure{margin:0;position:relative;border-radius:10px;overflow:hidden;border:2px solid transparent;cursor:pointer;aspect-ratio:3/4;background:var(--raise)}
+.photos figure.sel{border-color:var(--accent)}
+.photos img{width:100%;height:100%;object-fit:cover;display:block}
+.photos figcaption{position:absolute;left:0;right:0;bottom:0;font-size:11px;padding:3px 6px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.compare img{width:100%;border-radius:10px;display:block}
+
+/* food */
+.food-list{display:flex;flex-direction:column;gap:6px;max-height:52vh;overflow:auto}
+.food{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:var(--raise);cursor:pointer;text-align:left;width:100%}
+.food .fn{font-size:14px;font-weight:500}
+.food .fm{font-size:12px;color:var(--muted);white-space:nowrap;text-align:right}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+th{font-weight:600;color:var(--muted);font-size:12.5px}
+td.num,th.num{text-align:right}
+.tbl{overflow-x:auto}
+.extra{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;padding:6px 0;border-bottom:1px solid var(--line-soft)}
+.extra:last-child{border-bottom:0}
+.x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;padding:0 4px}
+
+/* menu */
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.menu button{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:16px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow)}
+.menu button .mi{font-size:26px}
+.menu button b{font-family:var(--font-display);font-size:16px}
+.menu button span{font-size:12.5px;color:var(--muted)}
+.back{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--accent);cursor:pointer;font-weight:600;padding:0;font-size:14px}
+
+/* sheet */
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:60;display:none;align-items:flex-end;justify-content:center}
+.sheet-bg.on{display:flex}
+.sheet{background:var(--surface);width:100%;max-width:760px;max-height:88vh;overflow:auto;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;border:1px solid var(--line)}
+.sheet>*{flex-shrink:0}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top) + 66px);transform:translateX(-50%) translateY(-20px);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:12px;font-size:14px;z-index:80;opacity:0;pointer-events:none;transition:all .25s;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* stamina */
+.st-rail{display:grid;grid-template-columns:repeat(12,minmax(48px,1fr));gap:5px;overflow-x:auto;padding:2px 2px 6px}
+.wk{cursor:pointer;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 2px 6px;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;font-size:10px;color:var(--muted)}
+.wk::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c)}
+.wk b{font-family:var(--font-display);font-size:16px;color:var(--ink)}
+.wk[aria-pressed="true"]{background:var(--accent-bg);border-color:var(--accent)}
+.sday{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--raise);position:relative;overflow:hidden}
+.sday::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--pc)}
+.sday ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:3px}
+.sday .dur{font-family:var(--font-display);font-weight:600}
+.minis{display:flex;gap:6px;flex-wrap:wrap}
+.mchk{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;cursor:pointer;user-select:none;background:var(--surface)}
+.mchk.on{background:var(--good-bg);border-color:var(--good)}
+.mchk.on::before{content:"✓";color:var(--good);font-weight:700}
+
+/* ===== studio (from STAMINA 12, always dark) ===== */
+.studio{background:var(--s-bg);color:var(--s-ink);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:14px;border:1px solid var(--s-line);--muted:var(--s-muted);--line:var(--s-line);--accent:#8FB2FF}
+@media (max-width:640px){.studio{margin:0 -16px;border-radius:0;border-left:0;border-right:0}}
+.studio h2{color:#fff}
+.exnav{display:flex;flex-direction:column;gap:8px}
+.exgrp{display:grid;grid-template-columns:1fr;gap:4px}
+.exgrp>span{font-size:12px;color:var(--s-muted)}
+.exrow{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}
+.exrow::-webkit-scrollbar{display:none}
+.exbtn{font-size:13px;cursor:pointer;padding:5px 12px;border-radius:999px;border:1px solid var(--s-line);background:var(--s-surface);color:var(--s-ink);white-space:nowrap}
+.exbtn[aria-pressed="true"]{background:#fff;color:#0B1117;border-color:#fff;font-weight:600}
+.vbody{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:900px){.vbody{grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr)}}
+.vcol{display:flex;flex-direction:column;gap:10px;min-width:0}
+.stage{position:relative;background:radial-gradient(ellipse 85% 70% at 50% 38%,#223040 0%,#121A23 55%,#070B0F 100%);border:1px solid var(--s-line);border-radius:16px;overflow:hidden;height:420px;touch-action:pan-y}
+@media (max-width:420px){.stage{height:380px}}
+.stage canvas{display:block;width:100%;height:100%;cursor:grab;opacity:0;transition:opacity .5s}
+.stage.ready canvas{opacity:1}
+.loading{position:absolute;inset:0;display:grid;place-items:center;color:var(--s-muted);font-size:14px;pointer-events:none}
+.stage.ready .loading,.stage.nogl .loading{display:none}
+.ovl{position:absolute;left:14px;top:12px;pointer-events:none;display:flex;flex-direction:column;gap:6px;min-width:150px;max-width:70%}
+.ovl-row{display:flex;align-items:baseline;gap:10px}
+.ovl #phase{font-family:var(--font-display);font-size:18px;font-weight:600;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.ovl #count{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--heat-lo);line-height:1}
+.tempo{height:3px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden}
+.tempo i{display:block;height:100%;background:linear-gradient(90deg,var(--heat-lo),var(--heat-hi));transform-origin:0 50%;transform:scaleX(0)}
+.stage .hint{position:absolute;right:14px;bottom:12px;font-size:12px;color:var(--s-muted);pointer-events:none}
+.stage .heatbar{position:absolute;left:14px;bottom:12px;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--s-muted);pointer-events:none}
+.stage .heatbar i{display:block;width:80px;height:6px;border-radius:3px;background:linear-gradient(90deg,#8C4540 0%,var(--heat-lo) 42%,var(--heat-hi) 100%)}
+@media (max-width:520px){.stage .hint{display:none}}
+.pick{position:absolute;transform:translate(-50%,-100%);background:#fff;color:#0B1117;border-radius:9px;padding:5px 11px;font-size:13px;line-height:1.3;pointer-events:none;opacity:0;transition:opacity .15s;white-space:nowrap;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.pick.show{opacity:1}
+.pick b{display:block;font-weight:600}
+.pick small{color:#56636F;font-size:11px}
+.fallback[hidden]{display:none}
+.fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--s-muted)}
+.vctl{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between}
+.vgrp{display:flex;gap:6px}
+.vgrp.views{order:3;flex:1 0 100%}
+.vgrp.views button{flex:1}
+.vctl button{font-size:13px;cursor:pointer;padding:7px 12px;border-radius:9px;border:1px solid var(--s-line);background:var(--s-surface);color:var(--s-ink)}
+.vctl button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:#152238}
+.vinfo{background:var(--s-surface);border:1px solid var(--s-line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.vgroup{font-size:12px;color:var(--s-muted)}
+.vinfo h3{font-size:22px;color:#fff;margin-top:2px}
+.vinfo .th{color:var(--s-muted);margin-top:2px}
+.vsec{display:flex;flex-direction:column;gap:8px}
+.vsec>b,.vsec-h b{font-family:var(--font-display);font-size:15px;font-weight:600}
+.vsec-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.vsec-h span{font-size:12px}
+.vsec.bad>b{color:#FF8A78}
+.vinfo ol,.vinfo ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.vinfo dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;border-top:1px solid var(--s-line);border-bottom:1px solid var(--s-line);padding:12px 0}
+.vinfo dt{color:var(--s-muted)}
+.vinfo dd{margin:0}
+.meter{display:flex;flex-direction:column;gap:7px}
+.mrow{display:grid;grid-template-columns:minmax(92px,auto) 1fr 30px;gap:10px;align-items:center;font-size:14px}
+.mname small{display:block;font-size:11px;color:var(--s-muted);line-height:1.2}
+.mbar{height:8px;border-radius:4px;background:#0A0F14;border:1px solid var(--s-line);overflow:hidden}
+.mbar i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,var(--heat-lo),var(--heat-hi));background-size:240px 100%;transition:width .12s linear}
+.mrow.s .mbar i{background:var(--heat-lo)}
+.mval{text-align:right;font-family:var(--font-display);font-weight:500;color:var(--s-muted)}
+.mrow.p .mval{color:#fff}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.tok{display:inline-flex;gap:4px}.tok i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:13px;background:var(--line-soft);opacity:.45}.tok i.on{background:#FDE7F0;opacity:1}
+.drinkgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.drinkgrid button{border:1px solid var(--line);background:var(--raise);border-radius:12px;padding:8px 10px;text-align:left;cursor:pointer;font-size:13px}
+.drinkgrid button b{display:block;font-size:14px}
+.drinkgrid button.sw{border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.mini-chart svg{width:100%;height:auto;display:block}
+</style>
+</head>
+<body>
+<div class="top"><div class="top-in">
+  <div class="brand"><i aria-hidden="true"></i>Perfect Body</div>
+  <span class="sub" id="topSub"></span>
+  <button class="icon-btn" id="themeBtn" type="button" aria-label="สลับธีมสว่าง/มืด">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+  </button>
+</div></div>
+
+<main>
+  <section class="view on" id="v-today" aria-label="วันนี้"></section>
+  <section class="view" id="v-food" aria-label="อาหาร"></section>
+  <section class="view" id="v-train" aria-label="เทรน"></section>
+  <section class="view" id="v-progress" aria-label="ความคืบหน้า"></section>
+  <section class="view" id="v-more" aria-label="เพิ่มเติม"></section>
+  <section class="view" id="v-shop" aria-label="ซื้อของ"></section>
+    <section class="view" id="v-settings" aria-label="ตั้งค่า"></section>
+
+  <section class="view" id="v-studio" aria-label="สตูดิโอท่า 3D">
+    <button class="back" type="button" data-act="back">← กลับ</button>
+    <div class="studio" id="viewer3d">
+      <div><h2>สตูดิโอท่า 3D</h2><p class="small" style="color:var(--s-muted);margin-top:4px">หุ่นสาธิตท่า ลากเพื่อหมุน แตะกล้ามเนื้อเพื่อดูชื่อ สียิ่งแดงยิ่งออกแรงมาก</p></div>
+      <div class="exnav" id="exnav"></div>
+      <div class="vbody">
+        <div class="vcol">
+          <div class="stage" id="stage">
+            <canvas id="cv" aria-label="หุ่นกายวิภาค 3D สาธิตท่าออกกำลังกาย"></canvas>
+            <div class="loading">กำลังสร้างหุ่นกายวิภาค…</div>
+            <div class="ovl" aria-live="off">
+              <div class="ovl-row"><span id="phase">กำลังโหลด</span><span id="count" class="num"></span></div>
+              <div class="tempo"><i id="tempo"></i></div>
+            </div>
+            <div class="hint">แตะกล้ามเนื้อเพื่อดูชื่อ</div>
+            <div class="heatbar"><span>พัก</span><i aria-hidden="true"></i><span>ออกแรงสูงสุด</span></div>
+            <div class="pick" id="pick" role="status"></div>
+            <div class="fallback" id="fallback" hidden>เบราว์เซอร์นี้แสดงภาพ 3D ไม่ได้ ลองเปิดด้วย Chrome รุ่นล่าสุด</div>
+          </div>
+          <div class="vctl">
+            <div class="vgrp" role="group" aria-label="การเล่น">
+              <button type="button" id="vPlay" aria-pressed="false">หยุด</button>
+              <button type="button" id="vSlow" aria-pressed="false">ช้า 0.5×</button>
+              <button type="button" id="vSpin" aria-pressed="false">หมุนรอบ</button>
+            </div>
+            <div class="vgrp" role="group" aria-label="การแสดงผล">
+              <button type="button" id="vAnat" aria-pressed="true">สีมัดกล้าม</button>
+            </div>
+            <div class="vgrp views" role="group" aria-label="มุมมอง">
+              <button type="button" data-view="oblique" aria-pressed="true">เฉียง</button>
+              <button type="button" data-view="front" aria-pressed="false">หน้า</button>
+              <button type="button" data-view="side" aria-pressed="false">ข้าง</button>
+              <button type="button" data-view="back" aria-pressed="false">หลัง</button>
+            </div>
+          </div>
+        </div>
+        <div class="vinfo" id="vinfo"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="timer" id="timer" hidden role="timer" aria-live="polite">
+  <span class="small" style="color:var(--s-muted)">พัก</span>
+  <span class="tt num" id="timerT">1:30</span>
+  <button type="button" data-act="timerAdd">+15</button>
+  <button type="button" data-act="timerStop">ข้าม</button>
+</div>
+
+<nav class="tabs" aria-label="เมนูหลัก"><div class="tabs-in">
+  <button type="button" data-tab="today" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>วันนี้</button>
+  <button type="button" data-tab="food"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a8 8 0 0 1-16 0z"/><path d="M8 7c0-1.5 1-2 1-3.5M12 7c0-1.5 1-2 1-3.5M16 7c0-1.5 1-2 1-3.5"/></svg>อาหาร</button>
+  <button type="button" data-tab="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg>เทรน</button>
+  <button type="button" data-tab="progress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16"/><path d="M7.5 15l4-4.5 3 2.5L20 7"/></svg>คืบหน้า</button>
+  <button type="button" data-tab="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5.5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18.5" cy="12" r="1.4"/></svg>เพิ่มเติม</button>
+</div></nav>
+
+<div class="sheet-bg" id="sheetBg"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" role="status"></div>
+<input type="file" id="fileImport" accept="application/json,.json" hidden>
+<input type="file" id="filePhoto" accept="image/*" hidden>
+<script>
+/* ===== LEAN UP · app (fat loss, keep muscle) ===== */
+(function(){
+"use strict";
+var $=function(id){return document.getElementById(id);};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function pad(n){return n<10?"0"+n:""+n;}
+function keyOf(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function parseKey(k){var a=k.split("-");return new Date(+a[0],+a[1]-1,+a[2]);}
+function addDays(k,n){var d=parseKey(k);d.setDate(d.getDate()+n);return keyOf(d);}
+function todayKey(){return keyOf(new Date());}
+function mondayOf(k){var d=parseKey(k),w=(d.getDay()+6)%7;d.setDate(d.getDate()-w);return keyOf(d);}
+function daysBetween(a,b){return Math.round((parseKey(b)-parseKey(a))/864e5);}
+var DOW=["อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์"],DOWS=["อา.","จ.","อ.","พ.","พฤ.","ศ.","ส."];
+var MON=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+function fmtDate(k){var d=parseKey(k);return d.getDate()+" "+MON[d.getMonth()];}
+function fmtDateDow(k){var d=parseKey(k);return DOW[d.getDay()]+" "+d.getDate()+" "+MON[d.getMonth()];}
+function r1(x){return Math.round(x*10)/10;}
+function fmtN(x){return Math.round(x).toLocaleString("th-TH");}
+
+/* ---------- program: gym full body ×3 + cardio ×3 ---------- */
+var SESS={
+  A:{name:"Full body A",th:"ก้น ขา หลัง อก",kind:"w",ex:[
+    {id:"squat",name:"Goblet squat / Smith squat",sets:3,lo:8,hi:12},
+    {id:"pulldown",name:"Lat pulldown",sets:3,lo:10,hi:12},
+    {id:"dbpress",name:"Dumbbell bench press",sets:3,lo:8,hi:12},
+    {id:"rdl",name:"Romanian deadlift (ดัมเบล)",sets:3,lo:10,hi:12},
+    {id:"row",name:"Seated cable row / Dumbbell row",sets:3,lo:10,hi:12},
+    {id:"plank",name:"Plank",sets:3,lo:30,hi:45,unit:"วิ",bw:1}]},
+  B:{name:"Full body B",th:"ก้น ไหล่ หลัง แกนกลาง",kind:"w",ex:[
+    {id:"hipthrust",name:"Hip thrust (ม้านั่ง/เครื่อง)",sets:3,lo:10,hi:15},
+    {id:"lunge",name:"Reverse lunge",sets:3,lo:8,hi:12,per:"/ขา"},
+    {id:"press",name:"Shoulder press (นั่ง)",sets:3,lo:10,hi:12},
+    {id:"pulldown",name:"Lat pulldown (จับแคบ)",sets:3,lo:10,hi:12},
+    {id:"latraise",name:"Lateral raise",sets:3,lo:12,hi:15},
+    {id:"deadbug",name:"Dead bug",sets:3,lo:8,hi:12,per:"/ข้าง",bw:1}]},
+  C:{name:"Full body C",th:"ขา ก้น อกบน ไหล่หลัง",kind:"w",ex:[
+    {id:"split",name:"Bulgarian split squat",sets:3,lo:8,hi:12,per:"/ขา"},
+    {id:"incline",name:"Incline dumbbell press",sets:3,lo:10,hi:12},
+    {id:"slrdl",name:"Single-leg RDL",sets:3,lo:8,hi:12,per:"/ขา"},
+    {id:"reardelt",name:"Rear delt fly",sets:3,lo:12,hi:15},
+    {id:"bridge",name:"Glute bridge",sets:2,lo:15,hi:20,bw:1},
+    {id:"legraise",name:"Lying leg raise",sets:3,lo:8,hi:12,bw:1}]},
+  Z:{name:"คาร์ดิโอ Zone 2",th:"เดินชันบนลู่วิ่ง / จักรยาน",kind:"c",min:35}
+};
+var SCHED={1:"A",2:"Z",3:"B",4:"Z",5:"C",6:"Z"};
+var DN={A:"จ.",B:"พ.",C:"ศ.",Z:"อ. พฤ. ส."};
+
+/* ---------- food (deficit) ---------- */
+var MEALS=[
+  {k:"b",t:"07:00",name:"มื้อเช้า",desc:"ไข่ต้ม 2 + ขนมปังโฮลวีต 1 แผ่น + นมจืด/นมถั่วเหลืองไม่หวาน",kcal:350,p:24,price:22},
+  {k:"l",t:"12:00",name:"มื้อกลางวัน",desc:"อาหารตามสั่ง ข้าวน้อย น้ำมันน้อย ไข่ต้มแทนไข่ดาว",kcal:480,p:30,price:50},
+  {k:"s",t:"15:30",name:"ว่างบ่าย (ถ้าหิว)",desc:"ผลไม้ 1 ส่วน หรือโยเกิร์ตไม่หวาน",kcal:120,p:5,price:15},
+  {k:"d",t:"18:30",name:"มื้อเย็น",desc:"ข้าว ½ ทัพพี + อกไก่/ปลา 150 ก. + ผักเยอะ + ต้มจืด",kcal:430,p:32,price:35}
+];
+var CATS=["จานเดียว","โปรตีน","ผลไม้/ของว่าง","อื่นๆ"];
+var FOODS=[
+ ["kaprao_light","กะเพราอกไก่ ไข่ต้ม ข้าวน้อย น้ำมันน้อย",430,32,50,0],["kaprao","กะเพราหมูสับไข่ดาว (ปกติ)",650,25,50,0],
+ ["mankai_light","ข้าวไก่ต้มไม่เอาหนัง + น้ำซุป",420,28,45,0],["mankai","ข้าวมันไก่ (ปกติ)",600,23,45,0],
+ ["moodaeng","ข้าวหมูแดงไม่ราดน้ำ + ไข่ต้ม",480,26,50,0],["noodle","ก๋วยเตี๋ยวน้ำใสเส้นเล็ก เพิ่มผัก",330,20,50,0],
+ ["suki","สุกี้น้ำไก่",300,22,50,0],["somtam","ส้มตำ + ไก่ย่างลอกหนัง + ข้าวเหนียว ½ ห่อ",450,30,70,0],
+ ["kaengsom","แกงส้ม/ต้มยำน้ำใส + ข้าว 1 ทัพพี",380,22,50,0],["jok","โจ๊กหมูใส่ไข่",300,18,40,0],["khaotom","ข้าวต้มปลา/กุ้ง",280,20,45,0],
+ ["padthai","ผัดไทย / ผัดซีอิ๊ว",640,20,55,0],["khaikiew","ข้าวไข่เจียว",500,15,35,0],["khamoo","ข้าวขาหมู",690,26,50,0],
+ ["green","ข้าวราดแกงกะทิ",600,20,45,0],["shabu","ชาบูน้ำใส (เน้นผัก เนื้อไม่ติดมัน)",500,40,0,0],["moogata","หมูกระทะ / บุฟเฟต์",1500,60,0,0],
+ ["egg","ไข่ต้ม 1 ฟอง",75,6.5,4.5,1],["breast","อกไก่สุก 100 ก.",165,31,16,1],["breast711","อกไก่พร้อมทาน (ร้านสะดวกซื้อ)",120,25,30,1],
+ ["fish","ปลานึ่ง/ปลาย่าง 1 ส่วน",180,28,40,1],["tofu","เต้าหู้แข็ง 100 ก.",145,15,10,1],["tofuegg","เต้าหู้ไข่ 1 หลอด",110,10,10,1],
+ ["shrimp","กุ้ง/หมึก 100 ก.",100,22,40,1],["yogurt","โยเกิร์ตไม่หวาน 1 ถ้วย",90,6,15,2],["guava","ฝรั่ง ½ ลูก",60,1,10,2],
+ ["apple","แอปเปิล 1 ลูก",80,0.5,15,2],["orange","ส้ม 2 ลูก",90,1.5,15,2],["papaya","มะละกอ/แตงโม 1 ส่วน",60,1,10,2],
+ ["banana","กล้วยหอม ½ ลูก",60,0.7,6,2],["corn","ข้าวโพดต้ม ½ ฝัก",80,2.5,10,2],["nuts","ถั่วอบไม่เค็ม 15 ก.",90,3,5,2],
+ ["mango","มะม่วงสุก 1 ลูก",200,1.5,30,2],["durian","ทุเรียน 2 พู",350,4,80,2],
+ ["rice","ข้าวสวย 1 ทัพพี",80,1.5,2,3],["sticky","ข้าวเหนียว 1 ห่อ",230,4.5,10,3],["bread","ขนมปังโฮลวีต 1 แผ่น",80,3.5,3,3],
+ ["oil","น้ำมันพืช 1 ช้อนโต๊ะ",120,0,1,3],["chips","ขนมขบเคี้ยว 1 ซอง",250,3,20,3],["mayo","มายองเนส/น้ำสลัดครีม 1 ช้อนโต๊ะ",95,0,3,3]
+].map(function(a){return {id:a[0],name:a[1],kcal:a[2],p:a[3],price:a[4],cat:a[5]};});
+var FOOD={};FOODS.forEach(function(f){FOOD[f.id]=f;});
+var DRINKS=[
+ ["bubble","ชานมไข่มุก",450,50,1],["thaitea","ชาไทย/ชาเขียวนม/โกโก้เย็น",320,40,1],["icedcoffee","กาแฟเย็นหวานปกติ",280,30,1],
+ ["coffee25","กาแฟ/ชา หวาน 25%",130,8,1],["soda","น้ำอัดลมกระป๋อง",140,35,1],["greentea","ชาเขียวขวด (หวาน)",180,40,1],
+ ["juice","น้ำผลไม้กล่อง/น้ำส้ม",160,30,1],["beer","เบียร์/เหล้าผสม 1 แก้ว",170,10,1],
+ ["americano","อเมริกาโน่ไม่หวาน",10,0,0],["latte0","ลาเต้ไม่หวาน",130,0,0],["zero","น้ำอัดลม/ชา zero",0,0,0],["milk","นมจืด/นมถั่วเหลืองไม่หวาน",120,0,0]
+].map(function(a){return {id:a[0],name:a[1],kcal:a[2],sugar:a[3],sweet:a[4]};});
+var DRINK={};DRINKS.forEach(function(d){DRINK[d.id]=d;});
+var TREATS=[
+ ["chiffon","เค้กชิฟฟ่อน/ใบเตย 1 ชิ้น",230],["icecream","ไอศกรีม 1 สกู๊ป",160],["darkchoc","ช็อกโกแลตดำ 2–3 ชิ้นเล็ก",120],
+ ["brownie","บราวนี่ / โดนัท 1 ชิ้น",280],["cheesecake","ชีสเค้ก/เค้กช็อกโกแลต 1 ชิ้น",400],["croissant","ครัวซองต์/ขนมปังเนย",350],
+ ["bingsu","บิงซู/ฮันนี่โทสต์ (แชร์ ¼)",250],["bubbleT","ชานมไข่มุก 1 แก้ว (รางวัล)",450]
+].map(function(a){return {id:a[0],name:a[1],kcal:a[2]};});
+var TREAT={};TREATS.forEach(function(t){TREAT[t.id]=t;});
+var SWEET_PLAN=[{w:1,t:"สั่งหวาน 50% ทุกแก้ว"},{w:2,t:"สั่งหวาน 25% ทุกแก้ว"},{w:3,t:"เครื่องดื่มหวานวันเว้นวัน (หวาน 25%)"},{w:4,t:"เหลือแค่เป็นรางวัล 1–2 แก้ว/สัปดาห์"}];
+
+var SHOP=[
+ {id:"egg",ico:"🥚",name:"ไข่ไก่",qty:"1 แผง 30 ฟอง (ใช้ได้ ~10 วัน)",price:144,store:"เก็บช่องไข่ในตู้เย็น"},
+ {id:"chicken",ico:"🍗",name:"อกไก่",qty:"1 กก. (มื้อเย็นวันละ 150 ก.)",price:170,store:"แบ่งถุงละ 150 ก. แช่ช่องฟรีซ คืนก่อนย้ายลงช่องธรรมดา 1 ถุง"},
+ {id:"milk",ico:"🥛",name:"นมจืด/นมถั่วเหลืองไม่หวาน 1 ลิตร",qty:"2 กล่อง",price:102,store:"แช่เย็น เปิดแล้วใช้ใน 2–3 วัน"},
+ {id:"veg",ico:"🥬",name:"ผักสด",qty:"4–5 อย่าง",price:50,store:"กะหล่ำ แครอท บรอกโคลี ผักกาด ห่อทิชชูใส่กล่อง"},
+ {id:"fruit",ico:"🍎",name:"ผลไม้หวานน้อย",qty:"ฝรั่ง ส้ม แอปเปิล ~1 กก.",price:60,store:"เลี่ยงมะม่วงสุก ทุเรียน ลำไย"},
+ {id:"yogurt",ico:"🥣",name:"โยเกิร์ตไม่หวาน",qty:"4 ถ้วย",price:60,store:"แช่เย็น"},
+ {id:"tofu",ico:"🧈",name:"เต้าหู้แข็ง/เต้าหู้ไข่",qty:"2 แพ็ก",price:24,store:"โปรตีนราคาถูก ใส่ต้มจืดได้"},
+ {id:"bread",ico:"🍞",name:"ขนมปังโฮลวีต",qty:"1 ห่อ",price:44,store:"ขึ้นราใน 5–7 วัน เหลือเกินให้แช่ฟรีซ"},
+ {id:"rice",ico:"🍚",name:"ข้าวหอมมะลิ/ข้าวกล้อง 2 กก.",qty:"1 ถุง (ทุก 3 สัปดาห์)",price:109,every:3,store:"ใส่ถังปิดฝา"}
+];
+var LUNCH_WEEK=250;
+var PREP=["ต้มไข่ 10 ฟอง","แบ่งอกไก่ถุงละ 150 ก. แช่ฟรีซ","ล้างและหั่นผักใส่กล่อง","หั่นผลไม้แบ่งกล่องละ 1 ส่วน","หุงข้าวแบ่งกล่องละ ½–1 ทัพพี"];
+var MENU=[
+ ["ไข่ต้ม 2 + ขนมปัง + นมถั่วเหลืองไม่หวาน","กะเพราอกไก่ไข่ต้ม ข้าวน้อย","ปลานึ่งมะนาว + ผักลวก + ข้าว ½"],
+ ["โจ๊กหมูใส่ไข่","ก๋วยเตี๋ยวน้ำใสเส้นเล็ก เพิ่มผัก","ต้มจืดเต้าหู้หมูสับ + ไข่ต้ม + ข้าว ½"],
+ ["อกไก่พร้อมทาน + นม + กล้วยหอม ½","ข้าวไก่ต้มไม่เอาหนัง","ยำวุ้นเส้นทะเล หวานน้อย"],
+ ["โยเกิร์ต + ข้าวโอ๊ต + ไข่ต้ม","สุกี้น้ำไก่","อกไก่ย่าง + สลัดน้ำใส + ข้าวโพด ½"],
+ ["ข้าวต้มกุ้ง","ส้มตำ + ไก่ย่างลอกหนัง + ข้าวเหนียว ½","แกงส้มปลา + ไข่เจียวน้ำมันน้อย ½ + ข้าว ½"],
+ ["ไข่ตุ๋น 2 ฟอง + ข้าว ½ + ผัก","ชาบูน้ำใส","ข้าวผัดไข่น้ำมันน้อย + แตงกวา · 🎂 รางวัลประจำสัปดาห์"],
+ ["ไข่ต้ม 2 + ขนมปัง + ลาเต้ไม่หวาน","ข้าวหมูแดงไม่ราดน้ำ + ไข่ต้ม","ต้มยำกุ้งน้ำใส + ข้าว ½ + ผัดผัก"]
+];
+
+/* ---------- state ---------- */
+var KEY="leanup.v1";
+function defaults(){var t=todayKey();
+  return {v:1,set:{height:160,startW:71.4,goalW:56.7,start:t,kcal:1500,protein:100,budget:150,rest:75,steps:8000,why:"",startWaist:87.8,startPbf:38.8,startVf:12,tokens:2},
+    days:{},weights:[],waists:[],inbody:[{d:"2026-11-16",w:71.4,pbf:38.8,smm:24.0,vf:12}],shop:{},prep:{},prices:{}};}
+var S;
+function load(){var d=defaults();
+  try{var raw=localStorage.getItem(KEY);if(raw){var o=JSON.parse(raw);if(o&&o.v===1){for(var k in d)if(!(k in o))o[k]=d[k];for(k in d.set)if(!(k in o.set))o.set[k]=d.set[k];S=o;return;}}}catch(e){}
+  S=d;}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){toast("บันทึกไม่สำเร็จ: พื้นที่เต็ม ลองสำรองแล้วลบรูปเก่า");}}
+function day(k,create){var d=S.days[k];if(!d&&create)d=S.days[k]={m:{},sw:{},x:[],dr:[],tr:[],sl:0,wa:0,st:null,bad:0,c:0};
+  if(d){d.dr=d.dr||[];d.tr=d.tr||[];d.x=d.x||[];d.sw=d.sw||{};d.m=d.m||{};}return d;}
+load();
+
+/* ---------- calculations ---------- */
+var FLOOR=1300;
+function targets(bad){return {kcal:S.set.kcal,p:bad?80:S.set.protein,steps:bad?5000:S.set.steps};}
+function mealItem(d,m){var sw=d&&d.sw&&d.sw[m.k];return sw&&FOOD[sw]?FOOD[sw]:m;}
+function nutr(k){var d=S.days[k],o={kcal:0,p:0,cost:0,meals:0,sugar:0,sweet:0,treat:0};if(!d)return o;
+  MEALS.forEach(function(m){if(d.m[m.k]){var it=mealItem(d,m);o.kcal+=it.kcal;o.p+=it.p;o.cost+=it.price||0;o.meals++;}});
+  (d.x||[]).forEach(function(x){var it=x.f?FOOD[x.f]:x.c;if(!it)return;var q=x.q||1;o.kcal+=it.kcal*q;o.p+=it.p*q;o.cost+=(it.price||0)*q;});
+  (d.dr||[]).forEach(function(id){var it=DRINK[id];if(!it)return;o.kcal+=it.kcal;o.sugar+=it.sugar;if(it.sweet)o.sweet++;});
+  (d.tr||[]).forEach(function(id){var it=TREAT[id];if(!it)return;o.kcal+=it.kcal;o.treat++;});
+  return o;}
+function sessionKey(k){var d=S.days[k];if(d&&d.s)return d.s==="rest"?null:d.s;return SCHED[parseKey(k).getDay()]||null;}
+function sessionEx(k){var s=sessionKey(k);if(!s||SESS[s].kind!=="w")return [];var d=S.days[k],bad=d&&d.bad;
+  return SESS[s].ex.slice(0,bad?3:99).map(function(e){var o={};for(var p in e)o[p]=e[p];if(bad)o.sets=2;return o;});}
+function workoutRatio(k){var s=sessionKey(k);if(!s)return null;var d=S.days[k];if(!d)return 0;
+  if(SESS[s].kind==="c")return d.c?1:0;
+  if(d.w&&d.w.done)return 1;var tot=0,ok=0;sessionEx(k).forEach(function(e){tot+=e.sets;var a=(d.w&&d.w.sets&&d.w.sets[e.id])||[];for(var i=0;i<e.sets;i++)if(a[i]&&a[i].ok)ok++;});return tot?ok/tot:0;}
+function kcalScore(kc,t){if(kc<=0)return 0;var r=kc/t;if(kc<FLOOR)return 25*Math.max(0,kc/FLOOR)*0.6;if(r<=1.05)return 25*Math.min(1,r/0.85);if(r<=1.25)return 25*(1-(r-1.05)/0.2*0.8);return 0;}
+function dayScore(k){var d=S.days[k];if(!d)return 0;var t=targets(d.bad),n=nutr(k);
+  var sc=kcalScore(n.kcal,t.kcal)+Math.min(n.p/t.p,1)*20;var wr=workoutRatio(k);sc+=(wr==null?1:wr)*25;
+  sc+=Math.min((d.st||0)/t.steps,1)*15;sc+=d.sl?5:0;sc+=Math.min((d.wa||0)/8,1)*5;sc+=n.sweet===0?5:n.sweet===1?2:0;
+  if(d.bad)sc=Math.min(sc,80);return Math.round(sc);}
+function grade(s){return s>=90?"A":s>=75?"B":s>=60?"C":s>=40?"D":"F";}
+function sortedW(){return S.weights.slice().sort(function(a,b){return a.d<b.d?-1:1;});}
+function latestW(){var w=sortedW();return w.length?w[w.length-1].kg:S.set.startW;}
+function latestWaist(){var w=S.waists.slice().sort(function(a,b){return a.d<b.d?-1:1;});return w.length?w[w.length-1].cm:S.set.startWaist;}
+function latestIB(){var a=S.inbody.slice().sort(function(a,b){return a.d<b.d?-1:1;});return a[a.length-1]||{};}
+function weekAvg(mon){var end=addDays(mon,6),a=S.weights.filter(function(w){return w.d>=mon&&w.d<=end;});if(!a.length)return null;return a.reduce(function(s,w){return s+w.kg;},0)/a.length;}
+function smoothMin(){var w=sortedW(),mn=999;for(var i=0;i<w.length;i++){var a=w.slice(Math.max(0,i-2),i+1);if(a.length<Math.min(3,w.length))continue;mn=Math.min(mn,a.reduce(function(s,x){return s+x.kg;},0)/a.length);}return mn;}
+function workoutsDone(kind){var n=0;for(var k in S.days){var s=sessionKey(k);if(!s)continue;if(kind&&SESS[s].kind!==kind)continue;var r=workoutRatio(k);if(r!=null&&r>=.8)n++;}return n;}
+function tokensLeft(k){var mon=mondayOf(k),u=0;for(var i=0;i<7;i++){var d=S.days[addDays(mon,i)];if(d&&d.tr)u+=d.tr.length;}return S.set.tokens-u;}
+function lastSession(id,before){var keys=Object.keys(S.days).filter(function(k){return k<before;}).sort().reverse();
+  for(var i=0;i<keys.length;i++){var d=S.days[keys[i]];if(d.w&&d.w.sets&&d.w.sets[id]){var a=d.w.sets[id].filter(function(s){return s&&s.ok;});if(a.length)return {k:keys[i],sets:a};}}return null;}
+function inRange(k){return k>=S.set.start&&k<=todayKey();}
+function weekNo(k){return Math.floor(daysBetween(mondayOf(S.set.start),k)/7)+1;}
+
+/* ---------- toast & sheet ---------- */
+var toastT=0;
+function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("on");},2600);}
+function openSheet(html){$("sheet").innerHTML=html;$("sheetBg").classList.add("on");}
+function closeSheet(){$("sheetBg").classList.remove("on");$("sheet").innerHTML="";}
+$("sheetBg").addEventListener("click",function(e){if(e.target===$("sheetBg"))closeSheet();});
+
+/* ---------- nav ---------- */
+var view="today",prevView="today",selDay=todayKey(),foodCat=0,foodQ="",sheetCtx=null;
+var TABOF={today:"today",food:"food",shop:"food",train:"train",progress:"progress",more:"more",settings:"more",studio:null};
+function go(v){if(v!=="studio")prevView=v;else if(view!=="studio")prevView=view;view=v;
+  document.querySelectorAll(".view").forEach(function(el){el.classList.toggle("on",el.id==="v-"+v);});
+  var tab=TABOF[v];document.querySelectorAll(".tabs button").forEach(function(b){if(b.dataset.tab===tab)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
+  if(v==="studio"){if(window.MU_STUDIO)window.MU_STUDIO.show();}else render();window.scrollTo(0,0);}
+function openStudio(id){go("studio");if(window.MU_STUDIO)window.MU_STUDIO.open(id);}
+window.MU_WHERE=function(id){var out=[];for(var s in SESS)if(SESS[s].ex&&SESS[s].ex.some(function(e){return e.id===id;}))out.push(SESS[s].name+" ("+DN[s]+")");if(id==="run")out.push("คาร์ดิโอ (อ. พฤ. ส.)");return out.join(", ");};
+
+/* ---------- render helpers ---------- */
+function ring(pct,color,big,small,over){var r=38,c=2*Math.PI*r,p=Math.max(0,Math.min(1,pct));
+  return '<div class="ring"><svg viewBox="0 0 92 92" aria-hidden="true"><circle cx="46" cy="46" r="'+r+'" fill="none" stroke="var(--line-soft)" stroke-width="9"/><circle cx="46" cy="46" r="'+r+'" fill="none" stroke="'+(over?"var(--bad)":color)+'" stroke-width="9" stroke-linecap="round" stroke-dasharray="'+c.toFixed(1)+'" stroke-dashoffset="'+(c*(1-p)).toFixed(1)+'" transform="rotate(-90 46 46)"/><text x="46" y="51" text-anchor="middle" font-family="Kanit,sans-serif" font-size="17" font-weight="600" fill="currentColor">'+Math.round(pct*100)+'%</text></svg><span class="rv num">'+big+'</span><span class="rl">'+small+'</span></div>';}
+function exLink(id,name){return '<button type="button" class="exlink" data-act="studio" data-ex="'+id+'">'+esc(name)+'<b>3D</b></button>';}
+function checkRow(on,act,attrs,title,time,desc,meta){return '<div class="check'+(on?" on":"")+'" role="checkbox" aria-checked="'+(on?"true":"false")+'" tabindex="0" data-act="'+act+'" '+attrs+'><span class="box"></span><div class="body"><div class="t">'+title+(time?'<time>'+time+'</time>':'')+'</div>'+(desc?'<div class="d">'+desc+'</div>':'')+'</div>'+(meta?'<div class="meta">'+meta+'</div>':'')+'</div>';}
+
+/* ---------- TODAY ---------- */
+function renderToday(){
+  var k=todayKey(),d=day(k)||{m:{},sw:{},x:[],dr:[],tr:[]},bad=!!d.bad,t=targets(bad),n=nutr(k),sc=dayScore(k),g=grade(sc),hr=new Date().getHours(),h=[];
+  var y1=addDays(k,-1),y2=addDays(k,-2);
+  if(y1>=S.set.start){var s1=dayScore(y1),s2=y2>=S.set.start?dayScore(y2):100;
+    if(s1<60&&s2<60)h.push('<div class="banner bad"><span class="ico">⛔</span><div><b>พลาด 2 วันติดแล้ว</b><br>ไม่ต้องชดเชย ไม่ต้องอดอาหาร แค่ทำวันนี้ให้ได้ C ขึ้นไป เหนื่อยก็เปิด <b>โหมดวันแย่</b> ก็ยังนับ</div></div>');
+    else if(s1<60)h.push('<div class="banner bad"><span class="ico">⚠️</span><div><b>เมื่อวานพลาด ('+grade(s1)+')</b><br>กฎ: ห้ามพลาด 2 วันติด วันนี้ต้องได้อย่างน้อย C (60)'+(sc>=60?' ✓ ผ่านแล้ว':'')+'</div></div>');}
+  if(hr>=19&&n.kcal>0&&n.kcal<1150)h.push('<div class="banner warn"><span class="ico">🍽️</span><div><b>วันนี้กินน้อยเกินไป ('+fmtN(n.kcal)+' kcal)</b><br>ต่ำกว่า '+FLOOR+' kcal จะเสียกล้ามเนื้อและหิวจนกินหนักพรุ่งนี้ เพิ่มโปรตีนอีก 1 มื้อ เช่นไข่ต้ม 2 ฟอง + นม</div></div>');
+  if(n.kcal>t.kcal*1.15)h.push('<div class="banner warn"><span class="ico">🧮</span><div><b>วันนี้เกินเป้า '+fmtN(n.kcal-t.kcal)+' kcal</b><br>ไม่ต้องอดพรุ่งนี้ เดินเพิ่ม 3,000–4,000 ก้าว แล้วกลับมากินตามแผนก็พอ ดูค่าเฉลี่ยทั้งสัปดาห์</div></div>');
+  var cur=latestW(),st=S.set.startW,gl=S.set.goalW,pc=Math.max(0,Math.min(1,(st-cur)/(st-gl))),wst=latestWaist();
+  h.push('<div class="card">'+(S.set.why?'<div class="why"><small>เหตุผลที่เริ่ม</small>'+esc(S.set.why)+'</div>':'<button class="btn ghost sm" data-act="go" data-v="settings" style="align-self:flex-start">✍️ เขียน "เหตุผลที่เริ่ม" ไว้เตือนตัวเอง</button>')+
+    '<div class="grid2"><div><span class="muted small">น้ำหนักตอนนี้</span><div style="font-family:var(--font-display);font-size:24px;font-weight:600" class="num">'+r1(cur)+' <span class="small muted">กก.</span></div><span class="small '+(cur<st?"":"muted")+'" style="color:'+(cur<st?"var(--good)":"")+'">'+(cur<st?"−"+r1(st-cur)+" กก. จากเริ่ม":"เริ่ม "+st+" กก.")+'</span></div>'+
+    '<div><span class="muted small">รอบเอว</span><div style="font-family:var(--font-display);font-size:24px;font-weight:600" class="num">'+r1(wst)+' <span class="small muted">ซม.</span></div><span class="small" style="color:'+(wst<80?"var(--good)":"var(--muted)")+'">เป้า &lt; 80 ซม.'+(wst<S.set.startWaist?" · −"+r1(S.set.startWaist-wst):"")+'</span></div></div>'+
+    '<div class="bar good"><span style="width:'+(pc*100).toFixed(1)+'%"></span></div><div class="row small muted" style="justify-content:space-between"><span>'+st+' กก.</span><span>ไปแล้ว '+Math.round(pc*100)+'%</span><span>เป้า '+gl+' กก.</span></div></div>');
+  var over=n.kcal>t.kcal*1.05;
+  h.push('<div class="card"><div class="card-h"><h3>วันนี้ '+fmtDateDow(k)+'</h3><span class="pill">สัปดาห์ที่ '+Math.max(1,weekNo(k))+'</span></div>'+
+    '<div class="rings">'+ring(n.kcal/t.kcal,"var(--rose)",fmtN(n.kcal)+"/"+fmtN(t.kcal),"kcal (ไม่เกิน)",over)+ring(n.p/t.p,"var(--accent)",Math.round(n.p)+"/"+t.p,"โปรตีน (ก.)")+
+    '<div class="ring"><span class="grade g-'+g+'">'+g+'</span><span class="rv num">'+sc+'/100</span><span class="rl">คะแนนวันนี้</span></div></div>'+
+    '<label class="toggle"><input type="checkbox" data-act="bad" '+(bad?"checked":"")+'><span class="sw"></span><span><b>โหมดวันแย่</b><br><span class="small muted">'+(bad?'ขั้นต่ำ: โปรตีน 80 ก. + เดิน 5,000 ก้าว + เวท 3 ท่า × 2 เซต (คะแนนสูงสุด B)':'เหนื่อย ป่วย หรือไม่มีอารมณ์? เปิดเพื่อทำแค่ขั้นต่ำแต่ยังรักษานิสัยไว้')+'</span></span></label></div>');
+  var mh='<div class="card"><div class="card-h"><h3>เช็กลิสต์อาหาร</h3><span class="small muted">'+n.meals+'/4</span></div><div class="stack">';
+  MEALS.forEach(function(m){var it=mealItem(d,m),sw=d.sw&&d.sw[m.k];mh+=checkRow(!!d.m[m.k],"meal",'data-k="'+m.k+'"',esc(m.name),m.t,esc(sw?it.name:m.desc)+' <button type="button" class="linkbtn" data-act="swap" data-k="'+m.k+'">'+(sw?"เปลี่ยน/คืนค่า":"กินอย่างอื่น")+'</button>','<b>'+it.kcal+'</b>'+it.p+' ก. P');});
+  mh+='</div>';
+  if(d.x&&d.x.length){mh+='<div class="divider"></div><div class="small muted">กินเพิ่ม</div>';d.x.forEach(function(x,i){var it=x.f?FOOD[x.f]:x.c;if(!it)return;mh+='<div class="extra"><span>'+esc(it.name)+(x.q>1?' ×'+x.q:'')+'</span><span class="row"><span class="small muted num">'+Math.round(it.kcal*(x.q||1))+' kcal</span><button class="x" data-act="rmx" data-i="'+i+'" aria-label="ลบ">×</button></span></div>';});}
+  mh+='<button class="btn ghost sm" data-act="addfood" style="align-self:flex-start">+ เพิ่มอาหารนอกแผน</button></div>';h.push(mh);
+  // drinks
+  var dh='<div class="card"><div class="card-h"><h3>🥤 เครื่องดื่ม</h3><span class="pill '+(n.sweet?"warn":"good")+'">หวาน '+n.sweet+' แก้ว · น้ำตาล ~'+n.sugar+'/24 ก.</span></div>';
+  if(d.dr.length)dh+=d.dr.map(function(id,i){var it=DRINK[id];return '<div class="extra"><span>'+(it.sweet?"🍬 ":"✅ ")+esc(it.name)+'</span><span class="row"><span class="small muted num">'+it.kcal+' kcal</span><button class="x" data-act="rmdr" data-i="'+i+'">×</button></span></div>';}).join("");
+  var wk=Math.min(4,Math.max(1,weekNo(k)));dh+='<p class="small muted">แผนลดหวานสัปดาห์นี้: <b>'+SWEET_PLAN[wk-1].t+'</b></p><button class="btn ghost sm" data-act="adddrink" style="align-self:flex-start">+ บันทึกเครื่องดื่ม</button></div>';h.push(dh);
+  // reward
+  var tl=tokensLeft(k),toks="";for(var i=0;i<S.set.tokens;i++)toks+='<i class="'+(i<tl?"on":"")+'">🎂</i>';
+  h.push('<div class="card tight"><div class="card-h"><h3>🎁 รางวัลสัปดาห์นี้</h3><span class="tok">'+toks+'</span></div><p class="small muted">เหลือ <b>'+Math.max(0,tl)+'</b> ครั้ง · กินหลังมื้อที่มีโปรตีน 1 ชิ้น 1 ที่ · วันนั้นลดข้าวมื้ออื่นครึ่งหนึ่งและเดินเพิ่ม 3,000 ก้าว</p>'+
+    (d.tr.length?d.tr.map(function(id,i){return '<div class="extra"><span>🎂 '+esc(TREAT[id].name)+'</span><span class="row"><span class="small muted num">'+TREAT[id].kcal+' kcal</span><button class="x" data-act="rmtr" data-i="'+i+'">×</button></span></div>';}).join(""):"")+
+    '<button class="btn ghost sm" data-act="addtreat" style="align-self:flex-start" '+(tl<=0?"disabled":"")+'>'+(tl<=0?"ใช้รางวัลครบแล้ว รอสัปดาห์หน้า":"ใช้รางวัล")+'</button></div>');
+  // habits
+  var wa=d.wa||0,cups="";for(i=0;i<8;i++)cups+='<i class="'+(i<wa?"f":"")+'"></i>';
+  h.push('<div class="card tight"><h3>นิสัยประจำวัน</h3>'+
+    '<div class="habit"><span>👟 ก้าวเดิน <span class="small muted">เป้า '+fmtN(t.steps)+'</span></span><span class="row" style="flex-wrap:nowrap"><input class="input sm num" style="width:92px" type="number" inputmode="numeric" placeholder="0" data-bind="steps" value="'+(d.st!=null?d.st:"")+'"></span></div>'+
+    '<div class="habit"><span>💧 น้ำ <span class="cups">'+cups+'</span></span><span class="stepper"><button data-act="water" data-d="-1">−</button><b class="num">'+wa+'/8</b><button data-act="water" data-d="1">+</button></span></div>'+
+    '<div class="habit"><label class="toggle"><input type="checkbox" data-act="sleep" '+(d.sl?"checked":"")+'><span class="sw" style="'+(d.sl?"background:var(--good)":"")+'"></span><span>😴 นอนครบ 7 ชม. เมื่อคืน</span></label></div>'+
+    '<div class="habit"><span>💸 ใช้เงินวันนี้<br><span class="small muted">ประมาณจากที่ติ๊ก ~'+Math.round(n.cost)+' ฿</span></span><span class="row" style="flex-wrap:nowrap"><input class="input sm num" type="number" inputmode="numeric" placeholder="฿" data-bind="spend" value="'+(d.sp!=null?d.sp:"")+'"><span class="small muted" style="white-space:nowrap">/ '+S.set.budget+'</span></span></div></div>');
+  var sk=sessionKey(k),wr=workoutRatio(k);
+  if(sk&&SESS[sk].kind==="w")h.push('<div class="card"><div class="card-h"><div><span class="muted small">เวทวันนี้</span><h3>'+SESS[sk].name+' · '+SESS[sk].th+'</h3></div><span class="pill '+(wr>=1?"good":wr>0?"warn":"")+'">'+Math.round(wr*100)+'%</span></div><div class="bar good"><span style="width:'+(wr*100)+'%"></span></div><button class="btn block" data-act="go" data-v="train">'+(wr>0?"ไปต่อ →":"เริ่มเทรน →")+'</button></div>');
+  else if(sk)h.push('<div class="card"><div class="card-h"><div><span class="muted small">วันนี้</span><h3>🚶‍♀️ คาร์ดิโอ Zone 2 · '+(bad?20:SESS.Z.min)+' นาที</h3></div><span class="pill '+(d.c?"good":"")+'">'+(d.c?"เสร็จ":"ยังไม่ทำ")+'</span></div><p class="small muted">เดินชันบนลู่วิ่ง (ชัน 8–12% ความเร็ว 4–5.5 กม./ชม.) หรือปั่นจักรยาน หายใจแรงแต่ยังพูดเป็นประโยคได้</p>'+checkRow(!!d.c,"cardio","","ทำคาร์ดิโอแล้ว","","","")+'</div>');
+  else h.push('<div class="card"><div class="card-h"><h3>วันพัก 😌</h3><span class="pill rest">พัก</span></div><p class="small muted">เดินให้ถึงเป้าก้าว ยืดเหยียดเบาๆ กินตามแผนเหมือนเดิม</p></div>');
+  $("v-today").innerHTML=h.join("");
+}
+
+/* ---------- FOOD ---------- */
+function renderFood(){
+  var k=todayKey(),n=nutr(k),h=[],tk=0,tp=0,tc=0;MEALS.forEach(function(m){tk+=m.kcal;tp+=m.p;tc+=m.price;});
+  h.push('<div class="card"><div class="card-h"><h2>แผนอาหาร</h2><span class="pill">'+fmtN(tk)+' kcal · '+tp+' ก.</span></div>'+
+    '<p class="small muted">เป้า <b>~'+fmtN(S.set.kcal)+' kcal</b> (ห้ามต่ำกว่า '+FLOOR+') · โปรตีน <b>'+S.set.protein+' ก.</b> · เหลือ ~'+fmtN(S.set.kcal-tk)+' kcal ไว้สำหรับเครื่องดื่มไม่หวานหรือรางวัล</p>'+
+    '<div class="tbl"><table><thead><tr><th>เวลา</th><th>มื้อ</th><th class="num">kcal</th><th class="num">P</th><th class="num">฿</th></tr></thead><tbody>'+
+    MEALS.map(function(m){return '<tr><td class="num">'+m.t+'</td><td>'+esc(m.name)+'<div class="small muted">'+esc(m.desc)+'</div></td><td class="num">'+m.kcal+'</td><td class="num">'+m.p+'</td><td class="num">'+m.price+'</td></tr>';}).join("")+
+    '<tr><td></td><td><b>รวม</b></td><td class="num"><b>'+fmtN(tk)+'</b></td><td class="num"><b>'+tp+'</b></td><td class="num"><b>'+tc+'</b></td></tr></tbody></table></div></div>');
+  h.push('<div class="card"><h3>🍽️ หลักจานสุขภาพ</h3><ul class="small" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px"><li><b>ผักครึ่งจาน</b> กินก่อน</li><li><b>โปรตีน 1 ฝ่ามือ</b> อกไก่ ปลา กุ้ง ไข่ เต้าหู้</li><li><b>แป้ง ½–1 ทัพพี</b></li><li><b>ไขมัน 1 ข้อนิ้วโป้ง</b> น้ำมันทั้งวันไม่เกิน 2 ช้อนโต๊ะ</li></ul>'+
+    '<p class="small"><b>ประโยคทองตอนสั่ง:</b> "ข้าวน้อย" · "น้ำมันน้อย" · "ไม่ใส่น้ำตาล" · "ไข่ต้มแทนไข่ดาว" · "ราดแยก" · "ไม่เอาหนัง" · "เพิ่มผัก"</p></div>');
+  h.push('<div class="card"><h3>🔄 สั่งแบบนี้แทน</h3><div class="tbl"><table><tbody>'+[["กะเพราหมูสับไข่ดาว 650","กะเพราอกไก่ไข่ต้ม ข้าวน้อย 430"],["ข้าวมันไก่ 600","ข้าวไก่ต้มไม่เอาหนัง 420"],["ผัดไทย/ผัดซีอิ๊ว 640","ก๋วยเตี๋ยวน้ำใส/สุกี้น้ำ 300–330"],["ข้าวราดแกงกะทิ 600","แกงส้ม/ต้มยำน้ำใส + ข้าว 380"],["ส้มตำ+ไก่ทอด+ข้าวเหนียว 850","ส้มตำ+ไก่ย่างลอกหนัง+ข้าวเหนียว ½ 450"],["ข้าวไข่เจียว 500","ข้าว+ไข่ตุ๋น/ไข่ต้ม 2+ต้มจืด 400"]].map(function(r){return '<tr><td class="small" style="color:var(--bad)">'+r[0]+'</td><td class="small" style="color:var(--good)">→ '+r[1]+'</td></tr>';}).join("")+'</tbody></table></div></div>');
+  h.push('<div class="card"><div class="card-h"><h3>วันนี้กินไปแล้ว</h3><span class="small muted num">'+fmtN(n.kcal)+' / '+fmtN(S.set.kcal)+' kcal</span></div><div class="bar"><span style="width:'+Math.min(100,n.kcal/S.set.kcal*100)+'%;background:'+(n.kcal>S.set.kcal*1.05?"var(--bad)":"var(--rose)")+'"></span></div><div class="bar"><span style="width:'+Math.min(100,n.p/S.set.protein*100)+'%"></span></div><div class="row"><button class="btn sm" data-act="addfood">+ เพิ่มอาหาร</button><button class="btn ghost sm" data-act="adddrink">+ เครื่องดื่ม</button></div></div>');
+  var mon=mondayOf(k),tot=0,rows="";for(var i=0;i<7;i++){var dk=addDays(mon,i),dd=S.days[dk],sp=dd&&dd.sp!=null?+dd.sp:null;if(sp!=null)tot+=sp;rows+='<tr><td>'+DOWS[parseKey(dk).getDay()]+' '+parseKey(dk).getDate()+'</td><td class="num">'+(sp!=null?sp+" ฿":'<span class="muted">–</span>')+'</td><td style="width:45%"><div class="bar"><span style="width:'+Math.min(100,(sp||0)/S.set.budget*100)+'%;background:'+((sp||0)>S.set.budget?"var(--bad)":"var(--good)")+'"></span></div></td></tr>';}
+  h.push('<div class="card"><div class="card-h"><h3>💸 ค่าใช้จ่ายสัปดาห์นี้</h3><span class="pill '+(tot>S.set.budget*7?"bad":"good")+'">'+fmtN(tot)+' / '+fmtN(S.set.budget*7)+' ฿</span></div><div class="tbl"><table><tbody>'+rows+'</tbody></table></div></div>');
+  h.push('<button class="btn block" data-act="go" data-v="shop">🛒 ซื้อของ · เมนู 7 วัน · เตรียมอาหาร</button>');
+  $("v-food").innerHTML=h.join("");
+}
+function listSheet(title,items,act,metaFn,extra){
+  return '<div class="sheet-h"><h3>'+title+'</h3><button class="icon-btn" data-act="closeSheet" aria-label="ปิด">✕</button></div>'+(extra||"")+'<div class="food-list">'+items.map(function(f){return '<button class="food" data-act="'+act+'" data-id="'+f.id+'"><span class="fn">'+esc(f.name)+'</span><span class="fm num">'+metaFn(f)+'</span></button>';}).join("")+'</div>';}
+function foodSheet(mode,mk){sheetCtx={mode:mode,k:mk};
+  var list=FOODS.filter(function(f){return foodQ?f.name.toLowerCase().indexOf(foodQ.toLowerCase())>=0:f.cat===foodCat;});
+  var h='<div class="sheet-h"><h3>'+(mode==="swap"?"เปลี่ยนเมนู":"เพิ่มอาหาร")+'</h3><button class="icon-btn" data-act="closeSheet" aria-label="ปิด">✕</button></div><input class="input" type="search" placeholder="ค้นหาเมนู…" data-bind="foodQ" value="'+esc(foodQ)+'"><div class="chips">'+CATS.map(function(c,i){return '<button class="chip" data-act="foodCat" data-i="'+i+'" aria-pressed="'+(!foodQ&&i===foodCat)+'">'+c+'</button>';}).join("")+'</div>';
+  if(mode==="swap"){var d=day(todayKey());if(d&&d.sw&&d.sw[mk])h+='<button class="btn ghost sm" data-act="unswap" data-k="'+mk+'">↺ กลับเป็นเมนูตามแผน</button>';}
+  h+='<div class="food-list">'+(list.length?list.map(function(f){return '<button class="food" data-act="pickfood" data-id="'+f.id+'"><span class="fn">'+esc(f.name)+'</span><span class="fm num">'+f.kcal+' kcal · '+f.p+' ก.</span></button>';}).join(""):'<div class="empty">ไม่พบเมนู</div>')+'</div>';
+  if(mode==="add")h+='<div class="divider"></div><b class="small">เพิ่มเอง</b><div class="grid2"><input class="input" id="cName" placeholder="ชื่ออาหาร"><input class="input" id="cKcal" type="number" inputmode="numeric" placeholder="kcal"><input class="input" id="cP" type="number" inputmode="decimal" placeholder="โปรตีน (ก.)"><input class="input" id="cPrice" type="number" inputmode="numeric" placeholder="ราคา ฿"></div><button class="btn" data-act="customfood">เพิ่ม</button>';
+  h+='<p class="small muted">ค่าแคลอรี่เป็นค่าประมาณ อาหารผัดหรือราดแกงคลาดเคลื่อนได้มาก</p>';openSheet(h);}
+
+/* ---------- SHOP ---------- */
+function renderShop(){
+  var tk=todayKey(),mon=mondayOf(tk),wi=Math.floor(daysBetween(mondayOf(S.set.start),mon)/7),sh=S.shop[mon]||(S.shop[mon]={}),pr=S.prep[mon]||(S.prep[mon]={}),h=[],tot=0;
+  var lines=SHOP.filter(function(it){return !it.every||((wi%it.every)+it.every)%it.every===0;});
+  h.push('<button class="back" data-act="go" data-v="food">← อาหาร</button>');
+  h.push('<div class="card"><div class="card-h"><h2>🛒 ซื้อของสัปดาห์นี้</h2><span class="pill">'+lines.filter(function(l){return sh[l.id];}).length+'/'+lines.length+'</span></div><p class="small muted">'+fmtDate(mon)+' – '+fmtDate(addDays(mon,6))+' · แก้ราคาให้ตรงร้านได้</p><div class="stack">'+
+    lines.map(function(it){var p=S.prices[it.id]!=null?+S.prices[it.id]:it.price;tot+=p;return '<div class="check'+(sh[it.id]?" on":"")+'" data-act="shopck" data-id="'+it.id+'"><span class="box"></span><div class="body"><div class="t">'+it.ico+' '+esc(it.name)+'</div><div class="d"><b>'+esc(it.qty)+'</b></div><div class="d" style="font-size:12px">💡 '+esc(it.store)+'</div></div><div class="meta"><input class="input sm num" type="number" inputmode="numeric" value="'+p+'" data-bind="price" data-id="'+it.id+'"> ฿</div></div>';}).join("")+'</div>'+
+    '<div class="divider"></div><div class="row" style="justify-content:space-between"><span>ของสด/ของแห้ง</span><b class="num">'+fmtN(tot)+' ฿</b></div><div class="row" style="justify-content:space-between"><span>ข้าวกลางวัน จ.–ศ. (~50 ฿)</span><b class="num">'+LUNCH_WEEK+' ฿</b></div>'+
+    '<div class="row" style="justify-content:space-between"><b>รวม</b><span class="pill '+((tot+LUNCH_WEEK)/7>S.set.budget?"warn":"good")+'">'+fmtN(tot+LUNCH_WEEK)+' ฿ · ~'+Math.round((tot+LUNCH_WEEK)/7)+' ฿/วัน</span></div><button class="btn ghost sm" data-act="shopReset" style="align-self:flex-start">ล้างติ๊กสัปดาห์นี้</button></div>');
+  var rows="";for(var i=0;i<7;i++){var dk=addDays(mon,i);rows+='<tr'+(dk===tk?' style="background:var(--accent-bg)"':'')+'><td><b>'+DOWS[parseKey(dk).getDay()]+'</b></td><td class="small">'+MENU[i][0]+'</td><td class="small">'+MENU[i][1]+'</td><td class="small">'+MENU[i][2]+'</td></tr>';}
+  h.push('<div class="card"><h2>🍳 เมนู 7 วัน (~1,450–1,550 kcal)</h2><div class="tbl"><table><thead><tr><th>วัน</th><th>เช้า</th><th>กลางวัน</th><th>เย็น</th></tr></thead><tbody>'+rows+'</tbody></table></div><p class="small muted">ว่างบ่ายถ้าหิว: ผลไม้ 1 ส่วน/โยเกิร์ตไม่หวาน · ดึกแล้วหิวจริง: นมจืด 1 กล่อง</p></div>');
+  h.push('<div class="card"><div class="card-h"><h2>🍱 เตรียมอาหารวันอาทิตย์</h2><span class="pill">'+Object.keys(pr).filter(function(x){return pr[x];}).length+'/'+PREP.length+'</span></div><div class="stack">'+PREP.map(function(t,i){return checkRow(!!pr[i],"prepck",'data-i="'+i+'"',esc(t),"","","");}).join("")+'</div></div>');
+  $("v-shop").innerHTML=h.join("");
+}
+
+/* ---------- TRAIN ---------- */
+function renderTrain(){
+  var tk=todayKey(),mon=mondayOf(selDay),h=[],strip='<div class="daystrip">';
+  for(var i=0;i<7;i++){var dk=addDays(mon,i),sk=sessionKey(dk),wr=workoutRatio(dk);
+    strip+='<button class="dchip'+(dk===tk?" today":"")+(dk===selDay?" sel":"")+'" data-act="selDay" data-k="'+dk+'">'+DOWS[parseKey(dk).getDay()]+'<b class="num">'+parseKey(dk).getDate()+'</b><span class="dot'+(wr!=null&&wr>=.8?" done":sk?" train":"")+'"></span><span style="font-size:10px">'+(sk?(SESS[sk].kind==="w"?"เวท "+sk:"คาร์ดิโอ"):"พัก")+'</span></button>';}
+  h.push('<div class="card tight"><div class="card-h"><button class="back" data-act="wkShift" data-d="-7">‹</button><b>สัปดาห์ '+fmtDate(mon)+' – '+fmtDate(addDays(mon,6))+'</b><button class="back" data-act="wkShift" data-d="7">›</button></div>'+strip+'</div>');
+  var k=selDay,d=day(k),sk=sessionKey(k),bad=d&&d.bad;
+  var chooser='<div class="row small"><span class="muted">เปลี่ยน:</span>'+["A","B","C","Z","rest"].map(function(s){return '<button class="chip" data-act="setSess" data-s="'+s+'" aria-pressed="'+(s===(sk||"rest"))+'">'+(s==="rest"?"พัก":s==="Z"?"คาร์ดิโอ":"เวท "+s)+'</button>';}).join("")+'</div>';
+  if(!sk){h.push('<div class="card"><div class="card-h"><h2>'+fmtDateDow(k)+' · วันพัก</h2><span class="pill rest">พัก</span></div><p class="small">เดินให้ถึงเป้าก้าว ยืดเหยียดเบาๆ พลาดวันเวทไป? เลือกเซสชันชดเชยได้</p>'+chooser+'</div>');}
+  else if(SESS[sk].kind==="c"){h.push('<div class="card"><div class="card-h"><div><span class="muted small">'+fmtDateDow(k)+'</span><h2>🚶‍♀️ คาร์ดิโอ Zone 2</h2></div><span class="pill '+(d&&d.c?"good":"")+'">'+(d&&d.c?"เสร็จ":"รอทำ")+'</span></div>'+chooser+
+    '<ul class="small" style="margin:0;padding-left:18px"><li><b>'+(bad?20:35)+' นาที</b> เดินชันบนลู่วิ่ง ชัน 8–12% ความเร็ว 4–5.5 กม./ชม. หรือจักรยาน/เครื่องเดินวงรี</li><li>หายใจแรงแต่ยังพูดเป็นประโยคได้ ถ้ามีนาฬิกา หัวใจ ~60–70% ของสูงสุด (~120–140 ครั้ง/นาที)</li><li>ห้ามจับราวลู่วิ่ง ให้แกว่งแขนตามธรรมชาติ</li><li>ทำหลังเวทได้ถ้าวันนั้นไม่ว่าง</li></ul>'+exLink("run","ดูท่า Zone 2")+
+    checkRow(!!(d&&d.c),"cardioSel","","ทำคาร์ดิโอแล้ว","","","")+'</div>');}
+  else{var exs=sessionEx(k),wr=workoutRatio(k);
+    h.push('<div class="card"><div class="card-h"><div><span class="muted small">'+fmtDateDow(k)+'</span><h2>'+SESS[sk].name+'</h2><span class="small muted">'+SESS[sk].th+'</span></div><span class="pill '+(wr>=1?"good":wr>0?"warn":"")+'">'+Math.round(wr*100)+'%</span></div>'+(bad?'<div class="banner warn"><span class="ico">🪫</span><div><b>โหมดวันแย่</b> · 3 ท่าแรก ท่าละ 2 เซต</div></div>':'')+chooser+
+      '<p class="small muted">เลือกน้ำหนักที่ทำครบช่วงครั้งแล้วยังเหลือแรงอีก 1–2 ครั้ง · ติ๊กเซตแล้วจับเวลาพัก '+S.set.rest+' วิ · ไม่ต้องกลัวตัวใหญ่ เวทช่วยให้หุ่นมีทรงและเผาไขมันได้ดีขึ้น</p></div>');
+    exs.forEach(function(e){var arr=(d&&d.w&&d.w.sets&&d.w.sets[e.id])||[],last=lastSession(e.id,k),allok=true,sets="";
+      for(var i=0;i<e.sets;i++){var s=arr[i]||{},pkg=s.kg!=null&&s.kg!==""?s.kg:(last&&last.sets[Math.min(i,last.sets.length-1)].kg)||"",prr=s.r!=null&&s.r!==""?s.r:"";if(!s.ok)allok=false;
+        sets+='<div class="set"><span class="n">'+(i+1)+'</span>'+(e.bw?'<span class="unit muted">น้ำหนักตัว</span>':'<label class="unit"><input class="input sm num" type="number" inputmode="decimal" step="0.5" placeholder="0" value="'+esc(pkg)+'" data-bind="setkg" data-ex="'+e.id+'" data-i="'+i+'">กก.</label>')+'<label class="unit"><input class="input sm num" type="number" inputmode="numeric" placeholder="'+e.lo+'–'+e.hi+'" value="'+esc(prr)+'" data-bind="setr" data-ex="'+e.id+'" data-i="'+i+'">'+(e.unit||"ครั้ง")+'</label><button class="tick'+(s.ok?" on":"")+'" data-act="tick" data-ex="'+e.id+'" data-i="'+i+'" aria-label="เซต '+(i+1)+' เสร็จ"></button></div>';}
+      var hint="";if(last){var hit=last.sets.length>=e.sets&&last.sets.every(function(s){return (+s.r||0)>=e.hi;}),lk=last.sets[0].kg,txt=(e.bw?"":(lk?lk+" กก. × ":""))+last.sets.map(function(s){return s.r||"?";}).join(", ");
+        hint=hit?'<div class="hint-p up">⬆️ ครั้งก่อน ('+fmtDate(last.k)+'): '+txt+' → <b>'+(e.bw?"เพิ่มความยาก (ลงช้า/ค้าง)":"เพิ่มน้ำหนักขั้นเล็กที่สุด")+'</b></div>':'<div class="hint-p">ครั้งก่อน ('+fmtDate(last.k)+'): '+txt+' → พยายาม <b>+1 ครั้ง</b></div>';}
+      h.push('<div class="ex'+(allok?" done":"")+'"><div class="ex-h"><div>'+exLink(e.id,e.name)+'<div class="target">'+e.sets+' เซต × '+e.lo+'–'+e.hi+' '+(e.unit||"ครั้ง")+(e.per||"")+'</div></div></div>'+hint+'<div class="sets">'+sets+'</div></div>');});
+    h.push('<button class="btn block" data-act="finish">'+(d&&d.w&&d.w.done?"✓ จบเซสชันแล้ว (กดเพื่อยกเลิก)":"จบเซสชัน")+'</button>');}
+  var ov='<div class="card"><h3>โปรแกรมยิม: เวท 3 วัน + คาร์ดิโอ 3 วัน</h3><p class="small muted">จ. เวท A · อ. คาร์ดิโอ · พ. เวท B · พฤ. คาร์ดิโอ · ศ. เวท C · ส. คาร์ดิโอ · อา. พัก (เดินให้ถึงเป้า)</p>';
+  ["A","B","C"].forEach(function(s){ov+='<div><b class="small">เวท '+s+'</b> <span class="small muted">'+SESS[s].th+'</span><div class="small" style="display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px">'+SESS[s].ex.map(function(e){return exLink(e.id,e.name)+' <span class="muted">'+e.sets+'×'+e.lo+'–'+e.hi+'</span>';}).join("")+'</div></div>';});
+  ov+='<div class="divider"></div><ul class="small" style="margin:0;padding-left:18px"><li><b>เพิ่มความหนัก:</b> ทุกเซตทำได้ถึงครั้งสูงสุด → ครั้งหน้าเพิ่มน้ำหนักขั้นเล็กที่สุด</li><li><b>พัก:</b> 60–90 วิ ท่าใหญ่ 2 นาทีได้</li><li><b>ท่าในหุ่น 3D</b> เป็นหุ่นสาธิตท่าทาง ใช้ดูทิศทางการเคลื่อนไหว</li><li>ซิทอัพไม่ได้เผาไขมันหน้าท้อง ไขมันลดจากการกินขาดดุลทั้งร่างกาย ท่าแกนกลางช่วยท่ายืนและทำให้ท้องดูแบนขึ้น</li></ul></div>';
+  h.push(ov);$("v-train").innerHTML=h.join("");
+}
+
+/* ---------- PROGRESS ---------- */
+function lineChart(pts,goal,unit,label){
+  if(pts.length<2)return '<div class="empty">บันทึกอย่างน้อย 2 ครั้งเพื่อดูกราฟ</div>';
+  var W=340,H=170,L=34,R=8,T=12,B=24,t0=parseKey(pts[0].d).getTime(),t1=Math.max(parseKey(pts[pts.length-1].d).getTime(),t0+864e5*6);
+  var vals=pts.map(function(p){return p.v;}),lo=Math.min.apply(null,vals.concat(goal!=null?[goal]:[]))-.5,hi=Math.max.apply(null,vals)+.5;if(goal!=null&&goal<lo)lo=goal-.5;
+  if(hi-lo>25){lo=Math.min.apply(null,vals)-1;}
+  function X(k){return L+(parseKey(k).getTime()-t0)/(t1-t0)*(W-L-R);}function Y(v){return T+(hi-v)/(hi-lo)*(H-T-B);}
+  var g='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+label+'">',step=Math.max(1,Math.round((hi-lo)/6));
+  for(var v=Math.ceil(lo);v<=hi;v+=step)g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'" stroke="var(--line-soft)"/><text x="'+(L-6)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end" font-size="10" fill="var(--muted)">'+v+'</text>';
+  if(goal!=null&&goal>=lo&&goal<=hi)g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(goal)+'" y2="'+Y(goal)+'" stroke="var(--good)" stroke-dasharray="4 4"/>';
+  var ma=pts.map(function(x){var a=pts.filter(function(y){var dd=daysBetween(y.d,x.d);return dd>=0&&dd<7;});return {d:x.d,v:a.reduce(function(s,y){return s+y.v;},0)/a.length};});
+  g+='<path d="'+ma.map(function(p,i){return (i?"L":"M")+X(p.d).toFixed(1)+" "+Y(p.v).toFixed(1);}).join("")+'" fill="none" stroke="var(--accent)" stroke-width="2.5"/>';
+  pts.forEach(function(x){g+='<circle cx="'+X(x.d).toFixed(1)+'" cy="'+Y(x.v).toFixed(1)+'" r="3" fill="var(--rose)"/>';});
+  return g+'<text x="'+L+'" y="'+(H-6)+'" font-size="10" fill="var(--muted)">'+fmtDate(pts[0].d)+'</text><text x="'+(W-R)+'" y="'+(H-6)+'" font-size="10" text-anchor="end" fill="var(--muted)">'+fmtDate(pts[pts.length-1].d)+'</text></svg>';
+}
+function weightAdvice(){var mon=mondayOf(todayKey()),w1=weekAvg(addDays(mon,-7)),w2=weekAvg(addDays(mon,-14)),w3=weekAvg(addDays(mon,-21));
+  if(w1==null||w2==null)return {c:"",t:"ชั่งเช้าวันจันทร์ พุธ ศุกร์ ให้ครบ 2–3 สัปดาห์ แอปจะเริ่มบอกได้ว่าควรปรับอะไร · ช่วงก่อนมีรอบเดือนน้ำหนักขึ้นได้จากน้ำ อย่าตกใจ"};
+  var d1=w1-w2,d2=w3!=null?w2-w3:null;
+  if(d1<-1.0)return {c:"warn",t:"สัปดาห์ที่แล้วลด "+r1(-d1)+" กก. เร็วเกินไป เสี่ยงเสียกล้าม → กินเพิ่ม ~150 kcal (เพิ่มโปรตีน เช่นไข่ 2 ฟอง)"};
+  if(d1>-0.1&&d2!=null&&d2>-0.1)return {c:"bad",t:"ไม่ลด 2 สัปดาห์ติด → เช็กเครื่องดื่มหวาน ขนม น้ำมันในอาหารตามสั่งก่อน ถ้าถูกหมดแล้ว ลดข้าวมื้อละ ½ ทัพพี หรือเดินเพิ่ม 2,000 ก้าว (ห้ามต่ำกว่า "+FLOOR+" kcal)"};
+  if(d1>-0.1)return {c:"warn",t:"สัปดาห์ที่แล้วแทบไม่ลด ("+(d1>=0?"+":"")+r1(d1)+" กก.) อาจเป็นน้ำ/รอบเดือน ดูรอบเอวประกอบ ถ้าสัปดาห์นี้ยังไม่ลด ค่อยปรับ"};
+  return {c:"good",t:"สัปดาห์ที่แล้ว −"+r1(-d1)+" กก. อยู่ในเป้า 0.3–0.5 กก./สัปดาห์ ทำแบบเดิมต่อ"};}
+var MILES=[
+ {i:"🚀",t:"เทรนครั้งแรก",f:function(){return workoutsDone("w")>=1;}},{i:"📸",t:"ถ่ายรูปวันที่ 0",f:function(){return photoCount>0;}},
+ {i:"🧋",t:"ไม่มีเครื่องดื่มหวาน 7 วันติด",f:function(){return noSweetStreak()>=7;}},{i:"⚖️",t:"ลด 2 กก.",f:function(){return S.set.startW-smoothMin()>=2;}},
+ {i:"📏",t:"เอวต่ำกว่า 85 ซม.",f:function(){return latestWaist()<85;}},{i:"🔥",t:"ลด 5 กก.",f:function(){return S.set.startW-smoothMin()>=5;}},
+ {i:"🫀",t:"ไขมันช่องท้องต่ำกว่า 10",f:function(){return (latestIB().vf||99)<10;}},{i:"✨",t:"เอวต่ำกว่า 80 ซม.",f:function(){return latestWaist()<80;}},
+ {i:"💪",t:"เทรนเวทครบ 30 ครั้ง",f:function(){return workoutsDone("w")>=30;}},{i:"🏆",t:"ไขมันต่ำกว่า 30%",f:function(){return (latestIB().pbf||99)<30;}}];
+function noSweetStreak(){var best=0,cur=0,k=S.set.start,t=todayKey();while(k<=t){var d=S.days[k];if(d&&(d.dr||[]).length>=0&&nutr(k).sweet===0&&(d.m&&Object.keys(d.m).length)){cur++;best=Math.max(best,cur);}else cur=0;k=addDays(k,1);}return best;}
+function heatmap(){var t=todayKey(),start=mondayOf(S.set.start),end=addDays(mondayOf(t),6),weeks=Math.max(1,daysBetween(start,end)/7+1|0),first=addDays(mondayOf(t),-(weeks-1)*7),g='<div class="heat"><div class="heat-grid">';
+  for(var i=0;i<weeks*7;i++){var k=addDays(first,i);if(k<S.set.start){g+='<i class="pre"></i>';continue;}if(k>t){g+='<i class="fut"></i>';continue;}var s=dayScore(k),l=s<=0?0:s<40?1:s<60?2:s<85?3:4;g+='<i class="l'+l+(k===t?" td":"")+'" data-act="hm" data-k="'+k+'"></i>';}
+  return g+'</div></div><div class="heat-legend">น้อย <i style="background:var(--hm0)"></i><i style="background:var(--hm1)"></i><i style="background:var(--hm2)"></i><i style="background:var(--hm3)"></i><i style="background:var(--hm4)"></i> ครบ · แถวบน = จันทร์</div>';}
+function weekStats(mon){var o={w:0,c:0,sw:0,st:0,sl:0,sp:0,sc:0,n:0,kc:0,p:0,tr:0};for(var i=0;i<7;i++){var k=addDays(mon,i);if(k>todayKey()||k<S.set.start)continue;o.n++;var d=S.days[k],n=nutr(k),s=sessionKey(k),r=workoutRatio(k);
+  if(s&&r>=.8){if(SESS[s].kind==="w")o.w++;else o.c++;}if(d){o.st+=+(d.st||0);if(d.sl)o.sl++;if(d.sp!=null)o.sp+=+d.sp;}o.sw+=n.sweet;o.tr+=n.treat;o.kc+=n.kcal;o.p+=n.p;o.sc+=dayScore(k);}return o;}
+function report(){var mon=mondayOf(todayKey()),o=weekStats(mon),w0=weekAvg(mon),w1=weekAvg(addDays(mon,-7)),n=o.n||1,ib=latestIB();
+  return "📊 Perfect Body รายงานสัปดาห์ "+fmtDate(mon)+" – "+fmtDate(addDays(mon,6))+"\nน้ำหนักเฉลี่ย: "+(w0!=null?r1(w0)+" กก.":"ยังไม่ได้ชั่ง")+(w0!=null&&w1!=null?" ("+(w0-w1>=0?"+":"")+r1(w0-w1)+")":"")+"\nรอบเอวล่าสุด: "+r1(latestWaist())+" ซม.\nเวท: "+o.w+"/3 · คาร์ดิโอ: "+o.c+"/3\nเฉลี่ย "+fmtN(o.kc/n)+" kcal · โปรตีน "+Math.round(o.p/n)+" ก. · ก้าว "+fmtN(o.st/n)+"/วัน\nเครื่องดื่มหวาน: "+o.sw+" แก้ว · รางวัล: "+o.tr+"/"+S.set.tokens+"\nนอนครบ: "+o.sl+"/"+o.n+" · ใช้เงิน "+fmtN(o.sp)+" ฿\nคะแนนเฉลี่ย: "+grade(o.sc/n)+" ("+Math.round(o.sc/n)+")\nInBody ล่าสุด ("+(ib.d?fmtDate(ib.d):"-")+"): ไขมัน "+(ib.pbf||"-")+"% · กล้าม "+(ib.smm||"-")+" กก. · ช่องท้อง "+(ib.vf||"-")+"\nหมายเหตุ: ";}
+var photoCount=0,photoSel=[],photoCache=[];
+function renderProgress(){var h=[],w=sortedW(),adv=weightAdvice(),ib=S.inbody.slice().sort(function(a,b){return a.d<b.d?-1:1;});
+  h.push('<div class="card"><div class="card-h"><h2>น้ำหนัก</h2><span class="pill good num">'+r1(latestW())+' กก.</span></div><input class="input" id="wIn" type="number" inputmode="decimal" step="0.1" placeholder="น้ำหนักเช้านี้ (กก.)"><div class="row"><input class="input" style="flex:1;width:auto" id="wDate" type="date" value="'+todayKey()+'"><button class="btn" data-act="addW">บันทึก</button></div>'+
+    '<div class="banner '+(adv.c||"warn")+'"><span class="ico">'+({good:"✅",warn:"⚖️",bad:"📉"}[adv.c]||"ℹ️")+'</span><div>'+adv.t+'</div></div><div class="chart">'+lineChart(w.map(function(x){return {d:x.d,v:x.kg};}),S.set.goalW,"กก.","กราฟน้ำหนัก")+'</div>'+
+    (w.length?'<details><summary class="small muted">ประวัติ ('+w.length+')</summary><div class="stack" style="margin-top:6px">'+w.slice().reverse().slice(0,30).map(function(x){return '<div class="extra"><span>'+fmtDateDow(x.d)+'</span><span class="row"><b class="num">'+x.kg+' กก.</b><button class="x" data-act="rmW" data-d="'+x.d+'">×</button></span></div>';}).join("")+'</div></details>':'')+'</div>');
+  var ws=S.waists.slice().sort(function(a,b){return a.d<b.d?-1:1;});
+  h.push('<div class="card"><div class="card-h"><h2>รอบเอว</h2><span class="pill num">'+r1(latestWaist())+' ซม.</span></div><p class="small muted">วัดที่ระดับสะดือ หายใจออกปกติ ไม่แขม่ว ทุก 2 สัปดาห์ · รอบเอวลดแปลว่าไขมันช่องท้องลด แม้ตาชั่งไม่ขยับ</p><div class="row"><input class="input" style="flex:1;width:auto" id="waIn" type="number" inputmode="decimal" step="0.5" placeholder="รอบเอว (ซม.)"><button class="btn" data-act="addWaist">บันทึก</button></div><div class="chart">'+lineChart([{d:S.set.start,v:S.set.startWaist}].concat(ws.map(function(x){return {d:x.d,v:x.cm};})),80,"ซม.","กราฟรอบเอว")+'</div></div>');
+  h.push('<div class="card"><div class="card-h"><h2>ผล InBody</h2><span class="small muted">ทุก 4–6 สัปดาห์ ช่วงเวลาเดิม ก่อนกิน</span></div><div class="tbl"><table><thead><tr><th>วันที่</th><th class="num">น้ำหนัก</th><th class="num">ไขมัน%</th><th class="num">กล้าม</th><th class="num">ช่องท้อง</th><th></th></tr></thead><tbody>'+
+    ib.map(function(x,i){var p=ib[i-1];function df(a,b,inv){if(!p||b==null)return "";var dd=r1(a-b);if(!dd)return "";var good=inv?dd>0:dd<0;return ' <span style="color:'+(good?"var(--good)":"var(--bad)")+';font-size:11px">'+(dd>0?"+":"")+dd+'</span>';}
+      return '<tr><td>'+fmtDate(x.d)+'</td><td class="num">'+x.w+df(x.w,p&&p.w)+'</td><td class="num">'+x.pbf+df(x.pbf,p&&p.pbf)+'</td><td class="num">'+x.smm+df(x.smm,p&&p.smm,true)+'</td><td class="num">'+x.vf+df(x.vf,p&&p.vf)+'</td><td><button class="x" data-act="rmIB" data-i="'+i+'">×</button></td></tr>';}).join("")+'</tbody></table></div>'+
+    '<div class="grid2"><input class="input" id="ibD" type="date" value="'+todayKey()+'"><input class="input" id="ibW" type="number" inputmode="decimal" step="0.1" placeholder="น้ำหนัก กก."><input class="input" id="ibP" type="number" inputmode="decimal" step="0.1" placeholder="ไขมัน %"><input class="input" id="ibS" type="number" inputmode="decimal" step="0.1" placeholder="กล้าม SMM กก."><input class="input" id="ibV" type="number" inputmode="numeric" placeholder="ไขมันช่องท้อง (ระดับ)"><button class="btn" data-act="addIB">บันทึก InBody</button></div><p class="small muted">ถูกทาง = ไขมัน % และช่องท้องลด กล้ามเท่าเดิมหรือเพิ่ม</p></div>');
+  var mon=mondayOf(todayKey()),wg='<div class="weekgrades">';for(var i=0;i<7;i++){var k=addDays(mon,i),ok=k<=todayKey()&&k>=S.set.start,s=ok?dayScore(k):0,g=grade(s);wg+='<div>'+DOWS[parseKey(k).getDay()]+'<b class="'+(ok?"g-"+g:"muted")+'">'+(ok?g:"·")+'</b>'+(ok?s:"")+'</div>';}wg+='</div>';var o=weekStats(mon),avg=o.n?o.sc/o.n:0;
+  h.push('<div class="card"><div class="card-h"><h3>สัปดาห์นี้</h3><span class="grade g-'+grade(avg)+'" style="font-size:28px">'+grade(avg)+'</span></div>'+wg+'<div class="grid2 small"><span>เวท <b>'+o.w+'/3</b> · คาร์ดิโอ <b>'+o.c+'/3</b></span><span>เครื่องดื่มหวาน <b>'+o.sw+'</b></span><span>ก้าวเฉลี่ย <b>'+fmtN(o.n?o.st/o.n:0)+'</b></span><span>รางวัล <b>'+o.tr+'/'+S.set.tokens+'</b></span></div><button class="btn" data-act="copyReport">📋 คัดลอกรายงานประจำสัปดาห์</button></div>');
+  h.push('<div class="card"><div class="card-h"><h3>ปฏิทินความสม่ำเสมอ</h3><span class="small muted">'+workoutsDone()+' วันที่ทำครบ</span></div>'+heatmap()+'</div>');
+  h.push('<div class="card"><h3>หมุดหมาย</h3><div class="mile">'+MILES.map(function(m){var on=false;try{on=m.f();}catch(e){}return '<div class="'+(on?"on":"")+'"><span class="mi">'+m.i+'</span>'+m.t+'</div>';}).join("")+'</div></div>');
+  h.push('<div class="card"><div class="card-h"><h3>รูปความคืบหน้า</h3><button class="btn sm" data-act="addPhoto">+ ถ่าย/เพิ่มรูป</button></div><p class="small muted" id="photoDue">ใส่สปอร์ตบรา + เลกกิ้ง ถ่ายตอนเช้าก่อนกิน ห้องเดิม แสงเดิม มุมเดิม ทุก 4 สัปดาห์ · รูปเก็บในเครื่องนี้เท่านั้น</p><div class="photos" id="photos"></div><button class="btn ghost sm" data-act="compare" id="cmpBtn" style="display:none">เทียบ 2 รูปที่เลือก</button></div>');
+  $("v-progress").innerHTML=h.join("");loadPhotos();}
+
+/* ---------- photos (IndexedDB) ---------- */
+var idb=null;
+function idbOpen(cb){if(idb)return cb(idb);try{var r=indexedDB.open("leanup",1);r.onupgradeneeded=function(){r.result.createObjectStore("photos",{keyPath:"id",autoIncrement:true});};r.onsuccess=function(){idb=r.result;cb(idb);};r.onerror=function(){cb(null);};}catch(e){cb(null);}}
+function idbAll(cb){idbOpen(function(db){if(!db)return cb([]);var out=[];db.transaction("photos","readonly").objectStore("photos").openCursor().onsuccess=function(e){var c=e.target.result;if(c){out.push(c.value);c.continue();}else cb(out);};});}
+function idbPut(v,cb){idbOpen(function(db){if(!db)return cb&&cb();var tx=db.transaction("photos","readwrite");tx.objectStore("photos").put(v);tx.oncomplete=function(){cb&&cb();};});}
+function idbDel(id,cb){idbOpen(function(db){if(!db)return cb&&cb();var tx=db.transaction("photos","readwrite");tx.objectStore("photos").delete(id);tx.oncomplete=function(){cb&&cb();};});}
+function idbClear(cb){idbOpen(function(db){if(!db)return cb&&cb();var tx=db.transaction("photos","readwrite");tx.objectStore("photos").clear();tx.oncomplete=function(){cb&&cb();};});}
+function loadPhotos(){idbAll(function(list){photoCache=list.sort(function(a,b){return a.d<b.d?1:-1;});photoCount=list.length;var el=$("photos");if(!el)return;
+  el.innerHTML=list.length?list.map(function(p){return '<figure class="'+(photoSel.indexOf(p.id)>=0?"sel":"")+'" data-act="selPhoto" data-id="'+p.id+'"><img src="'+p.data+'" alt="" loading="lazy"><figcaption>'+fmtDate(p.d)+(p.kg?" · "+p.kg+" กก.":"")+'</figcaption></figure>';}).join(""):'<div class="empty" style="grid-column:1/-1">ยังไม่มีรูป เริ่มจากรูปวันที่ 0</div>';
+  var due=$("photoDue");if(due&&list.length){var nx=addDays(list[0].d,28),dl=daysBetween(todayKey(),nx);due.innerHTML='รูปล่าสุด '+fmtDate(list[0].d)+' · รอบถัดไป <b>'+fmtDate(nx)+'</b>'+(dl<=0?' <span class="pill warn">ถึงเวลาแล้ว</span>':' (อีก '+dl+' วัน)')+' · เลือก 2 รูปเพื่อเทียบ';}
+  var cb=$("cmpBtn");if(cb)cb.style.display=photoSel.length===2?"":"none";});}
+function addPhotoFile(file){var fr=new FileReader();fr.onload=function(){var img=new Image();img.onload=function(){var mx=900,s=Math.min(1,mx/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+  idbPut({d:todayKey(),kg:r1(latestW()),data:c.toDataURL("image/jpeg",.78)},function(){toast("เก็บรูปแล้ว 📸");if(view==="progress")renderProgress();});};img.src=fr.result;};fr.readAsDataURL(file);}
+
+/* ---------- MORE / SETTINGS ---------- */
+function renderMore(){$("v-more").innerHTML='<h2>เพิ่มเติม</h2><div class="menu">'+
+  '<button data-act="go" data-v="shop"><span class="mi">🛒</span><b>ซื้อของ & เมนู</b><span>รายการรายสัปดาห์ เมนู 7 วัน</span></button>'+
+  '<button data-act="studio" data-ex="hipthrust"><span class="mi">🧍</span><b>สตูดิโอท่า 3D</b><span>ดูท่าทุกท่าในโปรแกรม</span></button>'+
+  '<button data-act="go" data-v="settings"><span class="mi">⚙️</span><b>ตั้งค่า & สำรอง</b><span>เป้าหมาย สำรอง/นำเข้าข้อมูล</span></button>'+
+  '<button data-act="guide"><span class="mi">📖</span><b>กติกา 7 ข้อของรางวัล</b><span>กินเค้กยังไงไม่พัง</span></button></div>'+
+  '<div class="card tight"><h3>📲 ติดตั้งบน iPhone</h3><p class="small">เปิดลิงก์ใน <b>Safari</b> → ปุ่มแชร์ (สี่เหลี่ยมลูกศรขึ้น) → <b>เพิ่มไปยังหน้าจอโฮม</b> → เพิ่ม · เปิดจากไอคอนเสมอ</p></div>'+
+  '<div class="card tight"><h3>⏰ ตั้งเตือนเองใน iPhone</h3><p class="small">แอปนี้ส่งแจ้งเตือนไม่ได้ ให้ตั้งในแอปนาฬิกาหรือคำสั่งลัด: 07:00 เช้า · 12:00 กลางวัน · 15:30 น้ำ+ของว่าง · 18:30 เย็น · เวลาออกกำลังกาย · 21:30 ติ๊กเช็กลิสต์</p></div>'+
+  '<p class="small muted" style="text-align:center">Perfect Body v1 · ข้อมูลเก็บในเครื่องนี้เท่านั้น · ค่าอาหารเป็นค่าประมาณ ไม่ใช่คำแนะนำทางการแพทย์</p>';}
+function renderSettings(){var s=S.set;function f(id,label,val,type,extra){return '<label class="fld">'+label+'<input class="input" data-bind="set" data-k="'+id+'" type="'+(type||"number")+'" value="'+esc(val)+'" '+(extra||"")+'></label>';}
+  $("v-settings").innerHTML='<button class="back" data-act="go" data-v="more">← เพิ่มเติม</button><div class="card"><h2>เป้าหมาย</h2><div class="grid2">'+f("height","ส่วนสูง (ซม.)",s.height)+f("startW","น้ำหนักเริ่มต้น",s.startW,"number",'step="0.1"')+f("goalW","น้ำหนักเป้าหมาย",s.goalW,"number",'step="0.1"')+f("start","วันเริ่มโปรแกรม",s.start,"date")+
+  f("startWaist","รอบเอวเริ่มต้น (ซม.)",s.startWaist,"number",'step="0.5"')+f("kcal","แคลอรี่/วัน (≥1300)",s.kcal)+f("protein","โปรตีน/วัน (ก.)",s.protein)+f("steps","เป้าก้าว/วัน",s.steps)+f("tokens","รางวัล/สัปดาห์",s.tokens)+f("budget","งบอาหาร/วัน (฿)",s.budget)+f("rest","พักระหว่างเซต (วิ)",s.rest)+'</div>'+
+  '<label class="fld">เหตุผลที่เริ่ม<textarea class="input" data-bind="set" data-k="why" placeholder="เช่น อยากใส่ครอปท็อปแล้วมั่นใจ อยากสุขภาพดี">'+esc(s.why)+'</textarea></label></div>'+
+  '<div class="card"><h2>สำรองข้อมูล</h2><p class="small">ข้อมูลอยู่ใน iPhone เครื่องนี้เท่านั้น ถ้าลบแอปออกจากหน้าจอโฮม ล้างข้อมูล Safari หรือเปลี่ยนเครื่อง ข้อมูลจะหาย · <b>สำรองทุกสัปดาห์</b> แล้วเก็บไฟล์ใน iCloud Drive หรือส่งเข้า LINE ตัวเอง</p><div class="row"><button class="btn" data-act="export">⬇️ สำรองข้อมูล</button><button class="btn ghost" data-act="import">⬆️ นำเข้าไฟล์สำรอง</button></div><p class="small muted">ล่าสุด: '+(S.lastBackup?fmtDateDow(S.lastBackup):"ยังไม่เคยสำรอง")+'</p></div>'+
+  '<div class="card"><h3 style="color:var(--bad)">ล้างทั้งหมด</h3><button class="btn danger" data-act="resetAll" style="align-self:flex-start">ล้างข้อมูลทั้งหมด</button></div>';}
+var GUIDE='<div class="sheet-h"><h3>🎂 กติกา 7 ข้อของรางวัล</h3><button class="icon-btn" data-act="closeSheet">✕</button></div><ol class="small" style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px"><li><b>สัปดาห์ละ 1–2 ครั้ง</b> กำหนดวันไว้ก่อน</li><li><b>1 ชิ้น 1 ที่ ไม่ใช่ทั้งวัน</b> cheat day กิน 3,000–4,000 kcal ลบส่วนที่อดมาทั้งสัปดาห์ได้</li><li><b>เผื่อแคลอรี่:</b> ลดข้าวมื้ออื่นครึ่งหนึ่ง + เดินเพิ่ม 3,000–4,000 ก้าว</li><li><b>กินหลังมื้อที่มีโปรตีน</b> ไม่กินตอนหิวจัด</li><li><b>กินช้าๆ นั่งกิน</b> ไม่กินหน้าจอ</li><li><b>ซื้อทีละชิ้น</b> ไม่ซื้อทั้งปอนด์</li><li><b>ห้ามลงโทษตัวเองวันรุ่งขึ้น</b> แค่กลับมากินตามแผน</li></ol><p class="small muted">รางวัลที่ไม่ใช่อาหาร: เสื้อผ้าไซซ์ใหม่เมื่อเอวลด · นวด/สปา · ของที่อยากได้เมื่อไขมันช่องท้องต่ำกว่า 10</p>';
+
+/* ---------- dispatcher ---------- */
+function renderTop(){var k=todayKey();$("topSub").textContent=fmtDateDow(k)+(inRange(k)?" · สัปดาห์ "+weekNo(k):"");}
+var R={today:renderToday,food:renderFood,shop:renderShop,train:renderTrain,progress:renderProgress,more:renderMore,settings:renderSettings};
+function render(){renderTop();if(R[view])R[view]();}
+function rerender(){var y=window.scrollY;render();window.scrollTo(0,y);}
+
+/* ---------- timer ---------- */
+var timer={end:0,iv:0},actx=null;
+function beep(){try{if(!actx)return;var t=actx.currentTime;[0,.28,.56].forEach(function(o){var os=actx.createOscillator(),g=actx.createGain();os.frequency.value=880;os.connect(g);g.connect(actx.destination);g.gain.setValueAtTime(.0001,t+o);g.gain.exponentialRampToValueAtTime(.3,t+o+.02);g.gain.exponentialRampToValueAtTime(.0001,t+o+.22);os.start(t+o);os.stop(t+o+.24);});}catch(e){}}
+function unlockAudio(){try{if(!actx){var AC=window.AudioContext||window.webkitAudioContext;if(AC)actx=new AC();}if(actx&&actx.state==="suspended")actx.resume();}catch(e){}}
+function startTimer(sec){timer.end=Date.now()+sec*1000;$("timer").hidden=false;clearInterval(timer.iv);timer.iv=setInterval(tickTimer,250);tickTimer();}
+function tickTimer(){var left=Math.max(0,Math.ceil((timer.end-Date.now())/1000));$("timerT").textContent=Math.floor(left/60)+":"+pad(left%60);if(left<=0){clearInterval(timer.iv);beep();try{navigator.vibrate&&navigator.vibrate([250,120,250]);}catch(e){}toast("หมดเวลาพัก · เซตต่อไป 💪");setTimeout(function(){$("timer").hidden=true;},1500);}}
+
+/* ---------- actions ---------- */
+function setsArr(k,id){var d=day(k,true);if(!d.w)d.w={sets:{},done:0};if(!d.w.sets)d.w.sets={};if(!d.w.sets[id])d.w.sets[id]=[];return d.w.sets[id];}
+document.addEventListener("click",function(e){
+  var tab=e.target.closest("[data-tab]");if(tab){go(tab.dataset.tab);return;}
+  var el=e.target.closest("[data-act]");if(!el)return;var a=el.dataset.act,k=todayKey(),d;
+  switch(a){
+  case "go":go(el.dataset.v);break;
+  case "back":go(prevView||"today");break;
+  case "studio":e.preventDefault();openStudio(el.dataset.ex);break;
+  case "guide":openSheet(GUIDE);break;
+  case "meal":d=day(k,true);d.m[el.dataset.k]=d.m[el.dataset.k]?0:1;save();rerender();break;
+  case "swap":foodSheet("swap",el.dataset.k);break;
+  case "unswap":d=day(k,true);delete d.sw[el.dataset.k];save();closeSheet();rerender();break;
+  case "addfood":foodSheet("add");break;
+  case "foodCat":foodCat=+el.dataset.i;foodQ="";foodSheet(sheetCtx.mode,sheetCtx.k);break;
+  case "pickfood":d=day(k,true);if(sheetCtx.mode==="swap"){d.sw[sheetCtx.k]=el.dataset.id;d.m[sheetCtx.k]=1;closeSheet();}else{var last=d.x[d.x.length-1];if(last&&last.f===el.dataset.id)last.q=(last.q||1)+1;else d.x.push({f:el.dataset.id,q:1});toast("+ "+FOOD[el.dataset.id].name);}save();rerender();break;
+  case "customfood":var nm=$("cName").value.trim(),kc=+$("cKcal").value||0;if(!nm||!kc){toast("ใส่ชื่อและ kcal ก่อน");break;}d=day(k,true);d.x.push({c:{name:nm,kcal:kc,p:+$("cP").value||0,price:+$("cPrice").value||0},q:1});save();closeSheet();rerender();break;
+  case "rmx":d=day(k,true);d.x.splice(+el.dataset.i,1);save();rerender();break;
+  case "adddrink":openSheet(listSheet("บันทึกเครื่องดื่ม",DRINKS,"pickdrink",function(f){return (f.sweet?"🍬 ":"✅ ")+f.kcal+" kcal"+(f.sugar?"<br>น้ำตาล ~"+f.sugar+" ก.":"");},'<p class="small muted">🍬 = เครื่องดื่มหวาน (นับในคะแนน) · ✅ = ดื่มได้ทุกวัน</p>'));break;
+  case "pickdrink":d=day(k,true);d.dr.push(el.dataset.id);save();closeSheet();rerender();toast(DRINK[el.dataset.id].sweet?"บันทึกแล้ว ลองหวาน 25% แก้วหน้านะ":"เยี่ยม ✅");break;
+  case "rmdr":d=day(k,true);d.dr.splice(+el.dataset.i,1);save();rerender();break;
+  case "addtreat":openSheet(listSheet("ใช้รางวัล 🎂",TREATS,"picktreat",function(f){return f.kcal+" kcal";},'<p class="small muted">วันนี้ลดข้าวมื้ออื่นครึ่งหนึ่ง และเดินเพิ่ม 3,000 ก้าว · กินหลังมื้อที่มีโปรตีน</p>'));break;
+  case "picktreat":d=day(k,true);d.tr.push(el.dataset.id);save();closeSheet();rerender();toast("อร่อยให้เต็มที่ แล้วกลับมาตามแผน 💕");break;
+  case "rmtr":d=day(k,true);d.tr.splice(+el.dataset.i,1);save();rerender();break;
+  case "closeSheet":closeSheet();break;
+  case "water":d=day(k,true);d.wa=Math.max(0,Math.min(12,(d.wa||0)+(+el.dataset.d)));save();rerender();break;
+  case "cardio":d=day(k,true);d.c=d.c?0:1;save();rerender();if(d.c)toast("คาร์ดิโอเสร็จ ✓");break;
+  case "cardioSel":d=day(selDay,true);d.c=d.c?0:1;save();rerender();break;
+  case "shopck":var wk=mondayOf(k);S.shop[wk]=S.shop[wk]||{};S.shop[wk][el.dataset.id]=S.shop[wk][el.dataset.id]?0:1;save();rerender();break;
+  case "shopReset":S.shop[mondayOf(k)]={};save();rerender();break;
+  case "prepck":var w2=mondayOf(k);S.prep[w2]=S.prep[w2]||{};S.prep[w2][el.dataset.i]=S.prep[w2][el.dataset.i]?0:1;save();rerender();break;
+  case "selDay":selDay=el.dataset.k;rerender();break;
+  case "wkShift":selDay=addDays(selDay,+el.dataset.d);rerender();break;
+  case "setSess":d=day(selDay,true);d.s=el.dataset.s;save();rerender();break;
+  case "tick":unlockAudio();var arr=setsArr(selDay,el.dataset.ex),i=+el.dataset.i,s=arr[i]||(arr[i]={}),row=el.closest(".set"),kin=row.querySelector('[data-bind="setkg"]'),rin=row.querySelector('[data-bind="setr"]');
+    if(kin&&(s.kg==null||s.kg===""))s.kg=kin.value;if(rin&&(s.r==null||s.r===""))s.r=rin.value;s.ok=s.ok?0:1;
+    if(s.ok&&!s.r){var ex=sessionEx(selDay).filter(function(x){return x.id===el.dataset.ex;})[0];s.r=ex?String(ex.lo):"";}
+    save();rerender();if(s.ok&&selDay===k)startTimer(S.set.rest);if(workoutRatio(selDay)>=1)toast("เซสชันครบ 100% 🔥");break;
+  case "finish":d=day(selDay,true);if(!d.w)d.w={sets:{},done:0};d.w.done=d.w.done?0:1;save();rerender();break;
+  case "timerAdd":timer.end+=15000;tickTimer();break;
+  case "timerStop":clearInterval(timer.iv);$("timer").hidden=true;break;
+  case "addW":var v=parseFloat($("wIn").value),dt=$("wDate").value||k;if(!(v>30&&v<200)){toast("ใส่น้ำหนักให้ถูกต้อง");break;}S.weights=S.weights.filter(function(x){return x.d!==dt;});S.weights.push({d:dt,kg:r1(v)});save();rerender();toast("บันทึก "+r1(v)+" กก.");break;
+  case "rmW":S.weights=S.weights.filter(function(x){return x.d!==el.dataset.d;});save();rerender();break;
+  case "addWaist":var cm=parseFloat($("waIn").value);if(!(cm>40&&cm<160)){toast("ใส่รอบเอวให้ถูกต้อง");break;}S.waists=S.waists.filter(function(x){return x.d!==k;});S.waists.push({d:k,cm:r1(cm)});save();rerender();toast("บันทึกรอบเอว "+r1(cm)+" ซม.");break;
+  case "addIB":var o={d:$("ibD").value||k,w:parseFloat($("ibW").value),pbf:parseFloat($("ibP").value),smm:parseFloat($("ibS").value),vf:parseFloat($("ibV").value)};if(!(o.w>0&&o.pbf>0)){toast("ใส่อย่างน้อยน้ำหนักและไขมัน %");break;}S.inbody=S.inbody.filter(function(x){return x.d!==o.d;});S.inbody.push(o);save();rerender();toast("บันทึก InBody แล้ว");break;
+  case "rmIB":var ib=S.inbody.slice().sort(function(a,b){return a.d<b.d?-1:1;}),rm=ib[+el.dataset.i];S.inbody=S.inbody.filter(function(x){return x!==rm;});save();rerender();break;
+  case "copyReport":copyText(report());break;
+  case "hm":var hs=dayScore(el.dataset.k);toast(fmtDateDow(el.dataset.k)+" · "+hs+" ("+grade(hs)+")");break;
+  case "addPhoto":$("filePhoto").click();break;
+  case "selPhoto":var pid=+el.dataset.id,ix=photoSel.indexOf(pid);if(ix>=0)photoSel.splice(ix,1);else{photoSel.push(pid);if(photoSel.length>2)photoSel.shift();}loadPhotos();break;
+  case "compare":var ps=photoSel.map(function(id){return photoCache.filter(function(p){return p.id===id;})[0];}).filter(Boolean).sort(function(a,b){return a.d<b.d?-1:1;});
+    if(ps.length===2)openSheet('<div class="sheet-h"><h3>เทียบรูป</h3><button class="icon-btn" data-act="closeSheet">✕</button></div><div class="compare">'+ps.map(function(p){return '<div><img src="'+p.data+'" alt=""><p class="small" style="text-align:center">'+fmtDate(p.d)+(p.kg?" · "+p.kg+" กก.":"")+'</p></div>';}).join("")+'</div><button class="btn danger sm" data-act="delPhotos">ลบ 2 รูปนี้</button>');break;
+  case "delPhotos":photoSel.forEach(function(id){idbDel(id);});photoSel=[];closeSheet();setTimeout(loadPhotos,200);break;
+  case "export":exportData();break;
+  case "import":$("fileImport").click();break;
+  case "resetAll":openSheet('<div class="sheet-h"><h3>ล้างข้อมูลทั้งหมด?</h3><button class="icon-btn" data-act="closeSheet">✕</button></div><p>ข้อมูลทั้งหมดรวมทั้งรูปจะถูกลบ ย้อนกลับไม่ได้</p><div class="row"><button class="btn danger" data-act="resetYes">ใช่ ลบทั้งหมด</button><button class="btn ghost" data-act="closeSheet">ยกเลิก</button></div>');break;
+  case "resetYes":localStorage.removeItem(KEY);idbClear(function(){load();closeSheet();go("today");toast("ล้างข้อมูลแล้ว");});break;
+  }});
+document.addEventListener("keydown",function(e){if((e.key===" "||e.key==="Enter")&&e.target.matches(".check[data-act]")){e.preventDefault();e.target.click();}});
+document.addEventListener("change",function(e){var el=e.target,a=el.dataset.act,b=el.dataset.bind,k=todayKey(),d;
+  if(a==="bad"){d=day(k,true);d.bad=el.checked?1:0;save();rerender();return;}
+  if(a==="sleep"){d=day(k,true);d.sl=el.checked?1:0;save();rerender();return;}
+  if(b==="spend"){d=day(k,true);d.sp=el.value===""?null:+el.value;save();return;}
+  if(b==="steps"){d=day(k,true);d.st=el.value===""?null:+el.value;save();rerender();return;}
+  if(b==="price"){S.prices[el.dataset.id]=+el.value||0;save();rerender();return;}
+  if(b==="setkg"||b==="setr"){var arr=setsArr(selDay,el.dataset.ex),i=+el.dataset.i,s=arr[i]||(arr[i]={});s[b==="setkg"?"kg":"r"]=el.value;
+    if(b==="setkg")document.querySelectorAll('[data-bind="setkg"][data-ex="'+el.dataset.ex+'"]').forEach(function(x){var j=+x.dataset.i;if(j>i&&!(arr[j]&&arr[j].kg))x.value=el.value;});save();return;}
+  if(b==="set"){var key=el.dataset.k,v=el.value;if(el.type==="number")v=parseFloat(v);if(el.type==="number"&&!(v>0))return;if(key==="kcal"&&v<FLOOR){toast("ไม่ควรต่ำกว่า "+FLOOR+" kcal");el.value=S.set.kcal;return;}S.set[key]=v;save();toast("บันทึกแล้ว");}});
+document.addEventListener("input",function(e){if(e.target.dataset.bind==="foodQ"){foodQ=e.target.value;var pos=e.target.selectionStart;foodSheet(sheetCtx.mode,sheetCtx.k);var inp=document.querySelector('[data-bind="foodQ"]');if(inp){inp.focus();try{inp.setSelectionRange(pos,pos);}catch(_){}}}});
+$("filePhoto").addEventListener("change",function(){var f=this.files&&this.files[0];if(f)addPhotoFile(f);this.value="";});
+$("fileImport").addEventListener("change",function(){var f=this.files&&this.files[0];this.value="";if(!f)return;var fr=new FileReader();fr.onload=function(){try{var o=JSON.parse(fr.result);if(!o||!o.state||o.state.v!==1||(o.app!=="LEAN UP"&&o.app!=="Perfect Body"))throw 0;S=o.state;save();idbClear(function(){(o.photos||[]).forEach(function(p){delete p.id;idbPut(p);});setTimeout(function(){go("today");toast("นำเข้าข้อมูลสำเร็จ");},300);});}catch(err){toast("ไฟล์ไม่ถูกต้อง");}};fr.readAsText(f);});
+function exportData(){idbAll(function(ph){S.lastBackup=todayKey();save();var blob=new Blob([JSON.stringify({app:"Perfect Body",at:new Date().toISOString(),state:S,photos:ph})],{type:"application/json"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="perfectbody-backup-"+todayKey()+".json";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);toast("บันทึกไฟล์สำรองแล้ว");if(view==="settings")rerender();});}
+function copyText(t){function fb(){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("คัดลอกแล้ว");}catch(e){toast("คัดลอกไม่ได้");}ta.remove();}if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){toast("คัดลอกแล้ว");},fb);else fb();}
+$("themeBtn").addEventListener("click",function(){var r=document.documentElement,nx=r.getAttribute("data-theme")==="dark"?"light":"dark";r.setAttribute("data-theme",nx);try{localStorage.setItem("leanup.theme",nx);}catch(e){}});
+
+window.MU_STATE=function(){return S;};
+var lastDay=todayKey();setInterval(function(){if(todayKey()!==lastDay){lastDay=todayKey();selDay=lastDay;if(view!=="studio")rerender();}},60000);
+document.addEventListener("visibilitychange",function(){if(!document.hidden&&todayKey()!==lastDay){lastDay=todayKey();selDay=lastDay;if(view!=="studio")rerender();}});
+idbAll(function(l){photoCount=l.length;});render();
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}
+})();
+
+</script>
+<script src="three.min.js"></script>
+<script>
+/* ===== STAMINA 12 · anatomical rig =====
+   Skeleton: forward kinematics on THREE.Bone (same joint layout and marker set as before, so every pose still lands).
+   Body: one continuous skinned mesh, grown at load time from ~130 muscle-shaped implicit primitives
+   (smooth-union field -> surface nets), with per-vertex muscle weights for live activation shading. */
+function STAMINA_RIG(THREE){
+  var D=Math.PI/180;
+  var DEF={rx:0,ry:0,rz:0,sp:0,sy:0,sz:0,ch:0,nk:0,hL:0,hR:0,aL:0,aR:0,tL:0,tR:0,kL:0,kR:0,fL:0,fR:0,
+           sL:0,sR:0,bL:0,bR:0,qL:0,qR:0,eL:0,eR:0,belly:0,kegel:0,flat:false,flatL:false,flatR:false};
+  function full(p){var o={},k;for(k in DEF)o[k]=DEF[k];for(k in p)if(k in DEF)o[k]=p[k];return o;}
+  function lerp(a,b,t){var o={},k;for(k in DEF){var x=a[k],y=b[k];o[k]=(typeof x==="number")?x+(y-x)*t:(t<.5?x:y);}return o;}
+
+  /* Bind pose sits in the middle of each joint's working range, so linear-blend skinning
+     never has to rotate more than ~80° away from it (keeps knees, elbows and shoulders full). */
+  var BIND={hL:42,hR:42,aL:13,aR:13,kL:68,kR:68,fL:6,fR:6,sL:52,sR:52,bL:44,bR:44,eL:55,eR:55};
+
+  /* ---------- anatomy: implicit primitives in bone-local space ---------- */
+  function anatomy(){
+    var P=[],K=78;
+    function mx(){var o={},i;for(i=0;i<arguments.length;i+=2)o[arguments[i]]=arguments[i+1];return o;}
+    // ellipsoid: bone, muscle group, centre, radii, euler XYZ (deg), smoothness k, bone mix
+    function E(bone,mus,c,r,rot,k,mix){P.push({t:0,bone:bone,mus:mus,c:c,r:r,rot:rot||[0,0,0],k:k||K,mix:mix||null});}
+    // round cone: bone, muscle group, a, b, ra, rb
+    function C(bone,mus,a,b,ra,rb,k,mix){P.push({t:1,bone:bone,mus:mus,a:a,b:b,ra:ra,rb:rb,k:k||K,mix:mix||null});}
+
+    /* trunk cores */
+    E("root",null,[0,-.012,-.01],[.134,.1,.088]);
+    E("root",null,[0,-.08,-.006],[.062,.048,.046]);
+    E("spine",null,[0,.1,-.008],[.118,.14,.084]);
+    E("chest",null,[0,.105,-.004],[.142,.16,.096]);
+    E("chest",null,[0,.232,-.012],[.142,.07,.078]);
+    /* neck + head */
+    C("neck",null,[0,-.035,-.012],[0,.1,0],.058,.052);
+    E("neck",null,[0,.172,-.006],[.08,.1,.098]);
+    E("neck",null,[0,.12,.03],[.066,.075,.074]);
+    E("neck",null,[0,.074,.048],[.047,.034,.042]);
+    E("neck",null,[0,.132,.098],[.014,.026,.016],null,115);
+    /* spinal erectors (two columns, lumbar + thoracic) */
+    [-1,1].forEach(function(g){
+      E("spine","lowback",[g*.037,.085,-.08],[.03,.135,.026],null,105);
+      E("chest","lowback",[g*.032,.07,-.092],[.026,.1,.02],null,105);
+    });
+
+    ["L","R"].forEach(function(s){
+      var g=s==="L"?1:-1,hip="hip"+s,knee="knee"+s,ank="ank"+s,sh="sh"+s,tw="tw"+s,el="el"+s;
+      /* --- abdomen --- */
+      E("root","abs",[g*.031,.034,.064],[.032,.05,.015],null,95,mx("root",.5,"abd",.5));
+      [.05,.108,.164].forEach(function(y){E("abd","abs",[g*.036,y,.079],[.034,.031,.02],null,118);});
+      E("abd","abs",[g*.038,.22,.086],[.035,.031,.02],null,112,mx("abd",.45,"chest",.55));
+      E("abd","obl"+s,[g*.09,.075,.026],[.046,.105,.07],[0,0,g*8],90,mx("abd",.5,"spine",.5));
+      E("chest","obl"+s,[g*.104,.055,.042],[.046,.075,.04],[0,g*-20,g*-6],95);
+      /* --- chest & back --- */
+      E("chest","pec"+s,[g*.078,.186,.072],[.088,.066,.04],[-8,g*10,g*-12],100);
+      E("chest","pec"+s,[g*.142,.214,.05],[.05,.046,.04],null,100);
+      C("chest",null,[g*.035,.283,.032],[g*.185,.278,.004],.019,.023,110);
+      E("chest","lat"+s,[g*.124,.098,-.052],[.054,.15,.05],[0,0,g*-14],92);
+      E("chest","trap"+s,[g*.082,.29,-.03],[.092,.035,.05],[0,0,g*-14],95);
+      E("chest","trap"+s,[g*.046,.19,-.088],[.05,.11,.026],[0,0,g*10],105);
+      E("neck","trap"+s,[g*.045,0,-.03],[.042,.064,.036],[0,0,g*-25],95,mx("chest",.6,"neck",.4));
+      E("chest","rear"+s,[g*.124,.2,-.078],[.056,.05,.032],[0,0,g*-20],105);
+      E("neck",null,[g*.083,.137,-.006],[.009,.03,.017],null,160);
+      /* --- pelvis --- */
+      E("root","glute"+s,[g*.068,-.05,-.05],[.08,.092,.066],[-10,0,g*-8],88,mx("root",.62,hip,.38));
+      E("root","glute"+s,[g*.116,.014,-.02],[.044,.064,.062],null,95,mx("root",.8,hip,.2));
+      /* --- thigh --- */
+      C(hip,null,[0,-.02,0],[0,-.44,0],.07,.05);
+      E(hip,"hipflex"+s,[g*.028,-.035,.048],[.044,.07,.035],[-10,0,0],95,mx(hip,.5,"root",.5));
+      E(hip,"quad"+s,[g*.004,-.21,.048],[.045,.19,.045],null,100);
+      E(hip,"quad"+s,[g*.046,-.24,.012],[.046,.175,.052],null,100);
+      E(hip,"quad"+s,[-g*.034,-.34,.03],[.04,.09,.04],[0,0,g*-8],105);
+      E(hip,"add"+s,[-g*.04,-.16,-.008],[.048,.14,.062],null,90);
+      E(hip,"ham"+s,[g*.028,-.245,-.05],[.04,.165,.046],null,100);
+      E(hip,"ham"+s,[-g*.024,-.24,-.052],[.04,.16,.046],null,100);
+      /* --- knee & shank --- */
+      E(knee,null,[0,.004,.03],[.026,.034,.02],null,88);
+      C(knee,null,[0,0,.005],[0,-.42,0],.046,.032);
+      E(knee,"tib"+s,[g*.016,-.15,.022],[.025,.115,.027],null,110);
+      E(knee,"calf"+s,[-g*.022,-.125,-.034],[.038,.105,.042],null,105);
+      E(knee,"calf"+s,[g*.022,-.115,-.034],[.034,.095,.04],null,105);
+      C(knee,"calf"+s,[0,-.2,-.027],[0,-.4,-.021],.032,.017,100);
+      /* --- foot --- */
+      E(ank,null,[0,0,0],[.034,.03,.036]);
+      E(ank,null,[0,-.047,-.032],[.033,.033,.041]);
+      E(ank,null,[0,-.04,.055],[.042,.033,.08],[12,0,0]);
+      E(ank,null,[-g*.004,-.06,.135],[.05,.02,.05]);
+      /* --- shoulder & upper arm --- */
+      C(tw,null,[0,-.03,0],[0,-.29,0],.04,.037);
+      E(sh,"delt"+s,[g*.004,-.03,.03],[.046,.08,.042],[-15,0,0],100,mx(sh,.8,"chest",.2));
+      E(sh,"delt"+s,[g*.022,-.03,0],[.042,.084,.048],null,100,mx(sh,.8,"chest",.2));
+      E(sh,"delt"+s,[g*.004,-.03,-.03],[.046,.08,.042],[15,0,0],100,mx(sh,.8,"chest",.2));
+      E(tw,"bicep"+s,[-g*.004,-.16,.034],[.04,.098,.042],null,105);
+      E(tw,"tricep"+s,[-g*.012,-.13,-.036],[.04,.108,.042],null,105);
+      E(tw,"tricep"+s,[g*.026,-.115,-.02],[.036,.088,.037],null,105);
+      /* --- forearm & hand (loose fist) --- */
+      E(el,null,[0,.004,-.022],[.02,.026,.02],null,110);
+      C(el,null,[0,0,0],[0,-.255,0],.038,.029);
+      E(el,"forearm"+s,[g*.016,-.078,.012],[.035,.098,.038],null,105);
+      E(el,"forearm"+s,[-g*.016,-.088,.004],[.035,.098,.04],null,105);
+      E(el,null,[0,-.258,0],[.023,.02,.03]);
+      E(el,null,[0,-.306,.004],[.03,.046,.042],null,110);
+      E(el,null,[0,-.338,.002],[.027,.02,.038],null,120);
+      E(el,null,[0,-.3,.043],[.015,.032,.017],[20,0,0],125);
+    });
+    return P;
+  }
+
+  /* ---------- implicit field -> mesh ---------- */
+  function growBody(prims,bones,boneIdx,cell){
+    var m4=new THREE.Matrix4(),q=new THREE.Quaternion(),e=new THREE.Euler(),v=new THREE.Vector3(),one=new THREE.Vector3(1,1,1);
+    var lo=[1e9,1e9,1e9],hi=[-1e9,-1e9,-1e9];
+    prims.forEach(function(p){
+      var bw=bones[boneIdx[p.bone]].matrixWorld,pad=4.2/p.k,a,i;
+      if(p.t===0){
+        e.set(p.rot[0]*D,p.rot[1]*D,p.rot[2]*D);q.setFromEuler(e);v.set(p.c[0],p.c[1],p.c[2]);
+        m4.compose(v,q,one).premultiply(bw);
+        var el=m4.elements;p.lo=[];p.hi=[];
+        for(a=0;a<3;a++){var ex=Math.sqrt(Math.pow(el[a]*p.r[0],2)+Math.pow(el[4+a]*p.r[1],2)+Math.pow(el[8+a]*p.r[2],2))+pad;
+          p.lo[a]=el[12+a]-ex;p.hi[a]=el[12+a]+ex;}
+        p.ir=[1/p.r[0],1/p.r[1],1/p.r[2]];p.mr=Math.min(p.r[0],p.r[1],p.r[2]);
+      }else{
+        m4.copy(bw);
+        var A=new THREE.Vector3(p.a[0],p.a[1],p.a[2]).applyMatrix4(bw),B=new THREE.Vector3(p.b[0],p.b[1],p.b[2]).applyMatrix4(bw);
+        p.lo=[];p.hi=[];
+        ["x","y","z"].forEach(function(n,a){p.lo[a]=Math.min(A[n]-p.ra,B[n]-p.rb)-pad;p.hi[a]=Math.max(A[n]+p.ra,B[n]+p.rb)+pad;});
+        p.wa=[A.x,A.y,A.z];p.ab=[B.x-A.x,B.y-A.y,B.z-A.z];p.l2=p.ab[0]*p.ab[0]+p.ab[1]*p.ab[1]+p.ab[2]*p.ab[2];
+      }
+      p.inv=m4.clone().invert().elements;
+      for(i=0;i<3;i++){lo[i]=Math.min(lo[i],p.lo[i]);hi[i]=Math.max(hi[i],p.hi[i]);}
+    });
+    function dist(p,x,y,z){
+      if(p.t===0){
+        var n=p.inv,lx=(n[0]*x+n[4]*y+n[8]*z+n[12])*p.ir[0],ly=(n[1]*x+n[5]*y+n[9]*z+n[13])*p.ir[1],lz=(n[2]*x+n[6]*y+n[10]*z+n[14])*p.ir[2];
+        var k0=Math.sqrt(lx*lx+ly*ly+lz*lz);if(k0<1e-5)return -p.mr;
+        lx*=p.ir[0];ly*=p.ir[1];lz*=p.ir[2];
+        return k0*(k0-1)/Math.sqrt(lx*lx+ly*ly+lz*lz);
+      }
+      var px=x-p.wa[0],py=y-p.wa[1],pz=z-p.wa[2],t=(px*p.ab[0]+py*p.ab[1]+pz*p.ab[2])/p.l2;
+      t=t<0?0:t>1?1:t;px-=p.ab[0]*t;py-=p.ab[1]*t;pz-=p.ab[2]*t;
+      return Math.sqrt(px*px+py*py+pz*pz)-(p.ra+(p.rb-p.ra)*t);
+    }
+    var h=cell,i,nx=Math.ceil((hi[0]-lo[0])/h)+3,ny=Math.ceil((hi[1]-lo[1])/h)+3,nz=Math.ceil((hi[2]-lo[2])/h)+3;
+    var ox=lo[0]-h,oy=lo[1]-h,oz=lo[2]-h,sy=nx,sz=nx*ny,F=new Float32Array(nx*ny*nz);
+    prims.forEach(function(p){
+      var x0=Math.max(0,Math.floor((p.lo[0]-ox)/h)),x1=Math.min(nx-1,Math.ceil((p.hi[0]-ox)/h)),
+          y0=Math.max(0,Math.floor((p.lo[1]-oy)/h)),y1=Math.min(ny-1,Math.ceil((p.hi[1]-oy)/h)),
+          z0=Math.max(0,Math.floor((p.lo[2]-oz)/h)),z1=Math.min(nz-1,Math.ceil((p.hi[2]-oz)/h)),x,y,z,k=p.k;
+      for(z=z0;z<=z1;z++)for(y=y0;y<=y1;y++){var row=z*sz+y*sy,wy=oy+y*h,wz=oz+z*h;
+        for(x=x0;x<=x1;x++)F[row+x]+=Math.exp(-k*dist(p,ox+x*h,wy,wz));}
+    });
+    for(i=0;i<F.length;i++)F[i]=F[i]>1e-12?Math.log(F[i]):-28;
+
+    /* surface nets */
+    var pos=[],idx=[],cv=new Int32Array(F.length).fill(-1),x,y,z;
+    var EA=[0,2,4,6,0,1,4,5,0,1,2,3],EB=[1,3,5,7,2,3,6,7,4,5,6,7],val=new Float32Array(8);
+    for(z=0;z<nz-1;z++)for(y=0;y<ny-1;y++){var base=z*sz+y*sy;for(x=0;x<nx-1;x++){
+      var c=base+x;
+      val[0]=F[c];val[1]=F[c+1];val[2]=F[c+sy];val[3]=F[c+sy+1];val[4]=F[c+sz];val[5]=F[c+sz+1];val[6]=F[c+sz+sy];val[7]=F[c+sz+sy+1];
+      var mk=0;for(i=0;i<8;i++)if(val[i]>0)mk|=1<<i;
+      if(mk===0||mk===255)continue;
+      var sxp=0,syp=0,szp=0,n=0;
+      for(i=0;i<12;i++){var a=EA[i],b=EB[i];if((val[a]>0)===(val[b]>0))continue;
+        var t=val[a]/(val[a]-val[b]);
+        sxp+=(a&1)+((b&1)-(a&1))*t;syp+=((a>>1)&1)+(((b>>1)&1)-((a>>1)&1))*t;szp+=((a>>2)&1)+(((b>>2)&1)-((a>>2)&1))*t;n++;}
+      cv[c]=pos.length/3;pos.push(ox+(x+sxp/n)*h,oy+(y+syp/n)*h,oz+(z+szp/n)*h);
+    }}
+    function quad(a,b,c2,d,flip){if(a<0||b<0||c2<0||d<0)return;if(!flip)idx.push(a,c2,b,a,d,c2);else idx.push(a,b,c2,a,c2,d);}
+    for(z=1;z<nz-1;z++)for(y=1;y<ny-1;y++){var b0=z*sz+y*sy;for(x=1;x<nx-1;x++){
+      var c0=b0+x,s0=F[c0]>0;
+      if(s0!==(F[c0+1]>0))quad(cv[c0-sy-sz],cv[c0-sz],cv[c0],cv[c0-sy],s0);
+      if(s0!==(F[c0+sy]>0))quad(cv[c0-1-sz],cv[c0-1],cv[c0],cv[c0-sz],s0);
+      if(s0!==(F[c0+sz]>0))quad(cv[c0-1-sy],cv[c0-sy],cv[c0],cv[c0-1],s0);
+    }}
+    /* Taubin smoothing: removes grid ripple without shrinking the volume */
+    var nv=pos.length/3,sa=new Float32Array(nv*3),sn=new Float32Array(nv),it,f;
+    for(it=0;it<6;it++){f=it%2?-.53:.5;sa.fill(0);sn.fill(0);
+      for(i=0;i<idx.length;i+=3){for(var e2=0;e2<3;e2++){var va=idx[i+e2],vb=idx[i+(e2+1)%3];
+        sa[va*3]+=pos[vb*3];sa[va*3+1]+=pos[vb*3+1];sa[va*3+2]+=pos[vb*3+2];sn[va]++;
+        sa[vb*3]+=pos[va*3];sa[vb*3+1]+=pos[va*3+1];sa[vb*3+2]+=pos[va*3+2];sn[vb]++;}}
+      for(i=0;i<nv;i++){if(!sn[i])continue;pos[i*3]+=f*(sa[i*3]/sn[i]-pos[i*3]);pos[i*3+1]+=f*(sa[i*3+1]/sn[i]-pos[i*3+1]);pos[i*3+2]+=f*(sa[i*3+2]/sn[i]-pos[i*3+2]);}}
+    return {pos:pos,idx:idx,dist:dist};
+  }
+
+  function build(M,opt){
+    opt=opt||{};
+    var markers={},props={},j={},bones=[],boneIdx={};
+    var PI=Math.PI;
+    function bone(name,parent,x,y,z){var b=new THREE.Bone();b.name=name;b.position.set(x||0,y||0,z||0);if(parent)parent.add(b);j[name]=b;boneIdx[name]=bones.length;bones.push(b);return b;}
+    function mk(name,parent,x,y,z,r){var o=new THREE.Object3D();o.position.set(x,y,z);parent.add(o);markers[name]={o:o,r:r};return o;}
+    function prop(mesh){mesh.castShadow=true;mesh.receiveShadow=true;return mesh;}
+    function dumbbell(vertical){
+      var g=new THREE.Group();
+      function cy(r,l,y,m,seg){var c=prop(new THREE.Mesh(new THREE.CylinderGeometry(r,r,l,seg||24),m||M.prop));c.position.y=y;g.add(c);return c;}
+      cy(.0135,.15,0,M.steel);
+      [-1,1].forEach(function(s){cy(.052,.05,s*.1,M.prop,6);cy(.046,.012,s*.131,M.prop,6);cy(.02,.01,s*.07,M.steel);});
+      if(!vertical)g.rotation.z=PI/2;
+      return g;
+    }
+    var root=bone("root",null);root.rotation.order="YXZ";
+    mk("pelvis",root,0,-.01,0,.12);
+    ["L","R"].forEach(function(s){
+      var g=s==="L"?1:-1;
+      var hip=bone("hip"+s,root,g*.09,-.06,0),knee=bone("knee"+s,hip,0,-.44,0),ank=bone("ank"+s,knee,0,-.42,0);
+      mk("knee"+s,knee,0,0,0,.055);
+      mk("heel"+s,ank,0,-.08,-.06,0);mk("toe"+s,ank,0,-.08,.18,0);mk("footOut"+s,ank,g*.043,-.06,.06,0);
+    });
+    var spine=bone("spine",root,0,.06,0),abd=bone("abd",spine),chest=bone("chest",spine,0,.2,0),neck=bone("neck",chest,0,.3,0);
+    mk("abdomen",spine,0,.1,0,.1);mk("chest",chest,0,.13,0,.112);mk("head",neck,0,.14,.01,.105);
+    ["L","R"].forEach(function(s){
+      var g=s==="L"?1:-1;
+      var sh=bone("sh"+s,chest,g*.2,.25,0),tw=bone("tw"+s,sh,0,0,0),el=bone("el"+s,tw,0,-.29,0);
+      mk("shoulder"+s,sh,0,0,0,.06);mk("elbow"+s,el,0,0,0,.043);mk("hand"+s,el,0,-.3,0,.046);
+      var db=dumbbell(false);db.position.set(0,-.3,0);el.add(db);props["db"+s]=db;
+    });
+    var kb=dumbbell(true);kb.position.set(0,.05,.25);chest.add(kb);props.kb=kb;
+    var hdb=dumbbell(false);hdb.scale.set(1.2,1.2,1.2);hdb.position.set(0,-.02,.15);root.add(hdb);props.hipdb=hdb;
+    /* pelvic floor: a small sling inside the pelvis, shown through the ghosted body */
+    var pf=new THREE.Mesh(new THREE.SphereGeometry(.07,32,16,0,PI*2,PI*.55,PI*.45),M.glow);pf.scale.set(1,.55,1.25);pf.position.set(0,-.07,0);root.add(pf);props.pf=pf;
+
+    var R={root:root,markers:markers,props:props,j:j,bones:bones,wp:new THREE.Vector3(),q1:new THREE.Quaternion(),q2:new THREE.Quaternion(),e:new THREE.Euler()};
+
+    /* ----- grow the body in bind pose ----- */
+    apply(R,full(BIND));
+    var prims=anatomy(),G=growBody(prims,bones,boneIdx,opt.cell||.0075);
+    var pos=new Float32Array(G.pos),nV=pos.length/3,idx=G.idx,i,k,p;
+    var groups=[],gIdx={};
+    prims.forEach(function(pr){if(pr.mus&&!(pr.mus in gIdx)){gIdx[pr.mus]=groups.length;groups.push(pr.mus);}pr.g=pr.mus?gIdx[pr.mus]:-1;
+      pr.bw=[];var mix=pr.mix||{};if(!pr.mix)mix[pr.bone]=1;for(var b in mix)pr.bw.push(boneIdx[b],mix[b]);});
+    var nB=bones.length,nG=groups.length,bw=new Float32Array(nB),gw=new Float32Array(nG);
+    var skinI=new Uint16Array(nV*4),skinW=new Float32Array(nV*4),mI=new Uint8Array(nV*2),mW=new Float32Array(nV*2),musc=new Float32Array(nV);
+    var KB=opt.kBone||46,KM=opt.kMus||120;
+    for(i=0;i<nV;i++){
+      var x=pos[i*3],y=pos[i*3+1],z=pos[i*3+2],tot=0;bw.fill(0);gw.fill(0);
+      for(k=0;k<prims.length;k++){p=prims[k];
+        if(x<p.lo[0]-.05||x>p.hi[0]+.05||y<p.lo[1]-.05||y>p.hi[1]+.05||z<p.lo[2]-.05||z>p.hi[2]+.05)continue;
+        var d=G.dist(p,x,y,z),wb=Math.exp(-KB*d),wm=Math.exp(-KM*d);
+        for(var q=0;q<p.bw.length;q+=2)bw[p.bw[q]]+=wb*p.bw[q+1];
+        tot+=wm;if(p.g>=0)gw[p.g]+=wm;}
+      var sum=0,c;
+      for(c=0;c<4;c++){var best=-1,bv=0;for(k=0;k<nB;k++)if(bw[k]>bv){bv=bw[k];best=k;}
+        if(best<0)break;if(c>0&&bv<sum*.03)break;skinI[i*4+c]=best;skinW[i*4+c]=bv;sum+=bv;bw[best]=0;}
+      for(c=0;c<4;c++)skinW[i*4+c]/=sum;
+      var mt=0;
+      for(c=0;c<2;c++){var bg=-1,gv=0;for(k=0;k<nG;k++)if(gw[k]>gv){gv=gw[k];bg=k;}
+        if(bg<0)break;mI[i*2+c]=bg;mW[i*2+c]=gv/tot;mt+=gv/tot;gw[bg]=0;}
+      musc[i]=mt;
+    }
+    var geo=new THREE.BufferGeometry();
+    geo.setAttribute("position",new THREE.BufferAttribute(pos,3));
+    geo.setIndex(nV>65535?new THREE.BufferAttribute(new Uint32Array(idx),1):new THREE.BufferAttribute(new Uint16Array(idx),1));
+    geo.computeVertexNormals();
+    /* cavity shading: signed mean curvature from the mesh Laplacian, smoothed once */
+    var nor=geo.attributes.normal.array,acc=new Float32Array(nV*3),cnt=new Float32Array(nV),cur=new Float32Array(nV),cav=new Float32Array(nV);
+    function edge(a,b){acc[a*3]+=pos[b*3];acc[a*3+1]+=pos[b*3+1];acc[a*3+2]+=pos[b*3+2];cnt[a]++;}
+    for(i=0;i<idx.length;i+=3){var a=idx[i],b=idx[i+1],c2=idx[i+2];edge(a,b);edge(b,c2);edge(c2,a);edge(b,a);edge(c2,b);edge(a,c2);}
+    for(i=0;i<nV;i++){var n=cnt[i]||1;cur[i]=((acc[i*3]/n-pos[i*3])*nor[i*3]+(acc[i*3+1]/n-pos[i*3+1])*nor[i*3+1]+(acc[i*3+2]/n-pos[i*3+2])*nor[i*3+2]);}
+    var sm=new Float32Array(nV);cnt.fill(0);
+    for(i=0;i<idx.length;i+=3){var t=[idx[i],idx[i+1],idx[i+2]];for(k=0;k<3;k++){sm[t[k]]+=cur[t[(k+1)%3]]+cur[t[(k+2)%3]];cnt[t[k]]+=2;}}
+    var gain=(opt.cavity||1)*520;
+    for(i=0;i<nV;i++){var cc=.5*cur[i]+.5*sm[i]/(cnt[i]||1);cav[i]=Math.max(.58,Math.min(1.1,1-cc*gain));}
+    var actA=new THREE.BufferAttribute(new Float32Array(nV),1);actA.setUsage(THREE.DynamicDrawUsage);
+    geo.setAttribute("skinIndex",new THREE.BufferAttribute(skinI,4));
+    geo.setAttribute("skinWeight",new THREE.BufferAttribute(skinW,4));
+    geo.setAttribute("aAct",actA);
+    geo.setAttribute("aCav",new THREE.BufferAttribute(cav,1));
+    geo.setAttribute("aMus",new THREE.BufferAttribute(musc,1));
+    var mesh=new THREE.SkinnedMesh(geo,M.body);mesh.castShadow=true;mesh.receiveShadow=true;mesh.frustumCulled=false;
+    root.updateMatrixWorld(true);
+    mesh.bind(new THREE.Skeleton(bones),new THREE.Matrix4());
+    R.mesh=mesh;R.groups=groups;R.gIdx=gIdx;R.act=new Float32Array(nG);R._last=new Float32Array(nG).fill(-1);
+    R.mI=mI;mW=R.mW=mW;R.actA=actA;R.nV=nV;R.nT=idx.length/3;
+    return R;
+  }
+
+  /* push per-muscle activation (0..1) into the per-vertex attribute */
+  function flushAct(R){
+    var a=R.act,l=R._last,ch=false,i;
+    for(i=0;i<a.length;i++)if(Math.abs(a[i]-l[i])>.004){ch=true;break;}
+    if(!ch)return;
+    l.set(a);
+    var out=R.actA.array,mI=R.mI,mW=R.mW,n=R.nV;
+    for(i=0;i<n;i++)out[i]=a[mI[i*2]]*mW[i*2]+a[mI[i*2+1]]*mW[i*2+1];
+    R.actA.needsUpdate=true;
+  }
+  /* which muscle group owns a vertex (for tap-to-identify) */
+  function groupAt(R,v){return R.mW[v*2]>.45?R.groups[R.mI[v*2]]:null;}
+
+  function apply(R,p){
+    var j=R.j;
+    j.root.position.set(0,0,0);
+    j.root.rotation.set(p.rx*D,p.ry*D,p.rz*D);
+    j.spine.rotation.set(p.sp*D,p.sy*D,p.sz*D);j.chest.rotation.set(p.ch*D,0,0);j.neck.rotation.set(p.nk*D,0,0);
+    ["L","R"].forEach(function(s){
+      var g=s==="L"?1:-1;
+      j["hip"+s].rotation.set(-p["h"+s]*D,g*p["t"+s]*D,g*p["a"+s]*D);
+      j["knee"+s].rotation.set(p["k"+s]*D,0,0);
+      j["ank"+s].rotation.set(p["f"+s]*D,0,0);
+      j["sh"+s].rotation.set(-p["s"+s]*D,0,g*p["b"+s]*D);j["tw"+s].rotation.set(0,g*p["q"+s]*D,0);
+      j["el"+s].rotation.set(-p["e"+s]*D,0,0);
+    });
+    j.abd.scale.set(1+.05*p.belly,1,1+.26*p.belly);
+    var k=p.kegel,pf=R.props.pf;pf.scale.set(1-.22*k,.55+.25*k,1.25-.28*k);pf.position.y=-.07+.022*k;
+    pf.material.opacity=.3+.7*k;
+    j.root.updateMatrixWorld(true);
+    ["L","R"].forEach(function(s){
+      if(p.flat||p["flat"+s]){
+        var a=j["ank"+s];
+        a.parent.getWorldQuaternion(R.q1);
+        R.e.set(0,0,0,"YXZ");R.q2.setFromEuler(R.e);
+        a.quaternion.copy(R.q1.invert().multiply(R.q2));
+      }
+    });
+    j.root.updateMatrixWorld(true);
+  }
+
+  function place(R,p,anchor){
+    apply(R,p);
+    var minY=1e9,ax=0,az=0,n=0,k,m;
+    for(k in R.markers){m=R.markers[k];m.o.getWorldPosition(R.wp);if(R.wp.y-m.r<minY)minY=R.wp.y-m.r;}
+    if(anchor&&anchor.length){
+      anchor.forEach(function(nm){R.markers[nm].o.getWorldPosition(R.wp);ax+=R.wp.x;az+=R.wp.z;n++;});
+      ax/=n;az/=n;
+    }
+    R.j.root.position.set(-ax,-minY,-az);
+    R.j.root.updateMatrixWorld(true);
+  }
+  function mpos(R,name){var m=R.markers[name];m.o.getWorldPosition(R.wp);return {x:+R.wp.x.toFixed(3),y:+(R.wp.y-m.r).toFixed(3),z:+R.wp.z.toFixed(3)};}
+  return {DEF:DEF,BIND:BIND,full:full,lerp:lerp,build:build,apply:apply,place:place,mpos:mpos,flushAct:flushAct,groupAt:groupAt};
+}
+if(typeof module!=="undefined")module.exports=STAMINA_RIG;
+
+/* ===== STAMINA 12 · exercise library (poses in degrees) ===== */
+var STAMINA_EX=(function(){
+  var SIDED={quad:1,ham:1,calf:1,tib:1,delt:1,bicep:1,tricep:1,forearm:1,glute:1,pec:1,hipflex:1};
+  function X(str){var o=[];str.split(" ").forEach(function(n){if(!n)return;if(SIDED[n])o.push(n+"L",n+"R");else o.push(n);});return o;}
+  function W(p,s){return {p:X(p),s:X(s)};}
+  var LIE={rx:-90,nk:12,hL:56.5,hR:56.5,kL:132,kR:132,flat:true,bL:14,bR:14};
+  function m(a,b){var o={},k;for(k in a)o[k]=a[k];for(k in b)o[k]=b[k];return o;}
+  var QUAD={rx:75.7,hL:75.7,hR:75.7,kL:90,kR:90,fL:70,fR:70,sL:75.7,sR:75.7,nk:-8};
+
+
+  var DB={hL:15,hR:15,kL:28,kR:28,flat:true,sL:8,sR:8,bL:58,bR:58,eL:18,eR:18};
+  function dance(o){return m(DB,o);}
+  function hipCircle(t){
+    var f=.5,T=4/f,blk=Math.floor(t/T),dir=blk%2?-1:1,ph=2*Math.PI*f*(t-blk*T)*dir;
+    var rx=9*Math.cos(ph),rz=5*Math.sin(ph),dl=5*Math.sin(ph),fw=5*Math.cos(ph);
+    var p=dance({rx:rx,rz:rz,sp:-rx-3.25*fw,sz:-rz-3*dl,hL:15+rx-fw,hR:15+rx-fw,aL:-rz+dl,aR:rz-dl});
+    p._l=dir>0?"หมุนตามเข็มนาฬิกา":"หมุนทวนเข็มนาฬิกา";p._ld=.72+.28*Math.sin(ph*2);return p;
+  }
+  function figure8(t){
+    var ph=2*Math.PI*.42*t,dl=6*Math.sin(ph),fw=4*Math.sin(2*ph),ry=12*Math.cos(ph),rz=4*Math.sin(ph);
+    var p=dance({ry:ry,rz:rz,sy:-ry,sz:-rz-2.75*dl,sp:-3*fw,tL:-ry,tR:ry,aL:-rz+dl,aR:rz-dl,hL:15-fw,hR:15-fw});
+    p._l=Math.sin(ph)>0?"ส่ายไปซ้าย วนหน้า":"ส่ายไปขวา วนหน้า";p._sd={L:.5+.5*Math.sin(ph),R:.5-.5*Math.sin(ph)};p._ld=.75;return p;
+  }
+
+  function gait(o){
+    return function(t){
+      var w=2*Math.PI*o.f*t,p={sp:o.sp,nk:-6},sd={};
+      ["L","R"].forEach(function(s,i){
+        var ph=w+i*Math.PI,sw=Math.max(0,Math.cos(ph+.45));
+        p["h"+s]=o.ha*Math.sin(ph)+o.h0;
+        p["k"+s]=o.k0+o.ka*Math.pow(sw,o.kp);
+        p["f"+s]=o.f0+o.fa*sw;
+        p["s"+s]=-o.sa*Math.sin(ph)+o.s0;
+        p["e"+s]=o.e;p["b"+s]=o.b;
+        sd[s]=.5-.5*Math.cos(ph+.9);
+      });
+      p._sd=sd;p._ld=.7;
+      return p;
+    };
+  }
+
+  return [
+  /* ---------- Strength A ---------- */
+  {id:"squat",g:"เวทช่วงล่าง",name:"Goblet squat",th:"สควอตถือดัมเบลหน้าอก",anchor:["heelL","heelR","toeL","toeR"],props:["kb"],
+
+   work:W("quad glute","ham abs lowback"),
+   poses:{A:{sp:6,sL:22,sR:22,eL:118,eR:118,bL:-16,bR:-16,flat:true},
+          B:{hL:108,hR:108,aL:14,aR:14,kL:132,kR:132,sp:40,sL:30,sR:30,eL:118,eR:118,bL:-16,bR:-16,flat:true}},
+   seq:[{to:"B",d:2,l:"ลง"},{to:"B",d:.4,l:"ค้างล่าง"},{to:"A",d:1,l:"ดันขึ้น"},{to:"A",d:.6,l:"ยืนตรง"}],
+   muscles:"ต้นขาหน้า ก้น ต้นขาด้านใน แกนกลาง",
+   cues:["เท้ากว้างกว่าไหล่เล็กน้อย ปลายเท้าแบะออก 15–30°","ถือดัมเบลชิดอก ข้อศอกชี้ลง","นั่งลงระหว่างสะโพก ดันเข่าออกตามแนวปลายเท้า","ลงจนต้นขาขนานพื้นหรือต่ำกว่า แล้วดันส้นเท้าขึ้น"],
+   bad:["เข่าหุบเข้าหากัน","ส้นเท้าลอย","หลังงอเป็นกุ้ง"]},
+
+  {id:"bridge",g:"เวทช่วงล่าง",name:"Glute bridge / hip thrust",th:"ยกสะโพก",anchor:["heelL","heelR"],props:["mat"],
+
+   work:W("glute","ham abs lowback"),
+   poses:{A:LIE,B:{rx:-111.1,nk:12,hL:0,hR:0,kL:115.5,kR:115.5,flat:true,sL:-21.1,sR:-21.1,bL:14,bR:14}},
+   seq:[{to:"B",d:1,l:"ยกขึ้น"},{to:"B",d:1.2,l:"บีบก้นค้าง"},{to:"A",d:1.6,l:"ลดลงช้า"},{to:"A",d:.5,l:"พัก"}],
+   muscles:"ก้น ต้นขาหลัง หลังล่าง แกนกลาง",
+   cues:["นอนหงาย ชันเข่า ส้นเท้าห่างก้นราวหนึ่งฝ่ามือ","เกร็งท้องก่อน แล้วดันส้นเท้ายกสะโพก","ด้านบน ไหล่ สะโพก เข่า ต้องเป็นเส้นตรง","บีบก้นค้าง 1–2 วินาที"],
+   bad:["แอ่นหลังแทนการใช้ก้น","ยกด้วยปลายเท้า"]},
+
+  {id:"rdl",g:"เวทช่วงล่าง",name:"Romanian deadlift",th:"พับสะโพกถือดัมเบล",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+
+   work:W("ham glute","lowback upback forearm"),
+   poses:{A:{bL:6,bR:6,flat:true},
+          B:{rx:68,hL:80,hR:80,kL:18,kR:18,flat:true,sL:68,sR:68,bL:6,bR:6,nk:-12}},
+   seq:[{to:"B",d:2.2,l:"ดันก้นไปหลัง"},{to:"B",d:.3,l:"ตึงต้นขาหลัง"},{to:"A",d:1.2,l:"บีบก้นยืนขึ้น"},{to:"A",d:.5,l:"ยืนตรง"}],
+   muscles:"ต้นขาหลัง ก้น หลังล่าง",
+   cues:["เข่างอเล็กน้อยและล็อกมุมไว้","ดันก้นไปข้างหลังเหมือนจะปิดประตูด้วยก้น","ดัมเบลไถลชิดขาตลอด หลังตรง","ลงจนรู้สึกตึงต้นขาหลัง ราวกลางหน้าแข้ง"],
+   bad:["หลังโค้ง","ย่อเข่ากลายเป็นสควอต"]},
+
+  {id:"split",g:"เวทช่วงล่าง",name:"Bulgarian split squat",th:"บัลแกเรียนสปลิตสควอต (เท้าหลังบนม้านั่ง)",anchor:["heelL","toeL"],props:["db","benchFoot"],
+   work:W("quad glute","ham calf abs"),
+   poses:{A:{hL:22,kL:8,flatL:true,hR:-1.7,kR:90.9,fR:55.6,bL:7,bR:7,sp:6},
+          B:{hL:71.6,kL:81.4,flatL:true,hR:-6.7,kR:126.8,fR:11.9,bL:7,bR:7,sp:12}},
+   seq:[{to:"B",d:2,l:"ลงตรง ๆ"},{to:"B",d:.3,l:"ค้าง"},{to:"A",d:1,l:"ดันเท้าหน้าขึ้น"},{to:"A",d:.5,l:"พัก"}],
+   muscles:"ต้นขาหน้า ก้น (ขาหน้าทำงานหลัก)",
+   cues:["วางหลังเท้าหรือปลายเท้าหลังบนม้านั่ง (ปรับเบาะให้ราบ)","ก้าวเท้าหน้าออกไปให้ไกลพอ ลงแล้วหน้าแข้งเกือบตั้งตรง","ลำตัวเอนหน้าเล็กน้อย ลดตัวลงแนวดิ่ง จนเข่าหลังเกือบแตะพื้น","ดันส้นเท้าหน้าขึ้น ทำครบแล้วสลับขา"],
+   bad:["เท้าหน้าใกล้ม้านั่งเกินไป","เข่าหน้าหุบเข้าใน","ดันตัวด้วยขาหลัง"]},
+
+  {id:"hipthrust",g:"เวทช่วงล่าง",name:"Hip thrust (bench)",th:"ฮิปทรัสต์พิงม้านั่ง วางดัมเบลบนสะโพก",anchor:["heelL","heelR"],props:["benchUpper","hipdb"],
+   work:W("glute","ham quad abs"),
+   poses:{A:{rx:-62.2,nk:20,hL:56.6,hR:56.6,kL:103.9,kR:103.9,flat:true,sL:2.7,sR:2.7,bL:-5.3,bR:-5.3,eL:33.3,eR:33.3},
+          B:{rx:-90,nk:28,hL:0,hR:0,kL:90,kR:90,flat:true,sL:2.7,sR:2.7,bL:-5.3,bR:-5.3,eL:33.3,eR:33.3}},
+   seq:[{to:"B",d:1,l:"ดันสะโพกขึ้น"},{to:"B",d:1.2,l:"บีบก้นค้าง"},{to:"A",d:1.6,l:"ลดลงช้า"},{to:"A",d:.4,l:"ล่างสุด"}],
+   muscles:"ก้น (หลัก) ต้นขาหลัง ต้นขาหน้า แกนกลาง",
+   cues:["วางขอบสะบักบนม้านั่ง (เบาะราบ) เท้ากว้างเท่าสะโพก","วางดัมเบลขวางบนกระดูกเชิงกราน ใช้ผ้ารองได้ มือจับประคอง","ดันส้นเท้าจนลำตัวขนานพื้น ด้านบนหน้าแข้งตั้งตรง","ก้มคางเล็กน้อย มองไปข้างหน้า บีบก้นค้าง 1–2 วินาที"],
+   bad:["แอ่นหลังล่างแทนการบีบก้น","เท้าห่างเกินจนใช้แต่ต้นขาหลัง"]},
+
+  {id:"plank",iso:true,g:"แกนกลาง",name:"Plank",th:"แพลงก์ศอก",anchor:["elbowL","elbowR"],props:["mat"],
+
+   work:W("abs","delt pec glute quad"),
+   poses:{A:{rx:84.1,sL:84.1,sR:84.1,eL:90,eR:90,bL:4,bR:4},B:{rx:84.1,sL:84.1,sR:84.1,eL:90,eR:90,bL:4,bR:4,belly:1}},
+   seq:[{to:"B",d:3,l:"ค้าง · หายใจเข้า"},{to:"A",d:3,l:"ค้าง · หายใจออก"}],
+   muscles:"หน้าท้อง แกนกลางลึก ไหล่ ก้น",
+   cues:["ศอกอยู่ใต้ไหล่ ปลายแขนขนานกัน","บีบก้นและเกร็งท้องเหมือนรอรับหมัด","ศีรษะถึงส้นเท้าเป็นเส้นตรง","หายใจปกติ ห้ามกลั้น"],
+   bad:["สะโพกตก หลังแอ่น","โก่งก้นสูง"]},
+
+  {id:"sideplank",iso:true,view:"front",g:"แกนกลาง",name:"Side plank",th:"แพลงก์ด้านข้าง",anchor:["elbowR"],props:["matX"],
+
+   work:W("abs glute","deltR quad"),
+   poses:{A:{rz:74.5,bR:74.5,eR:90,qR:0,bL:100},B:{rz:74.5,bR:74.5,eR:90,qR:0,bL:100,belly:1}},
+   seq:[{to:"B",d:3,l:"ค้าง · หายใจเข้า"},{to:"A",d:3,l:"ค้าง · หายใจออก"}],
+   muscles:"หน้าท้องด้านข้าง ก้นด้านข้าง ไหล่",
+   cues:["ศอกอยู่ใต้ไหล่พอดี","เท้าวางซ้อนกันหรือเหลื่อมหน้า-หลัง","ดันสะโพกขึ้นให้ลำตัวตรง","ทำครบเวลาแล้วสลับข้าง"],
+   bad:["สะโพกย้อยลงพื้น","ไหล่ห่อเข้าหาหู"]},
+
+  /* ---------- Strength B ---------- */
+  {id:"pushup",g:"เวทช่วงบน",name:"Push-up",th:"วิดพื้น",anchor:["handL","handR"],props:["mat"],
+
+   work:W("pec tricep","delt abs"),
+   poses:{A:{rx:72.6,sL:72.6,sR:72.6,bL:12,bR:12},
+          B:{rx:84.3,sL:0.5,sR:0.5,eL:114.3,eR:114.3,bL:38,bR:38}},
+   seq:[{to:"B",d:1.8,l:"ลงช้า"},{to:"B",d:.2,l:"อกเกือบแตะ"},{to:"A",d:1,l:"ดันขึ้น"},{to:"A",d:.5,l:"แขนตึง"}],
+   muscles:"อก ไหล่หน้า หลังแขน แกนกลาง",
+   cues:["มือกว้างกว่าไหล่เล็กน้อย","ลำตัวตรงเหมือนแพลงก์ตลอดการเคลื่อนไหว","ศอกทำมุมราว 45° กับลำตัว ไม่กางออกเป็นตัว T","ถ้ายังไม่ไหว ให้วางมือบนโต๊ะหรือคุกเข่าทำ"],
+   bad:["สะโพกตกก่อนอก","ยื่นคอลงไปหาพื้น"]},
+
+  {id:"dbpress",g:"เวทช่วงบน",name:"Dumbbell bench press",th:"ดันดัมเบลบนม้านั่ง",anchor:["heelL","heelR"],props:["benchBack","db"],
+   work:W("pec tricep","delt"),
+   poses:{A:{rx:-90,nk:6,hL:-8.1,hR:-8.1,kL:81.9,kR:81.9,flat:true,sL:90,sR:90,bL:8,bR:8},
+          B:{rx:-90,nk:6,hL:-8.1,hR:-8.1,kL:81.9,kR:81.9,flat:true,sL:0,sR:0,bL:60,bR:60,eL:90,eR:90}},
+   seq:[{to:"B",d:2,l:"ลดลงช้า"},{to:"B",d:.3,l:"ล่างสุด"},{to:"A",d:1,l:"ดันขึ้น"},{to:"A",d:.5,l:"แขนตึง"}],
+   muscles:"อก หลังแขน ไหล่หน้า",
+   cues:["นอนบนม้านั่ง เท้าวางพื้นมั่นคง","บีบสะบักเข้าหากันและกดลง อกยกเล็กน้อย","ลดดัมเบลลงข้างอก ศอกทำมุมราว 45–60° กับลำตัว","ดันขึ้นจนแขนตึงเหนืออก ไม่ต้องให้ดัมเบลกระทบกัน"],
+   bad:["ศอกกางเป็นตัว T","ยกก้นลอยจากม้านั่ง"]},
+
+  {id:"pulldown",g:"เวทช่วงบน",name:"Lat pulldown",th:"ดึงบาร์ลงหน้าอก (เครื่องในห้อง)",anchor:["heelL","heelR"],props:["benchSeat","tower"],
+   work:W("upback","bicep forearm delt"),
+   poses:{A:{rx:-10,hL:80,hR:80,kL:90,kR:90,flat:true,sL:12,sR:12,bL:150,bR:150,qL:90,qR:90,eL:8,eR:8},
+          B:{rx:-20,hL:70,hR:70,kL:90,kR:90,flat:true,sL:30,sR:30,bL:50,bR:50,qL:90,qR:90,eL:116,eR:116,ch:-6}},
+   seq:[{to:"B",d:1.1,l:"ดึงศอกลงข้างลำตัว"},{to:"B",d:.5,l:"บีบปีก"},{to:"A",d:1.8,l:"ปล่อยขึ้นช้า"},{to:"A",d:.4,l:"ยืดสุด"}],
+   muscles:"ปีกหลัง (lats) หลังกลาง ไบเซ็ป ปลายแขน",
+   cues:["นั่งให้ต้นขาล็อกใต้ลูกกลิ้ง จับบาร์กว้างกว่าไหล่","เอนตัวไปหลังเล็กน้อย อกยก","ดึงบาร์ลงมาที่อกบน โดยคิดว่ากำลังดึงศอกลงไปที่กระเป๋ากางเกง","ปล่อยขึ้นช้า ๆ จนแขนตึงและรู้สึกยืดปีก"],
+   bad:["ดึงบาร์ไปหลังคอ","เหวี่ยงตัวไปหลังมาก"]},
+
+  {id:"row",g:"เวทช่วงบน",name:"Bent-over row",th:"ดึงดัมเบล (แทน inverted row ได้)",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+
+   work:W("upback","bicep delt forearm lowback"),
+   poses:{A:{rx:50,hL:65,hR:65,kL:25,kR:25,flat:true,sL:50,sR:50,bL:6,bR:6,nk:-14},
+          B:{rx:50,hL:65,hR:65,kL:25,kR:25,flat:true,sL:-18,sR:-18,eL:72,eR:72,bL:14,bR:14,nk:-14}},
+   seq:[{to:"B",d:1,l:"ดึงศอกไปหลัง"},{to:"B",d:.6,l:"บีบสะบัก"},{to:"A",d:1.6,l:"ปล่อยลงช้า"},{to:"A",d:.4,l:"แขนตึง"}],
+   muscles:"หลังกลาง ปีกหลัง หลังไหล่ ไบเซ็ป",
+   cues:["พับสะโพกให้ลำตัวเอียง 40–50° หลังตรง","ดึงศอกไปทางสะโพก ไม่ใช่ดึงขึ้นหาหู","บีบสะบักเข้าหากันด้านบน","ลำตัวนิ่ง ห้ามเหวี่ยง"],
+   bad:["ยืดตัวขึ้นช่วยเหวี่ยง","ห่อไหล่"]},
+
+  {id:"press",view:"front",g:"เวทช่วงบน",name:"Overhead press",th:"ดันดัมเบลเหนือศีรษะ",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+
+   work:W("delt tricep","upback abs"),
+   poses:{A:{sL:34,sR:34,eL:132,eR:132,bL:24,bR:24,flat:true},
+          B:{sL:172,sR:172,eL:6,eR:6,bL:10,bR:10,flat:true}},
+   seq:[{to:"B",d:1,l:"ดันขึ้น"},{to:"B",d:.3,l:"แขนตึง"},{to:"A",d:1.8,l:"ลดลงช้า"},{to:"A",d:.4,l:"ระดับไหล่"}],
+   muscles:"ไหล่ หลังแขน อกส่วนบน แกนกลาง",
+   cues:["เริ่มดัมเบลระดับไหล่ ฝ่ามือหันเข้าหากัน","เกร็งก้นและท้อง ห้ามแอ่นหลัง","ดันขึ้นจนแขนตึงข้างหู","ลดลงช้า ๆ กลับระดับไหล่"],
+   bad:["แอ่นหลังเพื่อดัน","ใช้ขาเด้งช่วย"]},
+
+  {id:"backext",g:"เวทช่วงบน",name:"Back extension",th:"ยกตัวท่าซูเปอร์แมน (บนพื้น)",anchor:["pelvis"],props:["mat"],
+
+   work:W("lowback glute","ham upback"),
+   poses:{A:{rx:90,sL:178,sR:178,bL:12,bR:12,fL:70,fR:70},
+          B:{rx:90,sp:-12,ch:-12,nk:-6,sL:172,sR:172,bL:12,bR:12,hL:-14,hR:-14,fL:70,fR:70}},
+   seq:[{to:"B",d:1.2,l:"ยกอกและขา"},{to:"B",d:1.5,l:"ค้าง"},{to:"A",d:1.5,l:"ลดลงช้า"},{to:"A",d:.5,l:"พัก"}],
+   muscles:"หลังล่าง กล้ามเนื้อตามแนวกระดูกสันหลัง ก้น",
+   cues:["นอนคว่ำ เหยียดแขนไปข้างหน้า","บีบก้นแล้วยกอกกับขาพร้อมกันเล็กน้อย","มองพื้น คอไม่เงย","ยกพอประมาณ ไม่ต้องสูง"],
+   bad:["เงยคอสุด","สะบัดขึ้นเร็ว"]},
+
+  {id:"deadbug",g:"แกนกลาง",name:"Dead bug",th:"เดดบัก",anchor:["pelvis"],props:["mat"],
+
+   work:W("abs","hipflex quad"),
+   poses:{A:{rx:-90,nk:12,sL:90,sR:90,hL:90,hR:90,kL:90,kR:90},
+          B:{rx:-90,nk:12,sL:168,sR:90,hL:90,kL:90,hR:14,kR:4},
+          C:{rx:-90,nk:12,sL:90,sR:168,hR:90,kR:90,hL:14,kL:4}},
+   seq:[{to:"B",d:1.6,l:"เหยียดแขนซ้าย ขาขวา"},{to:"A",d:1.2,l:"กลับกลาง"},{to:"C",d:1.6,l:"เหยียดแขนขวา ขาซ้าย"},{to:"A",d:1.2,l:"กลับกลาง"}],
+   muscles:"หน้าท้องลึก (transverse abdominis) และการคุมสะโพก",
+   cues:["หลังล่างกดแนบพื้นตลอด","แขนตั้งฉากเพดาน เข่างอ 90°","ยืดแขนกับขาฝั่งตรงข้ามลงช้า ๆ","หายใจออกตอนยืด"],
+   bad:["หลังล่างลอยจากพื้น","ทำเร็วเกินไป"]},
+
+  {id:"farmer",g:"เวทช่วงบน",name:"Farmer carry",th:"ถือดัมเบลเดิน",anchor:["pelvis"],props:["db"],
+
+   work:W("forearm upback","abs glute quad calf"),
+   fn:gait({f:.85,sp:0,ha:20,h0:2,k0:6,ka:48,kp:2,f0:-4,fa:14,sa:4,s0:0,e:4,b:10}),label:"เดินตัวตรง ก้าวสั้น",
+   muscles:"แรงบีบมือ ปลายแขน บ่า แกนกลาง",
+   cues:["ถือดัมเบลหนักสองข้าง แขนตึงข้างลำตัว","ยืดอก ไหล่ลง ไม่เอียง","ก้าวสั้นและมั่นคง","หายใจปกติตลอดระยะ"],
+   bad:["ไหล่ห่อ หลังงอ","ลำตัวโยกไปมา"]},
+
+  /* ---------- MASS UP additions: bulk program ---------- */
+  {id:"incline",g:"เวทช่วงบน",name:"Incline DB press",th:"ดันดัมเบลม้านั่งเอียง 30–45°",anchor:["heelL","heelR"],props:["benchIncline","db"],
+   work:W("pec delt","tricep"),
+   poses:{A:{rx:-42,nk:4,hL:44,hR:44,kL:84,kR:84,flat:true,sL:92,sR:92,bL:8,bR:8},
+          B:{rx:-42,nk:4,hL:44,hR:44,kL:84,kR:84,flat:true,sL:4,sR:4,bL:58,bR:58,eL:92,eR:92}},
+   seq:[{to:"B",d:2,l:"ลดลงช้า"},{to:"B",d:.3,l:"ยืดอกบน"},{to:"A",d:1,l:"ดันขึ้น"},{to:"A",d:.5,l:"แขนตึง"}],
+   muscles:"อกส่วนบน ไหล่หน้า หลังแขน",
+   cues:["ปรับพนักเอียง 30–45° ถ้าชันเกินจะกลายเป็นท่าไหล่","บีบสะบักชิดกัน อกยก เท้าวางพื้นมั่นคง","ลดดัมเบลลงข้างอกบน ศอกทำมุม 45–60° กับลำตัว","ดันขึ้นในแนวเหนือไหปลาร้า ท่านี้คือตัวสร้างอกบนที่คุณยังขาด"],
+   bad:["พนักชันเกิน 45°","ศอกกางเป็นตัว T","ยกก้นลอยจากเบาะ"]},
+
+  {id:"latraise",view:"front",g:"แขนและไหล่",name:"Lateral raise",th:"ยกดัมเบลออกด้านข้าง (สร้างไหล่กว้าง)",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+   work:W("delt","trap"),
+   poses:{A:{sL:6,sR:6,bL:10,bR:10,eL:14,eR:14,flat:true},
+          B:{sL:14,sR:14,bL:84,bR:84,eL:18,eR:18,flat:true}},
+   seq:[{to:"B",d:1.1,l:"ยกออกข้าง"},{to:"B",d:.3,l:"ค้างระดับไหล่"},{to:"A",d:1.9,l:"ลดลงช้า"},{to:"A",d:.4,l:"ล่างสุด"}],
+   muscles:"ไหล่ส่วนกลาง (ตัวที่ทำให้ตัวดูกว้าง) บ่า",
+   cues:["ยืนตรง ศอกงอเล็กน้อยและล็อกไว้","ยกด้วยศอก ไม่ใช่ด้วยมือ คิดว่ากำลังดันศอกออกไปหากำแพงสองข้าง","ยกถึงระดับไหล่พอ ไม่ต้องสูงกว่านั้น","ลดลงช้า 2 วินาที ท่านี้ใช้น้ำหนักเบาแต่ทำครั้งเยอะ 12–20 ครั้ง"],
+   bad:["เหวี่ยงตัวช่วยยก","ยักไหล่ขึ้นหาหู","ใช้น้ำหนักหนักเกินจนฟอร์มพัง"]},
+
+  {id:"reardelt",g:"แขนและไหล่",name:"Rear delt fly",th:"ก้มตัวกางแขน (ไหล่หลัง)",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+   work:W("rear","upback delt"),
+   poses:{A:{rx:55,hL:65,hR:65,kL:25,kR:25,flat:true,sL:55,sR:55,bL:6,bR:6,eL:16,eR:16,nk:-14},
+          B:{rx:55,hL:65,hR:65,kL:25,kR:25,flat:true,sL:55,sR:55,bL:80,bR:80,eL:20,eR:20,nk:-14}},
+   seq:[{to:"B",d:1.1,l:"กางแขนออก"},{to:"B",d:.5,l:"บีบหลังไหล่"},{to:"A",d:1.7,l:"ลดลงช้า"},{to:"A",d:.4,l:"แขนห้อย"}],
+   muscles:"ไหล่ด้านหลัง หลังบน ระหว่างสะบัก",
+   cues:["พับสะโพกให้ลำตัวเอียงราว 45–55° หลังตรง","แขนห้อยใต้ไหล่ ศอกงอเล็กน้อย","กางแขนออกด้านข้างเหมือนกางปีก จนแขนขนานพื้น","ช่วยให้ไหล่ดูกลมจากด้านข้าง และแก้ไหล่ห่อ"],
+   bad:["ยืดตัวขึ้นตอนยก","บีบสะบักแรงจนกลายเป็นท่า row"]},
+
+  {id:"curl",g:"แขนและไหล่",name:"Dumbbell curl",th:"ม้วนดัมเบล (หน้าแขน)",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+   work:W("bicep","forearm delt"),
+   poses:{A:{sL:4,sR:4,bL:6,bR:6,eL:8,eR:8,flat:true},
+          B:{sL:12,sR:12,bL:6,bR:6,eL:138,eR:138,flat:true}},
+   seq:[{to:"B",d:1,l:"ม้วนขึ้น"},{to:"B",d:.4,l:"บีบหน้าแขน"},{to:"A",d:2,l:"ลดลงช้า"},{to:"A",d:.4,l:"แขนตึง"}],
+   muscles:"หน้าแขน (biceps) ปลายแขน",
+   cues:["ยืนตรง ศอกแนบข้างลำตัวตลอด","หงายฝ่ามือไปข้างหน้า ม้วนดัมเบลขึ้นหาไหล่","บีบค้างด้านบนครึ่งวินาที","ลดลงช้ากว่าตอนขึ้น จนแขนเกือบตึง"],
+   bad:["เหวี่ยงลำตัวช่วย","ศอกเลื่อนไปข้างหน้ามาก","ลดลงไม่สุด"]},
+
+  {id:"hammer",grip:"neutral",g:"แขนและไหล่",name:"Hammer curl",th:"ม้วนดัมเบลแบบหันฝ่ามือเข้าหากัน",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+   work:W("bicep forearm","delt"),
+   poses:{A:{sL:4,sR:4,bL:6,bR:6,eL:8,eR:8,flat:true},
+          B:{sL:12,sR:12,bL:6,bR:6,eL:132,eR:132,flat:true}},
+   seq:[{to:"B",d:1,l:"ม้วนขึ้น"},{to:"B",d:.3,l:"ค้าง"},{to:"A",d:2,l:"ลดลงช้า"},{to:"A",d:.4,l:"แขนตึง"}],
+   muscles:"หน้าแขนด้านนอก (brachialis) ปลายแขน",
+   cues:["จับดัมเบลเหมือนจับค้อน ฝ่ามือหันเข้าหาลำตัว","ศอกแนบข้างลำตัว","ม้วนขึ้นโดยไม่หมุนข้อมือ","ทำให้แขนดูหนาขึ้นจากด้านหน้า"],
+   bad:["เหวี่ยงตัว","ข้อมืองอ"]},
+
+  {id:"ohtri",view:"side",g:"แขนและไหล่",name:"Overhead triceps ext.",th:"เหยียดดัมเบลเหนือศีรษะ (หลังแขน)",anchor:["heelL","heelR","toeL","toeR"],props:["db"],
+   work:W("tricep","delt abs"),
+   poses:{A:{sL:166,sR:166,bL:16,bR:16,eL:132,eR:132,flat:true},
+          B:{sL:172,sR:172,bL:12,bR:12,eL:8,eR:8,flat:true}},
+   seq:[{to:"B",d:1.1,l:"เหยียดขึ้น"},{to:"B",d:.3,l:"แขนตึง"},{to:"A",d:2,l:"ลดลงหลังศีรษะ"},{to:"A",d:.5,l:"ยืดหลังแขน"}],
+   muscles:"หลังแขน (triceps) โดยเฉพาะหัวยาว",
+   cues:["ยกดัมเบลเหนือศีรษะ ต้นแขนชิดหู","งอศอกลดดัมเบลลงหลังศีรษะช้า ๆ จนรู้สึกยืดหลังแขน","เหยียดขึ้นโดยให้ต้นแขนนิ่ง ขยับแค่ปลายแขน","หลังแขนคือ 2 ใน 3 ของขนาดแขน ห้ามข้าม"],
+   bad:["ศอกบานออกกว้าง","แอ่นหลังล่าง"]},
+
+  {id:"pushdown",g:"แขนและไหล่",name:"Triceps pushdown",th:"กดสายเคเบิลลง (เสา lat pulldown)",anchor:["heelL","heelR","toeL","toeR"],props:["tower"],
+   work:W("tricep","forearm abs"),
+   poses:{A:{rx:8,hL:8,hR:8,flat:true,sL:16,sR:16,bL:8,bR:8,eL:104,eR:104},
+          B:{rx:8,hL:8,hR:8,flat:true,sL:6,sR:6,bL:8,bR:8,eL:6,eR:6}},
+   seq:[{to:"B",d:1,l:"กดลง"},{to:"B",d:.4,l:"บีบหลังแขน"},{to:"A",d:1.6,l:"ปล่อยขึ้นช้า"},{to:"A",d:.4,l:"ระดับอก"}],
+   muscles:"หลังแขน (triceps)",
+   cues:["ยืนหันหน้าเข้าเสา จับบาร์หรือเชือก","ศอกล็อกแนบข้างลำตัว","กดลงจนแขนตึง บีบหลังแขน","ถ้าเสาไม่มีสายด้านบนแบบนี้ ให้ใช้ Overhead triceps ext. แทน"],
+   bad:["ศอกเลื่อนไปมา","โน้มตัวใช้น้ำหนักตัวกด"]},
+
+  {id:"calf",view:"side",g:"เวทช่วงล่าง",name:"Calf raise",th:"เขย่งปลายเท้า (น่อง)",anchor:["toeL","toeR"],props:["db"],
+   work:W("calf",""),
+   poses:{A:{flat:true,sL:4,sR:4,bL:8,bR:8},B:{fL:30,fR:30,sL:4,sR:4,bL:8,bR:8}},
+   seq:[{to:"B",d:1,l:"เขย่งขึ้น"},{to:"B",d:1,l:"ค้างบนสุด"},{to:"A",d:1.8,l:"ลดส้นลงช้า"},{to:"A",d:.5,l:"ยืดน่อง"}],
+   muscles:"น่อง",
+   cues:["ยืนบนขอบขั้นบันไดหรือแผ่นหนา ๆ ให้ส้นเท้าลงต่ำกว่าปลายเท้าได้","ทำทีละขา ถือดัมเบลข้างเดียวกัน อีกมือจับผนังทรงตัว","เขย่งให้สูงสุด ค้าง 1 วินาที","ลดลงช้าจนรู้สึกยืดน่อง"],
+   bad:["เด้งเร็ว ๆ ไม่ค้าง","เขย่งไม่สุด"]},
+
+  {id:"slrdl",view:"side",g:"เวทช่วงล่าง",name:"Single-leg RDL",th:"พับสะโพกขาเดียว",anchor:["heelL","toeL"],props:["db"],
+   work:W("ham glute","lowback abs calf"),
+   poses:{A:{bL:6,bR:6,flatL:true,hR:2,kR:8},
+          B:{rx:74,hL:76,kL:16,flatL:true,hR:-4,kR:6,fR:12,sL:74,sR:74,bL:6,bR:6,nk:-14}},
+   seq:[{to:"B",d:2.2,l:"พับสะโพก ขาหลังยกตาม"},{to:"B",d:.4,l:"ตึงต้นขาหลัง"},{to:"A",d:1.3,l:"บีบก้นยืนขึ้น"},{to:"A",d:.6,l:"ทรงตัว"}],
+   muscles:"ต้นขาหลัง ก้น (ขาที่ยืน) การทรงตัว",
+   cues:["ยืนขาเดียว เข่างอเล็กน้อย","พับสะโพก ให้ขาหลังยกขึ้นเป็นเส้นตรงเดียวกับลำตัว","สะโพกหันลงพื้นทั้งสองข้าง ห้ามบิดเปิด","ใช้ดัมเบลเบา 5–7 กก. ก็หนักพอสำหรับท่านี้"],
+   bad:["สะโพกบิดเปิดออกข้าง","หลังโค้ง"]},
+
+  {id:"lunge",view:"side",g:"เวทช่วงล่าง",name:"Reverse lunge",th:"ก้าวถอยหลังย่อ",anchor:["heelL","toeL"],props:["db"],
+   work:W("quad glute","ham calf abs"),
+   poses:{A:{flat:true,sL:4,sR:4,bL:7,bR:7},
+          B:{hL:78,kL:86,flatL:true,hR:-14,kR:82,fR:0,sp:4,sL:4,sR:4,bL:7,bR:7}},
+   seq:[{to:"B",d:1.8,l:"ถอยเท้าหลัง ย่อลง"},{to:"B",d:.3,l:"ค้าง"},{to:"A",d:1.1,l:"ดันเท้าหน้ากลับ"},{to:"A",d:.5,l:"ยืนตรง"}],
+   muscles:"ต้นขาหน้า ก้น (ขาหน้าทำงานหลัก)",
+   cues:["ยืนตรง ถือดัมเบลสองข้าง","ก้าวเท้าหนึ่งถอยหลังยาว ๆ แล้วย่อลงจนเข่าหลังเกือบแตะพื้น","น้ำหนักอยู่ที่ส้นเท้าหน้า หน้าแข้งหน้าเกือบตั้งตรง","ดันส้นเท้าหน้ากลับยืน ใช้แทน step-up ได้ ปลอดภัยกว่า"],
+   bad:["เข่าหน้าหุบเข้าใน","ก้าวสั้นจนเข่าหน้าเลยปลายเท้ามาก"]},
+
+  {id:"legraise",view:"side",g:"แกนกลาง",name:"Lying leg raise",th:"นอนยกขา",anchor:["pelvis"],props:["mat"],
+   work:W("abs hipflex","quad"),
+   poses:{A:{rx:-90,nk:12,hL:6,hR:6,kL:8,kR:8,sL:2,sR:2,bL:14,bR:14},
+          B:{rx:-90,nk:12,hL:86,hR:86,kL:8,kR:8,sL:2,sR:2,bL:14,bR:14}},
+   seq:[{to:"B",d:1.4,l:"ยกขาขึ้น"},{to:"B",d:.4,l:"ค้าง"},{to:"A",d:2,l:"ลดลงช้า"},{to:"A",d:.4,l:"เกือบแตะพื้น"}],
+   muscles:"หน้าท้องส่วนล่าง กล้ามงอสะโพก",
+   cues:["นอนหงาย มือวางข้างลำตัวหรือสอดใต้ก้น","เกร็งท้อง กดหลังล่างให้แนบพื้นก่อนยก","ยกขาเกือบตรงขึ้นจนตั้งฉาก แล้วลดลงช้า ๆ","ลดขาถึงแค่ก่อนหลังล่างจะลอย"],
+   bad:["หลังล่างแอ่นลอยจากพื้น","เหวี่ยงขาเร็ว"]},
+
+  /* ---------- Cardio ---------- */
+  {id:"run",g:"คาร์ดิโอ",name:"Zone 2 jog",th:"วิ่งช้า Zone 2",anchor:["pelvis"],props:[],
+
+   work:W("quad ham calf glute","hipflex abs"),
+   fn:gait({f:1.35,sp:8,ha:26,h0:7,k0:16,ka:72,kp:1.4,f0:2,fa:26,sa:30,s0:6,e:84,b:6}),label:"จ็อกช้า ยังพูดเป็นประโยคได้",
+   muscles:"หัวใจและปอด ขาทั้งหมด ก้น",
+   cues:["ก้าวสั้น ถี่ เท้าลงใต้ลำตัว","ลำตัวเอนหน้าเล็กน้อยจากข้อเท้า","แขนแกว่งหน้า-หลัง ศอกงอราว 90°","ทดสอบด้วยการพูด ถ้าพูดเป็นประโยคไม่ได้ให้ช้าลง"],
+   bad:["ก้าวยาวจนส้นเท้ากระแทกหน้าลำตัว","วิ่งเร็วเกินโซน"]},
+
+  {id:"sprint",g:"คาร์ดิโอ",name:"Interval (hard)",th:"วิ่งช่วงหนัก",anchor:["pelvis"],props:[],
+
+   work:W("quad ham glute calf","hipflex delt abs"),
+   fn:gait({f:1.65,sp:13,ha:40,h0:12,k0:18,ka:95,kp:1.2,f0:4,fa:30,sa:46,s0:8,e:90,b:4}),label:"Zone 4–5 พูดได้แค่คำ ๆ",
+   muscles:"หัวใจ ขา ก้น สะโพก",
+   cues:["ยกเข่าสูงขึ้น แกว่งแขนแรงขึ้น","ช่วงหนักต้องหนักจริง แต่ยังคุมฟอร์มได้","ช่วงเบาให้จ็อกหรือเดิน ห้ามหยุดนิ่ง","วอร์มอัพ 10 นาทีก่อนเสมอ"],
+   bad:["ไม่วอร์มอัพ","ฟอร์มพังในเซตท้าย ๆ"]},
+
+  /* ---------- Circuit ---------- */
+  {id:"wallsit",iso:true,g:"เซอร์กิต",name:"Wall sit",th:"นั่งพิงกำแพง",anchor:["heelL","heelR"],props:["wall"],
+
+   work:W("quad","glute"),
+   poses:{A:{hL:90,hR:90,kL:90,kR:90,flat:true,sL:78,sR:78,eL:8,eR:8},B:{hL:90,hR:90,kL:90,kR:90,flat:true,sL:78,sR:78,eL:8,eR:8,belly:1}},
+   seq:[{to:"B",d:3,l:"ค้าง · หายใจเข้า"},{to:"A",d:3,l:"ค้าง · หายใจออก"}],
+   muscles:"ต้นขาหน้า ก้น",
+   cues:["หลังแนบกำแพงทั้งแผ่น","ต้นขาขนานพื้น เข่าทำมุม 90°","เข่าอยู่เหนือข้อเท้า","กดส้นเท้าลงพื้น"],
+   bad:["เข่าเลยปลายเท้า","เอามือดันต้นขา"]},
+
+  {id:"birddog",g:"เซอร์กิต",name:"Bird dog",th:"เบิร์ดด็อก",anchor:["kneeL","kneeR"],props:["mat"],
+
+   work:W("abs lowback glute","delt ham"),
+   poses:{A:QUAD,B:m(QUAD,{sR:178,hL:-14.3,kL:0,fL:30}),C:m(QUAD,{sL:178,hR:-14.3,kR:0,fR:30})},
+   seq:[{to:"B",d:1.4,l:"ยืดแขนขวา ขาซ้าย"},{to:"B",d:1,l:"ค้าง"},{to:"A",d:1,l:"กลับ"},{to:"C",d:1.4,l:"ยืดแขนซ้าย ขาขวา"},{to:"C",d:1,l:"ค้าง"},{to:"A",d:1,l:"กลับ"}],
+   muscles:"แกนกลาง หลังล่าง ก้น ไหล่",
+   cues:["มืออยู่ใต้ไหล่ เข่าอยู่ใต้สะโพก","ยืดแขนกับขาฝั่งตรงข้ามจนขนานพื้น","สะโพกห้ามหมุนหรือเอียง","ค้าง 2 วินาทีแล้วสลับ"],
+   bad:["ยกขาสูงจนหลังแอ่น","ทำเร็วจนตัวโยก"]},
+
+  /* ---------- Hip-control dance ---------- */
+  {id:"ptilt",g:"เต้นคุมสะโพก",name:"Pelvic tilt",th:"กระดกเชิงกรานหน้า-หลัง (ยืน)",anchor:["heelL","heelR","toeL","toeR"],props:[],
+   work:W("abs lowback glute","hipflex"),
+   poses:{A:dance({}),B:dance({rx:14,sp:-14,hL:29,hR:29}),C:dance({rx:-12,sp:12,hL:3,hR:3})},
+   seq:[{to:"B",d:1.4,l:"แอ่น กระดกก้นออก"},{to:"B",d:.4,l:"ค้าง"},{to:"C",d:1.8,l:"ม้วนก้นเข้า เกร็งท้อง"},{to:"C",d:.4,l:"ค้าง"},{to:"A",d:1,l:"กลับกลาง"}],
+   muscles:"หน้าท้องส่วนล่าง หลังล่าง ก้น กล้ามงอสะโพก",
+   cues:["ยืนเท้ากว้างเท่าสะโพก ย่อเข่าเล็กน้อย","กางแขนไว้ และให้อกกับไหล่นิ่งตลอด","แอ่นหลังให้ก้นยื่นออก แล้วม้วนก้นเข้าโดยเกร็งท้องน้อย","ขยับเฉพาะเชิงกราน ทำ 2 เซต เซตละ 20 ครั้ง"],
+   bad:["โยกทั้งลำตัวแทนการขยับเชิงกราน","เข่าเหยียดล็อก"]},
+
+  {id:"hipcircle",g:"เต้นคุมสะโพก",name:"Hip circle",th:"หมุนสะโพกเป็นวง อกนิ่ง",anchor:["heelL","heelR","toeL","toeR"],props:[],
+   work:W("abs lowback","glute hipflex"),
+   fn:hipCircle,label:"หมุนสะโพก",
+   muscles:"หน้าท้องด้านข้าง หลังล่าง ก้น สะโพก",
+   cues:["ท่ายืนเหมือน pelvic tilt ย่อเข่านิดหน่อย","วาดวงกลมด้วยสะโพก: หน้า ข้าง หลัง ข้าง","อกกับศีรษะอยู่กับที่ ไม่โยกตาม","ทำ 10 รอบ แล้วกลับทิศอีก 10 รอบ ภาพจะสลับทิศให้ทุก 4 รอบ"],
+   bad:["หมุนไหล่ตาม","วงเล็กจนแทบไม่ขยับ"]},
+
+  {id:"hipfig8",g:"เต้นคุมสะโพก",name:"Hip figure-8",th:"ส่ายสะโพกเป็นเลข 8",anchor:["heelL","heelR","toeL","toeR"],props:[],
+   work:W("abs glute","lowback hipflex quad"),
+   fn:figure8,label:"ส่ายเลข 8",
+   muscles:"หน้าท้องด้านข้าง ก้น สะโพก ต้นขา",
+   cues:["ส่ายสะโพกไปข้างหนึ่ง แล้วหมุนสะโพกฝั่งนั้นไปข้างหน้า","สลับไปอีกข้างให้เป็นรูปเลข 8 แนวนอน","ใช้เข่าที่ย่อช่วยถ่ายน้ำหนัก ส่วนบนนิ่ง","เปิดเพลงราว 90–110 BPM ทำ 2 เซต เซตละ 10 รอบ"],
+   bad:["ส่ายด้วยการบิดไหล่","ยืนเข่าตึง"]},
+
+  /* ---------- Mobility & breathing ---------- */
+  {id:"hipflex",g:"ยืดเหยียด",name:"Hip flexor stretch",th:"ยืดสะโพกหน้า (คุกเข่าข้างเดียว)",anchor:["kneeL"],props:["mat"],
+
+   work:W("hipflex quadL","abs"),
+   poses:{A:{hL:-6,kL:74.4,fL:80,hR:91,kR:91,flatR:true},
+          B:{hL:-26,kL:54.4,fL:80,hR:93.1,kR:113.5,flatR:true,sL:172,bL:-4,ch:-6}},
+   seq:[{to:"B",d:2,l:"บีบก้น ดันสะโพกไปหน้า"},{to:"B",d:3,l:"ค้าง หายใจ"},{to:"A",d:1.5,l:"คลาย"},{to:"A",d:.8,l:"พัก"}],
+   muscles:"กล้ามเนื้องอสะโพก (hip flexors) ด้านขาที่คุกเข่า",
+   cues:["คุกเข่าข้างหนึ่ง อีกขาวางหน้า เข่า 90°","บีบก้นข้างที่คุกเข่าก่อน แล้วค่อยดันสะโพกไปหน้า","ลำตัวตั้งตรง ยกแขนฝั่งเดียวกันขึ้นช่วยยืด","ค้าง 60 วินาทีแล้วสลับข้าง"],
+   bad:["แอ่นหลังแทนการดันสะโพก","เข่าหน้าเลยปลายเท้ามาก"]},
+
+  {id:"catcow",g:"ยืดเหยียด",name:"Cat–cow",th:"แคท-คาว",anchor:["kneeL","kneeR"],props:["mat"],
+
+   work:W("lowback abs","upback"),
+   poses:{A:QUAD,
+          B:m(QUAD,{rx:56.6,hL:56.6,hR:56.6,sp:16,ch:14,nk:30,sL:86.6,sR:86.6}),
+          C:m(QUAD,{rx:89.4,hL:89.4,hR:89.4,sp:-12,ch:-10,nk:-32,sL:67.4,sR:67.4})},
+   seq:[{to:"B",d:2.5,l:"แคท · หายใจออก โก่งหลัง"},{to:"C",d:3,l:"คาว · หายใจเข้า แอ่นหลัง"},{to:"A",d:1.5,l:"กลับกลาง"}],
+   muscles:"ความยืดหยุ่นกระดูกสันหลังทั้งแนว",
+   cues:["เริ่มท่าคลาน มือใต้ไหล่ เข่าใต้สะโพก","หายใจออก ม้วนก้นเข้า ดันหลังโก่งขึ้น ก้มหัว","หายใจเข้า แอ่นหลัง ยกอกและมองไปหน้า","ทำช้า ๆ ตามลมหายใจ 10 รอบ"],
+   bad:["เคลื่อนเร็วเกินไป","งอศอก"]},
+
+  {id:"deepsquat",iso:true,g:"ยืดเหยียด",name:"Deep squat hold",th:"นั่งยองค้าง",anchor:["heelL","heelR","toeL","toeR"],props:[],
+
+   work:W("glute quad","calf lowback"),
+   poses:{A:{hL:122,hR:122,aL:20,aR:20,kL:148,kR:148,sp:30,flat:true,sL:62,sR:62,eL:118,eR:118,bL:-14,bR:-14},
+          B:{hL:122,hR:122,aL:20,aR:20,kL:148,kR:148,sp:24,flat:true,sL:62,sR:62,eL:118,eR:118,bL:-14,bR:-14,belly:1}},
+   seq:[{to:"B",d:4,l:"ค้าง · หายใจเข้า"},{to:"A",d:6,l:"ค้าง · หายใจออก"}],
+   muscles:"ข้อสะโพก ข้อเท้า หลังล่าง (ยืดเหยียด)",
+   cues:["ลงนั่งยองลึก ส้นเท้าติดพื้น","ใช้ศอกดันเข่าออกเบา ๆ","อกยกขึ้น หลังยาว","ถ้าส้นเท้าลอย ให้หนุนส้นด้วยผ้าหรือแผ่นบาง ๆ"],
+   bad:["ส้นเท้าลอยแล้วฝืน","ทิ้งน้ำหนักไปที่หลัง"]},
+
+  {id:"breath",g:"ยืดเหยียด",name:"Diaphragmatic breathing",th:"หายใจกะบังลม 4–6",anchor:["pelvis"],props:["mat"],
+
+   work:W("abs",""),
+   poses:{A:LIE,B:m(LIE,{belly:1})},
+   seq:[{to:"B",d:4,l:"หายใจเข้าทางจมูก"},{to:"A",d:6,l:"หายใจออกช้า ๆ"}],
+   muscles:"กะบังลม (ท้องพอง อกนิ่ง)",
+   cues:["นอนชันเข่า มือหนึ่งวางอก อีกมือวางท้อง","หายใจเข้า 4 วินาที ให้ท้องพองขึ้น อกแทบไม่ขยับ","หายใจออก 6 วินาที ช้ากว่าตอนเข้า","ทำ 5 นาที ใช้คุมความตื่นเต้นได้"],
+   bad:["ยกไหล่ขึ้นตอนหายใจเข้า","หายใจเร็วเกินไป"]},
+
+  {id:"kegel",g:"ยืดเหยียด",name:"Kegel + reverse Kegel",th:"บริหารอุ้งเชิงกราน",anchor:["pelvis"],props:["mat","pf"],
+
+   work:W("",""),
+   poses:{A:LIE,S:m(LIE,{kegel:1})},
+   seq:[{to:"S",d:.6,l:"บีบ ยกขึ้น"},{to:"S",d:2.4,l:"บีบ ยกขึ้น"},{to:"A",d:.6,l:"คลายให้สุด"},{to:"A",d:2.4,l:"คลายให้สุด"}],
+   muscles:"กล้ามเนื้ออุ้งเชิงกราน (จุดสีในภาพ)",
+   cues:["วงกลมสีที่ฐานสะโพกคือตำแหน่งกล้ามเนื้อ","บีบเหมือนกลั้นปัสสาวะ แล้วยกขึ้นด้านใน","ห้ามเกร็งก้น ต้นขา หรือท้อง และห้ามกลั้นหายใจ","จังหวะในภาพเป็นระยะ Base (3/3 วินาที) ช่วงหลังเพิ่มเป็น 5 และ 10 วินาที"],
+   bad:["บีบก้นแทน","กลั้นหายใจ"]}
+  ];
+})();
+if(typeof module!=="undefined")module.exports=STAMINA_EX;
+
+STAMINA_EX=STAMINA_EX.filter(function(e){return ["squat", "bridge", "rdl", "split", "hipthrust", "plank", "sideplank", "pushup", "dbpress", "pulldown", "row", "press", "backext", "deadbug", "incline", "latraise", "reardelt", "curl", "hammer", "ohtri", "calf", "slrdl", "lunge", "legraise", "run", "birddog", "wallsit", "hipflex", "catcow", "breath"].indexOf(e.id)>=0;});
+/* ===== STAMINA 12 · 3D viewer ===== */
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var EX=STAMINA_EX, byId={};EX.forEach(function(e){byId[e.id]=e;});
+  var cur=null,playing=true,speed=1,spin=false,t=0,visible=true,ready=false;
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce)playing=false;
+
+  /* muscle vocabulary: panel rows (by work name) and tap labels (by model group) */
+  var NAMES={quad:["ต้นขาหน้า","Quadriceps"],glute:["ก้น","Gluteus"],ham:["ต้นขาหลัง","Hamstrings"],abs:["หน้าท้อง","Abdominals"],
+    lowback:["หลังล่าง","Erector spinae"],upback:["หลังบน","Lats, trapezius"],forearm:["ปลายแขน","Forearm"],calf:["น่อง","Calves"],
+    delt:["ไหล่","Deltoids"],pec:["อก","Pectorals"],tricep:["หลังแขน","Triceps"],bicep:["หน้าแขน","Biceps"],hipflex:["งอสะโพก","Hip flexors"],
+    tib:["หน้าแข้ง","Tibialis"],obl:["หน้าท้องด้านข้าง","Obliques"],lat:["ปีกหลัง","Latissimus"],trap:["บ่าและหลังบน","Trapezius"],
+    rear:["หลังสะบัก","Infraspinatus"],add:["ต้นขาด้านใน","Adductors"]};
+  var EXPAND={abs:[["abs",1],["oblL",.7],["oblR",.7]],
+    upback:[["trapL",1],["trapR",1],["latL",1],["latR",1],["rearL",.85],["rearR",.85]],
+    quadL:[["quadL",1],["addL",.45]],quadR:[["quadR",1],["addR",.45]],
+    trap:[["trapL",1],["trapR",1]],rear:[["rearL",1],["rearR",1]]};
+  function baseOf(n){return n.replace(/[LR]$/,"");}
+  function sideOf(n){var m=/([LR])$/.exec(n);return m?m[1]:null;}
+
+  // ---- exercise picker ----
+  var groups=[];EX.forEach(function(e){if(groups.indexOf(e.g)<0)groups.push(e.g);});
+  $("exnav").innerHTML=groups.map(function(g){
+    return '<div class="exgrp"><span>'+g+'</span><div class="exrow">'+EX.filter(function(e){return e.g===g;}).map(function(e){
+      return '<button type="button" class="exbtn" data-ex="'+e.id+'" aria-pressed="false">'+e.name+'</button>';}).join("")+'</div></div>';
+  }).join("");
+  $("exnav").addEventListener("click",function(ev){var b=ev.target.closest(".exbtn");if(b)open(b.dataset.ex,false);});
+
+  // where each exercise appears in the weekly plan
+  function whereUsed(id){
+    try{if(window.MU_WHERE){var w=window.MU_WHERE(id);if(w)return w;}}catch(e){}
+    return "เสริมได้ตามต้องการ";
+  }
+  var bars=[];
+  function workRows(e){
+    var seen={},rows=[];
+    [["p",e.work.p],["s",e.work.s]].forEach(function(pr){pr[1].forEach(function(n){var b=baseOf(n);if(seen[b])return;seen[b]=1;rows.push({k:b,c:pr[0]});});});
+    return rows;
+  }
+  function renderInfo(e){
+    var rows=workRows(e);
+    var meter=rows.length?'<div class="meter" id="meter">'+rows.map(function(r){var nm=NAMES[r.k]||[r.k,""];
+      return '<div class="mrow '+r.c+'" data-k="'+r.k+'"><span class="mname">'+nm[0]+'<small>'+nm[1]+'</small></span><span class="mbar"><i></i></span><span class="mval num">0</span></div>';}).join("")+'</div>'
+      :'<p class="muted" style="font-size:14px">ท่านี้ฝึกกล้ามเนื้ออุ้งเชิงกรานซึ่งอยู่ลึกในเชิงกราน ภาพจึงแสดงเป็นแถบเรืองแสงภายในตัวหุ่นแทน</p>';
+    $("vinfo").innerHTML='<div class="vhead"><span class="vgroup">'+e.g+'</span><h3>'+e.name+'</h3><p class="th">'+e.th+'</p></div>'+
+      '<div class="vsec"><div class="vsec-h"><b>กล้ามเนื้อที่ทำงาน</b><span class="muted">% แรงโดยประมาณ ขยับตามจังหวะ</span></div>'+meter+'</div>'+
+      '<dl><dt>จุดที่ควรรู้สึก</dt><dd>'+e.muscles+'</dd><dt>อยู่ในตาราง</dt><dd>'+whereUsed(e.id)+'</dd></dl>'+
+      '<div class="vsec"><b>วิธีทำ</b><ol>'+e.cues.map(function(x){return "<li>"+x+"</li>";}).join("")+'</ol></div>'+
+      '<div class="vsec bad"><b>ผิดบ่อย</b><ul>'+e.bad.map(function(x){return "<li>"+x+"</li>";}).join("")+'</ul></div>';
+    bars=[];document.querySelectorAll("#meter .mrow").forEach(function(el){bars.push({k:el.dataset.k,fill:el.querySelector("i"),val:el.querySelector(".mval"),last:-1});});
+  }
+  function markNav(id){document.querySelectorAll(".exbtn").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.ex===id?"true":"false");});}
+
+  // ---- three.js setup ----
+  var ok=!!window.THREE,renderer=null;
+  if(ok){try{renderer=new THREE.WebGLRenderer({canvas:$("cv"),antialias:true,alpha:true,powerPreference:"high-performance"});}catch(err){ok=false;}}
+  if(!ok){
+    $("fallback").hidden=false;$("phase").textContent="";$("stage").classList.add("nogl");
+    var openLite=function(id,scroll){var e=byId[id];if(!e)return;markNav(id);renderInfo(e);if(scroll)$("viewer3d").scrollIntoView({behavior:"smooth",block:"start"});};
+    window.STAMINA_VIEW={open:openLite};
+    window.MU_STUDIO={open:function(id){openLite(id,false);},show:function(){}};
+    openLite("dbpress",false);return;
+  }
+  var RIG=STAMINA_RIG(THREE);
+  renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+  renderer.outputEncoding=THREE.sRGBEncoding;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(30,1.6,.05,60);
+  function lin(hex){return new THREE.Color(hex).convertSRGBToLinear();}
+
+  /* studio lighting: a small procedural softbox room, prefiltered for image-based light */
+  (function(){
+    try{
+      var pm=new THREE.PMREMGenerator(renderer),es=new THREE.Scene();
+      function panel(w,h,col,k,x,y,z){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:new THREE.Color(col).multiplyScalar(k),side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);es.add(m);}
+      es.add(new THREE.Mesh(new THREE.SphereGeometry(20,24,12),new THREE.MeshBasicMaterial({color:0x10151c,side:THREE.BackSide})));
+      panel(9,6,0xfff4e6,2.6,6,7,7);panel(6,8,0xbcd4ff,.8,-9,3,4);panel(8,5,0xdde8ff,2.2,-4,5,-9);panel(14,14,0x39424e,.6,0,-6,0);panel(5,5,0xffffff,1.2,0,10,0);
+      scene.environment=pm.fromScene(es,.035).texture;pm.dispose();
+    }catch(err){scene.add(new THREE.HemisphereLight(0xffffff,0x39424e,.7));}
+  })();
+  var sun=new THREE.DirectionalLight(0xfff1e0,.85);sun.position.set(2.2,4.6,3);sun.castShadow=true;
+  sun.shadow.mapSize.set(2048,2048);var sc=sun.shadow.camera;sc.left=-2.2;sc.right=2.2;sc.top=2.2;sc.bottom=-2.2;sc.near=.5;sc.far=12;sun.shadow.bias=-.0004;sun.shadow.normalBias=.012;sun.shadow.radius=5;
+  scene.add(sun);scene.add(sun.target);
+  var rim=new THREE.DirectionalLight(0xa9c8ff,.7);rim.position.set(-3,2.8,-3.4);scene.add(rim);
+
+  /* body material: physically based clay with activation heat, muscle swell, cavity shading and a soft rim */
+  var U={uHeatLo:{value:lin("#FFA51F")},uHeatHi:{value:lin("#FF2E12")},uRim:{value:lin("#7FB2FF").multiplyScalar(.16)},
+         uMusC:{value:lin("#96443F")},uBoneC:{value:lin("#DDD6C8")},uBulge:{value:.0065},uGlow:{value:.85},uMode:{value:1}};
+  var bodyM=new THREE.MeshPhysicalMaterial({skinning:true,color:lin("#8F98A3"),roughness:.64,metalness:0,clearcoat:.12,clearcoatRoughness:.55,envMapIntensity:.6});
+  bodyM.onBeforeCompile=function(sh){
+    for(var k in U)sh.uniforms[k]=U[k];
+    sh.vertexShader="attribute float aAct;attribute float aCav;attribute float aMus;varying float vAct;varying float vCav;varying float vMus;uniform float uBulge;\n"+
+      sh.vertexShader.replace("#include <skinning_vertex>","#include <skinning_vertex>\nvAct=aAct;vCav=aCav;vMus=aMus;transformed+=objectNormal*(aAct*uBulge);");
+    sh.fragmentShader="varying float vAct;varying float vCav;varying float vMus;uniform vec3 uHeatLo;uniform vec3 uHeatHi;uniform vec3 uRim;uniform vec3 uMusC;uniform vec3 uBoneC;uniform float uGlow;uniform float uMode;\n"+
+      sh.fragmentShader
+        .replace("#include <color_fragment>","#include <color_fragment>\nfloat sAct=clamp(vAct,0.,1.);vec3 sHeat=mix(uHeatLo,uHeatHi,smoothstep(.3,.86,sAct));\nvec3 sBase=mix(diffuseColor.rgb,mix(uBoneC,uMusC,smoothstep(.3,.62,vMus)),uMode);\ndiffuseColor.rgb=mix(sBase*vCav,sHeat*mix(vCav,1.,.45),smoothstep(.03,.4,sAct)*.95);")
+        .replace("#include <emissivemap_fragment>","#include <emissivemap_fragment>\ntotalEmissiveRadiance+=sHeat*(sAct*sAct*uGlow)*mix(vCav,1.,.5);\ntotalEmissiveRadiance+=uRim*pow(1.-clamp(dot(normal,normalize(vViewPosition)),0.,1.),3.);");
+  };
+  var M={body:bodyM,
+         prop:new THREE.MeshStandardMaterial({color:lin("#14181D"),roughness:.72,metalness:.05}),
+         steel:new THREE.MeshStandardMaterial({color:lin("#B9C0C8"),roughness:.28,metalness:.95}),
+         glow:new THREE.MeshBasicMaterial({color:new THREE.Color("#FF4A22"),transparent:true,opacity:.3,depthTest:false,side:THREE.DoubleSide})};
+
+  /* floor: light pool with a faint measuring grid, fading into the dark */
+  function canvasTex(size,paint){var c=document.createElement("canvas");c.width=c.height=size;paint(c.getContext("2d"),size);var tx=new THREE.CanvasTexture(c);tx.anisotropy=4;return tx;}
+  var floorMap=canvasTex(1024,function(g,s){
+    g.fillStyle="#2A3541";g.fillRect(0,0,s,s);
+    var n=26,st=s/n,i;g.lineWidth=1;
+    for(i=0;i<=n;i++){g.strokeStyle=i%5===3?"rgba(255,255,255,.16)":"rgba(255,255,255,.07)";
+      g.beginPath();g.moveTo(i*st,0);g.lineTo(i*st,s);g.stroke();g.beginPath();g.moveTo(0,i*st);g.lineTo(s,i*st);g.stroke();}
+  });floorMap.encoding=THREE.sRGBEncoding;
+  var floorA=canvasTex(256,function(g,s){var gr=g.createRadialGradient(s/2,s/2,s*.04,s/2,s/2,s/2);
+    gr.addColorStop(0,"#fff");gr.addColorStop(.5,"#ddd");gr.addColorStop(1,"#000");g.fillStyle=gr;g.fillRect(0,0,s,s);});
+  var floor=new THREE.Mesh(new THREE.CircleGeometry(2.6,72),new THREE.MeshStandardMaterial({map:floorMap,alphaMap:floorA,transparent:true,roughness:.78,metalness:0,envMapIntensity:.5}));
+  floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+  var mat=new THREE.Mesh(new THREE.BoxGeometry(.66,.012,1.85),new THREE.MeshStandardMaterial({color:lin("#2F5FA8"),roughness:.92}));mat.position.y=.006;mat.receiveShadow=true;scene.add(mat);
+  var wall=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.7,.08),new THREE.MeshStandardMaterial({color:lin("#465565"),roughness:.95}));wall.receiveShadow=true;scene.add(wall);
+  /* equipment from the user's room: adjustable bench and a plate-loaded lat tower */
+  var padM=new THREE.MeshStandardMaterial({color:lin("#1A1F25"),roughness:.6,metalness:.05}),frameM=new THREE.MeshStandardMaterial({color:lin("#2B323A"),roughness:.45,metalness:.6});
+  function box(m){var b=new THREE.Mesh(new THREE.BoxGeometry(1,1,1),m);b.castShadow=true;b.receiveShadow=true;return b;}
+  var bench=new THREE.Group(),bPad=box(padM),bPost=box(frameM),bFoot=box(frameM),bFoot2=box(frameM);bench.add(bPad,bPost,bFoot,bFoot2);bench.visible=false;scene.add(bench);
+  var bBack=box(padM);bBack.visible=false;scene.add(bBack);var vUp=new THREE.Vector3(),vFw=new THREE.Vector3();
+  function setBench(cx,cz,top,len,wid,alongX){
+    bench.visible=true;bench.position.set(cx,0,cz);bench.rotation.y=alongX?Math.PI/2:0;
+    bPad.scale.set(wid,.075,len);bPad.position.set(0,top-.0375,0);
+    var h=Math.max(.02,top-.075);bPost.scale.set(.06,h,.06);bPost.position.set(0,h/2,0);
+    bFoot.scale.set(wid*.95,.04,.07);bFoot.position.set(0,.02,len*.38);bFoot2.scale.set(wid*.95,.04,.07);bFoot2.position.set(0,.02,-len*.38);
+  }
+  var tower=new THREE.Group(),tPost=box(frameM),tArm=box(frameM),tBase=box(frameM),tHorn=new THREE.Mesh(new THREE.CylinderGeometry(.02,.02,.32,12),frameM),
+      tPlate=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.06,8),M.prop),tPlate2=new THREE.Mesh(new THREE.CylinderGeometry(.11,.11,.05,8),M.prop);
+  var pulley=new THREE.Mesh(new THREE.CylinderGeometry(.055,.055,.03,24),M.steel);pulley.rotation.z=Math.PI/2;
+  var cable=new THREE.Mesh(new THREE.CylinderGeometry(.0035,.0035,1,6),M.steel),bar=new THREE.Mesh(new THREE.CylinderGeometry(.014,.014,1,14),M.prop);
+  [tPlate,tPlate2,cable,bar,tHorn].forEach(function(m){m.castShadow=true;});
+  tower.add(tPost,tArm,tBase,tHorn,tPlate,tPlate2,pulley);tower.visible=cable.visible=bar.visible=false;scene.add(tower,cable,bar);
+  var Yax=new THREE.Vector3(0,1,0),vd=new THREE.Vector3();
+  function stretch(mesh,a,b,extra){vd.subVectors(b,a);var Lg=vd.length();mesh.position.addVectors(a,b).multiplyScalar(.5);mesh.scale.set(1,Lg+(extra||0),1);mesh.quaternion.setFromUnitVectors(Yax,vd.normalize());}
+
+  var R=null;
+  var VIEWS={side:Math.PI/2,front:0,oblique:.8,back:Math.PI+.35};
+  var cam={az:.8,el:.16,dist:3.4,tx:0,ty:.8,tz:0},want={dist:3.4,tx:0,ty:.8,tz:0};
+  function setView(v){cam.az=VIEWS[v];spin=false;$("vSpin").setAttribute("aria-pressed","false");
+    document.querySelectorAll(".vctl [data-view]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.view===v?"true":"false");});}
+  function clearView(){document.querySelectorAll(".vctl [data-view]").forEach(function(b){b.setAttribute("aria-pressed","false");});}
+  function frame(e){
+    var lo=[1e9,1e9,1e9],hi=[-1e9,-1e9,-1e9],v=new THREE.Vector3(),T=total(e),n=14;
+    for(var i=0;i<n;i++){
+      RIG.place(R,poseAt(e,T*i/n).p,e.anchor);
+      for(var k in R.markers){R.markers[k].o.getWorldPosition(v);
+        lo[0]=Math.min(lo[0],v.x);lo[1]=Math.min(lo[1],v.y);lo[2]=Math.min(lo[2],v.z);
+        hi[0]=Math.max(hi[0],v.x);hi[1]=Math.max(hi[1],v.y);hi[2]=Math.max(hi[2],v.z);}
+    }
+    want.tx=(lo[0]+hi[0])/2;want.ty=Math.max(.25,(lo[1]+hi[1])/2);want.tz=(lo[2]+hi[2])/2;
+    var tn=Math.tan(15*Math.PI/180),sv=hi[1]-lo[1]+.6,shz=Math.hypot(hi[0]-lo[0],hi[2]-lo[2])+.7;
+    want.dist=Math.min(8,Math.max(2.6,Math.max(sv/(2*tn),shz/(2*tn*camera.aspect))));
+  }
+
+  // ---- playback: pose, label, countdown, and how hard the working muscles pull right now ----
+  function total(e){if(e.fn)return 1/(e.fnF||1);var s=0;e.seq.forEach(function(x){s+=x.d;});return s;}
+  function ease(u){return .5-.5*Math.cos(Math.PI*u);}
+  function poseAt(e,time){
+    if(e.fn){var fq=e.fn(time);return {p:RIG.full(fq),l:fq._l||e.label,c:"",ld:fq._ld==null?.75:fq._ld,sd:fq._sd||null,u:-1};}
+    var T=total(e),tt=((time%T)+T)%T,acc=0,i;
+    for(i=0;i<e.seq.length;i++){if(tt<acc+e.seq[i].d)break;acc+=e.seq[i].d;}
+    if(i>=e.seq.length)i=e.seq.length-1;
+    var from=e.seq[(i-1+e.seq.length)%e.seq.length].to,to=e.seq[i].to,u=ease(Math.min(1,Math.max(0,(tt-acc)/e.seq[i].d)));
+    var p=RIG.lerp(RIG.full(e.poses[from]),RIG.full(e.poses[to]),u);
+    var ld=(from==="A"?0:1-u)+(to==="A"?0:u);
+    if(e.iso)ld=.82+.18*ld;
+    var rem=acc+e.seq[i].d-tt,span=e.seq[i].d,j=i+1,b=i-1;
+    while(j<e.seq.length&&e.seq[j].l===e.seq[i].l){rem+=e.seq[j].d;span+=e.seq[j].d;j++;}
+    while(b>=0&&e.seq[b].l===e.seq[i].l){span+=e.seq[b].d;b--;}
+    return {p:p,l:e.seq[i].l,c:Math.ceil(rem-.05),ld:ld,sd:null,u:1-rem/span};
+  }
+
+  var tg={},flash={g:null,t:0};
+  function setTargets(e){
+    tg={};
+    [[e.work.s,false],[e.work.p,true]].forEach(function(pr){pr[0].forEach(function(n){
+      (EXPAND[n]||[[n,1]]).forEach(function(x){if(x[0] in R.gIdx)tg[x[0]]={p:pr[1],f:x[1],side:sideOf(x[0])};});});});
+  }
+  function drive(r,dt){
+    var k=dt<0?1:Math.min(1,dt*9),i,g,o,v,L;
+    if(flash.t>0)flash.t-=Math.max(0,dt);
+    for(i=0;i<R.groups.length;i++){g=R.groups[i];o=tg[g];v=0;
+      if(o){L=(o.side&&r.sd)?r.sd[o.side]:r.ld;v=(o.p?.34+.66*L:.12+.3*L)*o.f;}
+      if(flash.t>0&&flash.g===g)v=Math.max(v,.95*Math.min(1,flash.t*2));
+      R.act[i]+=(v-R.act[i])*k;}
+    RIG.flushAct(R);
+    for(i=0;i<bars.length;i++){var b=bars[i],mx=0;
+      for(g in tg)if(tg[g].f===1&&(baseOf(g)===b.k||(b.k==="upback"&&/^(trap|lat)/.test(g))))mx=Math.max(mx,R.act[R.gIdx[g]]);
+      var pc=Math.round(mx*100);if(pc!==b.last){b.last=pc;b.fill.style.width=pc+"%";b.val.textContent=pc;}}
+  }
+
+  function open(id,scroll){
+    var e=byId[id];if(!e)return;cur=e;t=0;markNav(id);renderInfo(e);
+    if(!ready)return;
+    setTargets(e);
+    var ghost=id==="kegel";
+    if(bodyM.transparent!==ghost){bodyM.transparent=ghost;bodyM.needsUpdate=true;}
+    bodyM.opacity=ghost?.42:1;
+    var P=e.props||[];
+    R.props.dbL.visible=R.props.dbR.visible=P.indexOf("db")>=0;
+    ["dbL","dbR"].forEach(function(k){if(e.grip==="neutral")R.props[k].rotation.set(Math.PI/2,0,0);else R.props[k].rotation.set(0,0,Math.PI/2);});R.props.kb.visible=P.indexOf("kb")>=0;R.props.pf.visible=P.indexOf("pf")>=0;R.props.hipdb.visible=P.indexOf("hipdb")>=0;
+    bench.visible=false;bBack.visible=false;e.benchMode=["benchUpper","benchBack","benchSeat","benchFoot","benchIncline"].filter(function(b){return P.indexOf(b)>=0;})[0]||null;
+    tower.visible=cable.visible=bar.visible=P.indexOf("tower")>=0;
+    mat.visible=P.indexOf("mat")>=0||P.indexOf("matX")>=0;
+    wall.visible=P.indexOf("wall")>=0;
+    frame(e);
+    if(e.view)setView(e.view);else if(!spin)setView("oblique");
+    cam.dist=want.dist;cam.tx=want.tx;cam.ty=want.ty;cam.tz=want.tz;
+    $("pick").classList.remove("show");
+    draw(-1);
+    if(scroll)$("stage").scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});
+  }
+  window.STAMINA_VIEW={open:open};
+
+  var tmp=new THREE.Vector3(),vh=new THREE.Vector3(),va=new THREE.Vector3(),vb=new THREE.Vector3();
+  function draw(dt){
+    if(!cur||!ready)return;
+    var r=poseAt(cur,t);
+    RIG.place(R,r.p,cur.anchor);
+    drive(r,dt);
+    if(mat.visible){
+      R.markers.head.o.getWorldPosition(vh);R.markers.toeL.o.getWorldPosition(va);R.markers.toeR.o.getWorldPosition(vb);
+      var fx=(va.x+vb.x)/2,fz=(va.z+vb.z)/2;mat.position.x=(vh.x+fx)/2;mat.position.z=(vh.z+fz)/2;
+      if(Math.hypot(vh.x-fx,vh.z-fz)>.3)mat.rotation.y=Math.atan2(vh.x-fx,vh.z-fz);}
+    if(wall.visible){var mz=1e9;["chest","pelvis","head"].forEach(function(n){var m=R.markers[n];m.o.getWorldPosition(tmp);mz=Math.min(mz,tmp.z-m.r);});
+      wall.position.set(0,.85,mz-.05);}
+    if(cur.benchMode)placeBench(cur.benchMode);
+    if(tower.visible)placeTower();
+    $("phase").textContent=r.l;$("count").textContent=r.c===""?"":r.c;
+    $("tempo").style.transform="scaleX("+(r.u<0?((t*.5)%1):r.u)+")";
+    // camera smoothing
+    var k=dt<0?1:Math.min(1,dt*4);
+    cam.dist+=(want.dist-cam.dist)*k;cam.tx+=(want.tx-cam.tx)*k;cam.ty+=(want.ty-cam.ty)*k;cam.tz+=(want.tz-cam.tz)*k;
+    if(spin&&dt>0)cam.az+=dt*.45;
+    var ce=Math.cos(cam.el);
+    camera.position.set(cam.tx+cam.dist*ce*Math.sin(cam.az),cam.ty+cam.dist*Math.sin(cam.el),cam.tz+cam.dist*ce*Math.cos(cam.az));
+    camera.lookAt(cam.tx,cam.ty,cam.tz);
+    sun.target.position.set(cam.tx,0,cam.tz);sun.position.set(cam.tx+2.2,4.6,cam.tz+3);
+    renderer.render(scene,camera);
+  }
+
+  function Wp(n){var m=R.markers[n],o=new THREE.Vector3();m.o.getWorldPosition(o);o.r=m.r;return o;}
+  function placeBench(mode){
+    var c=Wp("chest"),p=Wp("pelvis"),h=Wp("head");
+    if(mode==="benchUpper")setBench(c.x,c.z-.04,c.y-c.r,.34,1.05,true);
+    else if(mode==="benchBack"){var top=Math.min(c.y-c.r,p.y-p.r);setBench(0,(p.z+h.z)/2-.02,top,Math.abs(h.z-p.z)+.5,.3,false);}
+    else if(mode==="benchSeat")setBench(p.x,p.z-.05,p.y-p.r,1.0,.3,false);
+    else if(mode==="benchFoot"){var t=Wp("toeR");setBench(t.x,t.z-.32,t.y,.8,.3,false);}
+    else if(mode==="benchIncline"){
+      var to=Wp("toeL");setBench(p.x,p.z,p.y-p.r,.42,.3,false);
+      vUp.subVectors(h,p);var Lb=vUp.length();vUp.normalize();
+      vFw.set(0,-vUp.z,vUp.y);vd.subVectors(to,p);if(vFw.dot(vd)<0)vFw.multiplyScalar(-1);
+      bBack.visible=true;bBack.scale.set(.3,Lb*.95,.075);
+      bBack.position.set((p.x+h.x)/2,(p.y+h.y)/2,(p.z+h.z)/2).addScaledVector(vFw,-.15);
+      bBack.quaternion.setFromUnitVectors(Yax,vUp);
+    }
+  }
+  function placeTower(){
+    var p=Wp("pelvis"),hl=Wp("handL"),hr=Wp("handR"),zf=p.z+.95,top=2.3,zp=p.z+.12;
+    tPost.scale.set(.07,top,.07);tPost.position.set(0,top/2,zf);
+    tArm.scale.set(.06,.06,zf-zp+.08);tArm.position.set(0,top,(zf+zp)/2);
+    tBase.scale.set(.6,.05,.08);tBase.position.set(0,.025,zf);
+    tHorn.position.set(0,.42,zf-.16);tHorn.rotation.x=Math.PI/2;
+    tPlate.position.set(0,.42,zf-.1);tPlate.rotation.x=Math.PI/2;tPlate2.position.set(0,.42,zf-.165);tPlate2.rotation.x=Math.PI/2;
+    pulley.position.set(0,top-.08,zp);
+    stretch(bar,hl,hr,.34);
+    va.addVectors(hl,hr).multiplyScalar(.5);vb.set(0,top-.08,zp);stretch(cable,va,vb,0);
+  }
+
+  // ---- tap a muscle to name it (CPU-skinned ray test, only on tap) ----
+  var ray=new THREE.Raycaster(),ndc=new THREE.Vector2(),skinned=null,pickTimer=0;
+  function pick(cx,cy){
+    if(!ready)return;
+    var rc=cv.getBoundingClientRect();ndc.set((cx-rc.left)/rc.width*2-1,-(cy-rc.top)/rc.height*2+1);
+    ray.setFromCamera(ndc,camera);
+    var g=R.mesh.geometry,pos=g.attributes.position.array,si=g.attributes.skinIndex.array,sw=g.attributes.skinWeight.array,ix=g.index.array,n=R.nV,i,c;
+    R.mesh.skeleton.update();var bm=R.mesh.skeleton.boneMatrices;
+    if(!skinned)skinned=new Float32Array(n*3);
+    for(i=0;i<n;i++){var x=pos[i*3],y=pos[i*3+1],z=pos[i*3+2],ox=0,oy=0,oz=0;
+      for(c=0;c<4;c++){var w=sw[i*4+c];if(!w)continue;var o=si[i*4+c]*16;
+        ox+=w*(bm[o]*x+bm[o+4]*y+bm[o+8]*z+bm[o+12]);oy+=w*(bm[o+1]*x+bm[o+5]*y+bm[o+9]*z+bm[o+13]);oz+=w*(bm[o+2]*x+bm[o+6]*y+bm[o+10]*z+bm[o+14]);}
+      skinned[i*3]=ox;skinned[i*3+1]=oy;skinned[i*3+2]=oz;}
+    var O=ray.ray.origin,Dr=ray.ray.direction,best=1e9,hit=-1;
+    for(i=0;i<ix.length;i+=3){
+      var a=ix[i]*3,b=ix[i+1]*3,d=ix[i+2]*3;
+      var e1x=skinned[b]-skinned[a],e1y=skinned[b+1]-skinned[a+1],e1z=skinned[b+2]-skinned[a+2],
+          e2x=skinned[d]-skinned[a],e2y=skinned[d+1]-skinned[a+1],e2z=skinned[d+2]-skinned[a+2];
+      var px=Dr.y*e2z-Dr.z*e2y,py=Dr.z*e2x-Dr.x*e2z,pz=Dr.x*e2y-Dr.y*e2x,det=e1x*px+e1y*py+e1z*pz;
+      if(det<1e-12)continue;
+      var tx=O.x-skinned[a],ty=O.y-skinned[a+1],tz=O.z-skinned[a+2],u=(tx*px+ty*py+tz*pz)/det;if(u<0||u>1)continue;
+      var qx=ty*e1z-tz*e1y,qy=tz*e1x-tx*e1z,qz=tx*e1y-ty*e1x,v=(Dr.x*qx+Dr.y*qy+Dr.z*qz)/det;if(v<0||u+v>1)continue;
+      var tt=(e2x*qx+e2y*qy+e2z*qz)/det;if(tt>0&&tt<best){best=tt;hit=u+v<.34?ix[i]:u>v?ix[i+1]:ix[i+2];}
+    }
+    var el=$("pick");if(hit<0){el.classList.remove("show");return;}
+    var grp=RIG.groupAt(R,hit);if(!grp){el.classList.remove("show");return;}
+    var nm=NAMES[baseOf(grp)]||[grp,""],sd=sideOf(grp);
+    el.innerHTML="<b>"+nm[0]+(sd?(sd==="L"?" ซ้าย":" ขวา"):"")+"</b><small>"+nm[1]+"</small>";
+    el.style.left=Math.max(70,Math.min(rc.width-70,cx-rc.left))+"px";el.style.top=Math.max(54,cy-rc.top-14)+"px";el.classList.add("show");
+    flash.g=grp;flash.t=1.6;clearTimeout(pickTimer);pickTimer=setTimeout(function(){el.classList.remove("show");},2600);
+    if(!playing)draw(.016);
+  }
+
+  // ---- resize & loop ----
+  var stage=$("stage"),cv=$("cv");
+  function resize(){var w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();if(ready&&cur){frame(cur);cam.dist=want.dist;}draw(0);}
+  if(window.ResizeObserver)new ResizeObserver(resize).observe(stage);else window.addEventListener("resize",resize);
+  if(window.IntersectionObserver)new IntersectionObserver(function(es){visible=es[0].isIntersecting;}).observe(stage);
+  var last=performance.now();
+  function loop(now){
+    var dt=Math.min(.05,(now-last)/1000);last=now;
+    if(ready&&visible&&!document.hidden){if(playing)t+=dt*speed;draw(dt);}
+    requestAnimationFrame(loop);
+  }
+
+  // ---- controls ----
+  function syncPlay(){$("vPlay").textContent=playing?"หยุด":"เล่น";$("vPlay").setAttribute("aria-pressed",playing?"false":"true");}
+  $("vPlay").addEventListener("click",function(){playing=!playing;syncPlay();});
+  $("vSlow").addEventListener("click",function(){speed=speed===1?.5:1;this.setAttribute("aria-pressed",speed<1?"true":"false");});
+  $("vSpin").addEventListener("click",function(){spin=!spin;this.setAttribute("aria-pressed",spin?"true":"false");if(spin)clearView();});
+  $("vAnat").addEventListener("click",function(){var on=U.uMode.value<.5;U.uMode.value=on?1:0;this.setAttribute("aria-pressed",on?"true":"false");stage.classList.toggle("clay",!on);if(!playing)draw(0);});
+  document.querySelectorAll(".vctl [data-view]").forEach(function(b){b.addEventListener("click",function(){setView(b.dataset.view);});});
+  syncPlay();
+
+  // drag to orbit (horizontal on touch so the page still scrolls), wheel to zoom, tap to identify
+  var drag=null;
+  cv.addEventListener("pointerdown",function(e){drag={x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY,moved:0,touch:e.pointerType==="touch"};try{cv.setPointerCapture(e.pointerId);}catch(_){}});
+  cv.addEventListener("pointermove",function(e){if(!drag)return;var dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;
+    drag.moved=Math.max(drag.moved,Math.abs(e.clientX-drag.x0)+Math.abs(e.clientY-drag.y0));if(drag.moved<5)return;
+    cam.az-=dx*.01;spin=false;$("vSpin").setAttribute("aria-pressed","false");clearView();
+    if(!drag.touch)cam.el=Math.max(-.05,Math.min(1.35,cam.el+dy*.008));});
+  cv.addEventListener("pointerup",function(e){if(drag&&drag.moved<5)pick(e.clientX,e.clientY);drag=null;});
+  ["pointercancel","pointerleave"].forEach(function(n){cv.addEventListener(n,function(){drag=null;});});
+  cv.addEventListener("wheel",function(e){e.preventDefault();want.dist=Math.max(1.6,Math.min(7,want.dist*(1+e.deltaY*.001)));},{passive:false});
+
+  // ---- grow the model lazily: only the first time the studio is shown ----
+  var started=false;
+  function start(){
+    if(started)return;started=true;
+    setTimeout(function(){
+      var lowMem=navigator.deviceMemory&&navigator.deviceMemory<4;
+      R=RIG.build(M,{cell:lowMem?.009:.0075});
+      scene.add(R.root);scene.add(R.mesh);R.props.pf.renderOrder=10;
+      ready=true;stage.classList.add("ready");
+      open(cur?cur.id:"dbpress",false);resize();
+      requestAnimationFrame(function(n){last=n;loop(n);});
+    },60);
+  }
+  open("hipthrust",false);
+  window.MU_STUDIO={open:function(id){start();open(id,false);},show:function(){start();setTimeout(resize,30);}};
+})();
+
+</script>
+</body>
+</html>
