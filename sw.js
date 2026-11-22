@@ -1,5 +1,5 @@
 /* Perfect Body service worker: app shell cache-first, fonts stale-while-revalidate */
-var VERSION = "perfectbody-v1";
+var VERSION = "perfectbody-v1.1";
 var SHELL = ["./", "index.html", "three.min.js", "manifest.webmanifest", "icon-192.png", "icon-512.png", "icon-maskable.png", "apple-touch-icon.png"];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));

@@ -608,7 +608,7 @@ function renderToday(){
   var mh='<div class="card"><div class="card-h"><h3>เช็กลิสต์อาหาร</h3><span class="small muted">'+n.meals+'/4</span></div><div class="stack">';
   MEALS.forEach(function(m){var it=mealItem(d,m),sw=d.sw&&d.sw[m.k];mh+=checkRow(!!d.m[m.k],"meal",'data-k="'+m.k+'"',esc(m.name),m.t,esc(sw?it.name:m.desc)+' <button type="button" class="linkbtn" data-act="swap" data-k="'+m.k+'">'+(sw?"เปลี่ยน/คืนค่า":"กินอย่างอื่น")+'</button>','<b>'+it.kcal+'</b>'+it.p+' ก. P');});
   mh+='</div>';
-  if(d.x&&d.x.length){mh+='<div class="divider"></div><div class="small muted">กินเพิ่ม</div>';d.x.forEach(function(x,i){var it=x.f?FOOD[x.f]:x.c;if(!it)return;mh+='<div class="extra"><span>'+esc(it.name)+(x.q>1?' ×'+x.q:'')+'</span><span class="row"><span class="small muted num">'+Math.round(it.kcal*(x.q||1))+' kcal</span><button class="x" data-act="rmx" data-i="'+i+'" aria-label="ลบ">×</button></span></div>';});}
+  if(d.x&&d.x.length){mh+='<div class="divider"></div><div class="small muted">กินเพิ่ม</div>';d.x.forEach(function(x,i){mh+=extraRow(x,i);});}
   mh+='<button class="btn ghost sm" data-act="addfood" style="align-self:flex-start">+ เพิ่มอาหารนอกแผน</button></div>';h.push(mh);
   // drinks
   var dh='<div class="card"><div class="card-h"><h3>🥤 เครื่องดื่ม</h3><span class="pill '+(n.sweet?"warn":"good")+'">หวาน '+n.sweet+' แก้ว · น้ำตาล ~'+n.sugar+'/24 ก.</span></div>';
@@ -644,9 +644,9 @@ function renderFood(){
   h.push('<div class="card"><h3>🍽️ หลักจานสุขภาพ</h3><ul class="small" style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px"><li><b>ผักครึ่งจาน</b> กินก่อน</li><li><b>โปรตีน 1 ฝ่ามือ</b> อกไก่ ปลา กุ้ง ไข่ เต้าหู้</li><li><b>แป้ง ½–1 ทัพพี</b></li><li><b>ไขมัน 1 ข้อนิ้วโป้ง</b> น้ำมันทั้งวันไม่เกิน 2 ช้อนโต๊ะ</li></ul>'+
     '<p class="small"><b>ประโยคทองตอนสั่ง:</b> "ข้าวน้อย" · "น้ำมันน้อย" · "ไม่ใส่น้ำตาล" · "ไข่ต้มแทนไข่ดาว" · "ราดแยก" · "ไม่เอาหนัง" · "เพิ่มผัก"</p></div>');
   h.push('<div class="card"><h3>🔄 สั่งแบบนี้แทน</h3><div class="tbl"><table><tbody>'+[["กะเพราหมูสับไข่ดาว 650","กะเพราอกไก่ไข่ต้ม ข้าวน้อย 430"],["ข้าวมันไก่ 600","ข้าวไก่ต้มไม่เอาหนัง 420"],["ผัดไทย/ผัดซีอิ๊ว 640","ก๋วยเตี๋ยวน้ำใส/สุกี้น้ำ 300–330"],["ข้าวราดแกงกะทิ 600","แกงส้ม/ต้มยำน้ำใส + ข้าว 380"],["ส้มตำ+ไก่ทอด+ข้าวเหนียว 850","ส้มตำ+ไก่ย่างลอกหนัง+ข้าวเหนียว ½ 450"],["ข้าวไข่เจียว 500","ข้าว+ไข่ตุ๋น/ไข่ต้ม 2+ต้มจืด 400"]].map(function(r){return '<tr><td class="small" style="color:var(--bad)">'+r[0]+'</td><td class="small" style="color:var(--good)">→ '+r[1]+'</td></tr>';}).join("")+'</tbody></table></div></div>');
-  h.push('<div class="card"><div class="card-h"><h3>วันนี้กินไปแล้ว</h3><span class="small muted num">'+fmtN(n.kcal)+' / '+fmtN(S.set.kcal)+' kcal</span></div><div class="bar"><span style="width:'+Math.min(100,n.kcal/S.set.kcal*100)+'%;background:'+(n.kcal>S.set.kcal*1.05?"var(--bad)":"var(--rose)")+'"></span></div><div class="bar"><span style="width:'+Math.min(100,n.p/S.set.protein*100)+'%"></span></div><div class="row"><button class="btn sm" data-act="addfood">+ เพิ่มอาหาร</button><button class="btn ghost sm" data-act="adddrink">+ เครื่องดื่ม</button></div></div>');
-  var mon=mondayOf(k),tot=0,rows="";for(var i=0;i<7;i++){var dk=addDays(mon,i),dd=S.days[dk],sp=dd&&dd.sp!=null?+dd.sp:null;if(sp!=null)tot+=sp;rows+='<tr><td>'+DOWS[parseKey(dk).getDay()]+' '+parseKey(dk).getDate()+'</td><td class="num">'+(sp!=null?sp+" ฿":'<span class="muted">–</span>')+'</td><td style="width:45%"><div class="bar"><span style="width:'+Math.min(100,(sp||0)/S.set.budget*100)+'%;background:'+((sp||0)>S.set.budget?"var(--bad)":"var(--good)")+'"></span></div></td></tr>';}
-  h.push('<div class="card"><div class="card-h"><h3>💸 ค่าใช้จ่ายสัปดาห์นี้</h3><span class="pill '+(tot>S.set.budget*7?"bad":"good")+'">'+fmtN(tot)+' / '+fmtN(S.set.budget*7)+' ฿</span></div><div class="tbl"><table><tbody>'+rows+'</tbody></table></div></div>');
+  h.push('<div class="card"><div class="card-h"><h3>วันนี้กินไปแล้ว</h3><span class="small muted num">'+fmtN(n.kcal)+' / '+fmtN(S.set.kcal)+' kcal</span></div><div class="bar"><span style="width:'+Math.min(100,n.kcal/S.set.kcal*100)+'%;background:'+(n.kcal>S.set.kcal*1.05?"var(--bad)":"var(--rose)")+'"></span></div><div class="bar"><span style="width:'+Math.min(100,n.p/S.set.protein*100)+'%"></span></div><div class="row"><button class="btn sm" data-act="addfood">+ เพิ่มอาหาร</button><button class="btn ghost sm" data-act="adddrink">+ เครื่องดื่ม</button></div><div class="divider"></div><b class="small">รายการวันนี้ <span class="muted">· กด − + เพื่อแก้จำนวน หรือ × เพื่อลบ</span></b>'+todayLog(k)+'</div>');
+  var ws=weekSpend(mondayOf(k)),wb=S.set.budget*7;
+  h.push('<div class="card"><div class="card-h"><h3>💸 ค่าใช้จ่ายสัปดาห์นี้</h3><span class="pill '+(ws.tot>wb?"bad":"good")+'">'+fmtN(ws.tot)+' / '+fmtN(wb)+' ฿</span></div><div class="tbl"><table><tbody>'+ws.rows+'</tbody></table></div><p class="small muted">เริ่มนับจาก<b>วันเริ่มโปรแกรม</b> ('+fmtDate(S.set.start)+') · ตัวเลขที่มี <b>~</b> คือค่าประมาณจากมื้อที่ติ๊ก · กรอกยอดจริงที่ "ใช้เงินวันนี้" หน้าวันนี้ แล้วยอดจริงจะแทนที่ค่าประมาณ</p></div>');
   h.push('<button class="btn block" data-act="go" data-v="shop">🛒 ซื้อของ · เมนู 7 วัน · เตรียมอาหาร</button>');
   $("v-food").innerHTML=h.join("");
 }
@@ -655,11 +655,31 @@ function listSheet(title,items,act,metaFn,extra){
 function foodSheet(mode,mk){sheetCtx={mode:mode,k:mk};
   var list=FOODS.filter(function(f){return foodQ?f.name.toLowerCase().indexOf(foodQ.toLowerCase())>=0:f.cat===foodCat;});
   var h='<div class="sheet-h"><h3>'+(mode==="swap"?"เปลี่ยนเมนู":"เพิ่มอาหาร")+'</h3><button class="icon-btn" data-act="closeSheet" aria-label="ปิด">✕</button></div><input class="input" type="search" placeholder="ค้นหาเมนู…" data-bind="foodQ" value="'+esc(foodQ)+'"><div class="chips">'+CATS.map(function(c,i){return '<button class="chip" data-act="foodCat" data-i="'+i+'" aria-pressed="'+(!foodQ&&i===foodCat)+'">'+c+'</button>';}).join("")+'</div>';
+  if(mode==="add"){var dd=day(todayKey());if(dd&&dd.x&&dd.x.length){var lx=dd.x[dd.x.length-1],li=itemOf(lx);if(li)h+='<div class="banner good" style="align-items:center;padding:8px 12px"><span>✓ เพิ่มล่าสุด: <b>'+esc(li.name)+((lx.q||1)>1?" ×"+lx.q:"")+'</b></span><button class="btn ghost sm" data-act="undoLast" style="margin-left:auto">↩️ เลิกทำ</button></div>';}}
   if(mode==="swap"){var d=day(todayKey());if(d&&d.sw&&d.sw[mk])h+='<button class="btn ghost sm" data-act="unswap" data-k="'+mk+'">↺ กลับเป็นเมนูตามแผน</button>';}
   h+='<div class="food-list">'+(list.length?list.map(function(f){return '<button class="food" data-act="pickfood" data-id="'+f.id+'"><span class="fn">'+esc(f.name)+'</span><span class="fm num">'+f.kcal+' kcal · '+f.p+' ก.</span></button>';}).join(""):'<div class="empty">ไม่พบเมนู</div>')+'</div>';
   if(mode==="add")h+='<div class="divider"></div><b class="small">เพิ่มเอง</b><div class="grid2"><input class="input" id="cName" placeholder="ชื่ออาหาร"><input class="input" id="cKcal" type="number" inputmode="numeric" placeholder="kcal"><input class="input" id="cP" type="number" inputmode="decimal" placeholder="โปรตีน (ก.)"><input class="input" id="cPrice" type="number" inputmode="numeric" placeholder="ราคา ฿"></div><button class="btn" data-act="customfood">เพิ่ม</button>';
   h+='<p class="small muted">ค่าแคลอรี่เป็นค่าประมาณ อาหารผัดหรือราดแกงคลาดเคลื่อนได้มาก</p>';openSheet(h);}
 
+
+/* ---------- edit helpers: today log, qty, spend ---------- */
+function itemOf(x){return x.f?FOOD[x.f]:x.c;}
+function extraRow(x,i){var it=itemOf(x);if(!it)return "";var q=x.q||1;
+  return '<div class="extra"><span>'+esc(it.name)+'</span><span class="row" style="flex-wrap:nowrap;gap:6px"><span class="small muted num">'+Math.round(it.kcal*q)+'</span><span class="stepper"><button data-act="qx" data-i="'+i+'" data-d="-1" aria-label="ลดจำนวน">−</button><b class="num" style="min-width:22px">'+q+'</b><button data-act="qx" data-i="'+i+'" data-d="1" aria-label="เพิ่มจำนวน">+</button></span><button class="x" data-act="rmx" data-i="'+i+'" aria-label="ลบ">×</button></span></div>';}
+function logRow(label,kcal,ctrl){return '<div class="extra"><span>'+label+'</span><span class="row" style="flex-wrap:nowrap;gap:6px"><span class="small muted num">'+Math.round(kcal)+' kcal</span>'+ctrl+'</span></div>';}
+function todayLog(k){var d=S.days[k];if(!d)return '<div class="empty">ยังไม่ได้บันทึกอะไรวันนี้</div>';var h="";
+  MEALS.forEach(function(m){if(d.m&&d.m[m.k]){var it=mealItem(d,m);h+=logRow('🍽️ '+esc(m.name)+(d.sw&&d.sw[m.k]?' · '+esc(it.name):''),it.kcal,'<button class="x" data-act="meal" data-k="'+m.k+'" aria-label="ยกเลิกมื้อนี้">×</button>');}});
+  (d.x||[]).forEach(function(x,i){h+=extraRow(x,i);});
+  if(typeof DRINK!=="undefined")(d.dr||[]).forEach(function(id,i){var it=DRINK[id];if(it)h+=logRow((it.sweet?'🍬 ':'✅ ')+esc(it.name),it.kcal,'<button class="x" data-act="rmdr" data-i="'+i+'" aria-label="ลบ">×</button>');});
+  if(typeof TREAT!=="undefined")(d.tr||[]).forEach(function(id,i){var it=TREAT[id];if(it)h+=logRow('🎂 '+esc(it.name),it.kcal,'<button class="x" data-act="rmtr" data-i="'+i+'" aria-label="ลบ">×</button>');});
+  return h||'<div class="empty">ยังไม่ได้บันทึกอะไรวันนี้</div>';}
+function weekSpend(mon){var tot=0,est=0,rows="";for(var i=0;i<7;i++){var dk=addDays(mon,i),dd=S.days[dk],lab=DOWS[parseKey(dk).getDay()]+' '+parseKey(dk).getDate(),cell,val=0;
+  if(dk<S.set.start){cell='<span class="muted small">ก่อนเริ่ม</span>';}
+  else if(dk>todayKey()){cell='<span class="muted">·</span>';}
+  else if(dd&&dd.sp!=null){val=+dd.sp;cell=val+' ฿';}
+  else{var c=Math.round(nutr(dk).cost);if(c>0){val=c;est++;cell='<span class="muted">~'+c+' ฿</span>';}else cell='<span class="muted">–</span>';}
+  tot+=val;rows+='<tr><td>'+lab+'</td><td class="num">'+cell+'</td><td style="width:42%"><div class="bar"><span style="width:'+Math.min(100,val/S.set.budget*100)+'%;background:'+(val>S.set.budget?"var(--bad)":"var(--good)")+'"></span></div></td></tr>';}
+  return {rows:rows,tot:tot,est:est};}
 /* ---------- SHOP ---------- */
 function renderShop(){
   var tk=todayKey(),mon=mondayOf(tk),wi=Math.floor(daysBetween(mondayOf(S.set.start),mon)/7),sh=S.shop[mon]||(S.shop[mon]={}),pr=S.prep[mon]||(S.prep[mon]={}),h=[],tot=0;
@@ -731,7 +751,7 @@ var MILES=[
  {i:"📏",t:"เอวต่ำกว่า 85 ซม.",f:function(){return latestWaist()<85;}},{i:"🔥",t:"ลด 5 กก.",f:function(){return S.set.startW-smoothMin()>=5;}},
  {i:"🫀",t:"ไขมันช่องท้องต่ำกว่า 10",f:function(){return (latestIB().vf||99)<10;}},{i:"✨",t:"เอวต่ำกว่า 80 ซม.",f:function(){return latestWaist()<80;}},
  {i:"💪",t:"เทรนเวทครบ 30 ครั้ง",f:function(){return workoutsDone("w")>=30;}},{i:"🏆",t:"ไขมันต่ำกว่า 30%",f:function(){return (latestIB().pbf||99)<30;}}];
-function noSweetStreak(){var best=0,cur=0,k=S.set.start,t=todayKey();while(k<=t){var d=S.days[k];if(d&&(d.dr||[]).length>=0&&nutr(k).sweet===0&&(d.m&&Object.keys(d.m).length)){cur++;best=Math.max(best,cur);}else cur=0;k=addDays(k,1);}return best;}
+function noSweetStreak(){var best=0,cur=0,k=S.set.start,t=todayKey();while(k<=t){var d=S.days[k];if(d&&nutr(k).sweet===0&&(d.m&&Object.keys(d.m).length)){cur++;best=Math.max(best,cur);}else cur=0;k=addDays(k,1);}return best;}
 function heatmap(){var t=todayKey(),start=mondayOf(S.set.start),end=addDays(mondayOf(t),6),weeks=Math.max(1,daysBetween(start,end)/7+1|0),first=addDays(mondayOf(t),-(weeks-1)*7),g='<div class="heat"><div class="heat-grid">';
   for(var i=0;i<weeks*7;i++){var k=addDays(first,i);if(k<S.set.start){g+='<i class="pre"></i>';continue;}if(k>t){g+='<i class="fut"></i>';continue;}var s=dayScore(k),l=s<=0?0:s<40?1:s<60?2:s<85?3:4;g+='<i class="l'+l+(k===t?" td":"")+'" data-act="hm" data-k="'+k+'"></i>';}
   return g+'</div></div><div class="heat-legend">น้อย <i style="background:var(--hm0)"></i><i style="background:var(--hm1)"></i><i style="background:var(--hm2)"></i><i style="background:var(--hm3)"></i><i style="background:var(--hm4)"></i> ครบ · แถวบน = จันทร์</div>';}
@@ -816,8 +836,10 @@ document.addEventListener("click",function(e){
   case "unswap":d=day(k,true);delete d.sw[el.dataset.k];save();closeSheet();rerender();break;
   case "addfood":foodSheet("add");break;
   case "foodCat":foodCat=+el.dataset.i;foodQ="";foodSheet(sheetCtx.mode,sheetCtx.k);break;
-  case "pickfood":d=day(k,true);if(sheetCtx.mode==="swap"){d.sw[sheetCtx.k]=el.dataset.id;d.m[sheetCtx.k]=1;closeSheet();}else{var last=d.x[d.x.length-1];if(last&&last.f===el.dataset.id)last.q=(last.q||1)+1;else d.x.push({f:el.dataset.id,q:1});toast("+ "+FOOD[el.dataset.id].name);}save();rerender();break;
+  case "pickfood":d=day(k,true);if(sheetCtx.mode==="swap"){d.sw[sheetCtx.k]=el.dataset.id;d.m[sheetCtx.k]=1;closeSheet();}else{var last=d.x[d.x.length-1];if(last&&last.f===el.dataset.id)last.q=(last.q||1)+1;else d.x.push({f:el.dataset.id,q:1});toast("+ "+FOOD[el.dataset.id].name);}save();if(sheetCtx.mode!=="swap")foodSheet("add");rerender();break;
   case "customfood":var nm=$("cName").value.trim(),kc=+$("cKcal").value||0;if(!nm||!kc){toast("ใส่ชื่อและ kcal ก่อน");break;}d=day(k,true);d.x.push({c:{name:nm,kcal:kc,p:+$("cP").value||0,price:+$("cPrice").value||0},q:1});save();closeSheet();rerender();break;
+  case "undoLast":d=day(k,true);var ul=d.x[d.x.length-1];if(ul){if((ul.q||1)>1)ul.q--;else d.x.pop();}save();foodSheet("add");rerender();toast("เลิกทำแล้ว");break;
+  case "qx":d=day(k,true);var qx=d.x[+el.dataset.i];if(qx){qx.q=(qx.q||1)+(+el.dataset.d);if(qx.q<=0)d.x.splice(+el.dataset.i,1);}save();rerender();break;
   case "rmx":d=day(k,true);d.x.splice(+el.dataset.i,1);save();rerender();break;
   case "adddrink":openSheet(listSheet("บันทึกเครื่องดื่ม",DRINKS,"pickdrink",function(f){return (f.sweet?"🍬 ":"✅ ")+f.kcal+" kcal"+(f.sugar?"<br>น้ำตาล ~"+f.sugar+" ก.":"");},'<p class="small muted">🍬 = เครื่องดื่มหวาน (นับในคะแนน) · ✅ = ดื่มได้ทุกวัน</p>'));break;
   case "pickdrink":d=day(k,true);d.dr.push(el.dataset.id);save();closeSheet();rerender();toast(DRINK[el.dataset.id].sweet?"บันทึกแล้ว ลองหวาน 25% แก้วหน้านะ":"เยี่ยม ✅");break;
